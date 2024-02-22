@@ -5,7 +5,7 @@ const jwtSecret = "123@123" /* (set up password to confirm the newToken) */
 //! @return {String} token
 
  const generateToken = (payload) => {
-   const token = jwt.sign(payload , jwtSecret, { expiresIn:"1h"})  //   
+   const token = jwt.sign(payload , jwtSecret, { expiresIn:"1000h"})     
    return token ;
  }
 

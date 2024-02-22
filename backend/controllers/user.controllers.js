@@ -1,6 +1,6 @@
 const { User } = require("../models/user.model");
 const bcrypt = require("bcryptjs");
-const { generateToken } = require("../utils/jwt");
+const { generateToken, verifyToken } = require("../utils/jwt");
 
 const getUser = async (req, res) => {
     try {
@@ -18,7 +18,10 @@ const register = async (req, res) => {
         body.password = hash
         const newUser = new User(body);
         await newUser.save();
-        res.send({ msg: 'Welcome User', newUser });
+        if(newUser){
+            const token = generateToken({ id: newUser._id, email: newUser.email, role: 'user' });
+            return res.send({ user: newUser, token });
+        }
     } catch (err) {
         console.log(err);
         res.status(400).send(err);
@@ -33,7 +36,7 @@ const logIn = async (req, res) => {
             const isMatch = await bcrypt.compare(body.password, user.password)
             console.log(isMatch);
             if (isMatch) {
-                const token = generateToken({ id: user._id, email: user.email, role: 'admin' });
+                const token = generateToken({ id: user._id, email: user.email, role: 'user' });
                 return res.send({ user, token });
             }
             return res.status(401).send({ msg: 'Invalid password or email' });
@@ -44,7 +47,21 @@ const logIn = async (req, res) => {
         res.status(400).send(err);
     }
 }
-
+const getToken = async (req, res) => {
+    const body = req.body;
+    try {
+        const token = body
+        const payload = verifyToken(token.token)
+        const user = await User.findOne({ email: payload.email });
+        if (user) {
+            return res.send({ user, token });
+        }
+        return res.status(401).send({ msg: 'Invalid token' });
+    } catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+    }
+}
 const deleteUser = async (req, res) => {
     const id = req.params.id;
     try {
@@ -66,4 +83,4 @@ const editUser = async (req, res) => {
         res.status(400).send(err);
     }
 }
-module.exports = { register, logIn, deleteUser, editUser, getUser }
+module.exports = { register, logIn, deleteUser, editUser, getUser, getToken }
