@@ -24,6 +24,7 @@ export default function Transfers() {
       })
       console.log(res.data.accounts[0].transactions);
       setTransfers(res.data.accounts[0].transactions)
+      console.log(transfers);
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err)
     }
@@ -38,14 +39,25 @@ export default function Transfers() {
     <div>
       <button onClick={() => { navigate('/menu') }}>Back to menu</button>
       <CreateTransfer transfers={transfers} setTransfers={setTransfers} />
-      <button onClick={() => { setModeType(1) }}>show all</button>
-      <button onClick={() => { setModeType(2) }}>show expenditure</button>
-      <button onClick={() => { setModeType(3) }}>show income</button>
+
+      {
+        transfers.length != 0 ?
+          <>
+            {transfers.find((transf) => transf.type == 'expenditure') && transfers.find((transf) => transf.type == 'income') ?
+              <>
+                <button onClick={() => { setModeType(1) }}>show all</button>
+                <button onClick={() => { setModeType(2) }}>show expenditure</button>
+                <button onClick={() => { setModeType(3) }}>show income</button>
+              </>
+              : null}
+          </>
+          : null}
+
 
       {transfers?.filter(transfer => {
-        if (modeType === 1) return true; 
-        if (modeType === 2) return transfer.type === 'expenditure'; 
-        if (modeType === 3) return transfer.type === 'income'; 
+        if (modeType === 1) return true;
+        if (modeType === 2) return transfer.type === 'expenditure';
+        if (modeType === 3) return transfer.type === 'income';
       }).map((transfer, i) => (
         <SingleTransfer key={i} transfer={transfer} />
       ))}

@@ -5,7 +5,7 @@ import Axios from 'axios'
 import baseUrl from '../../config/BaseUrl'
 
 export default function CreateLoan({ Loans, setLoans }) {
-    const { accounts } = useContext(AccountContext)
+    const { accounts, setBalanceuser, balanceuser } = useContext(AccountContext)
     const { token } = useContext(UserContext)
     const [createLoan, setCreateLoan] = useState(false)
     const today = new Date();
@@ -66,7 +66,11 @@ export default function CreateLoan({ Loans, setLoans }) {
                     Authorization: `Bearer ${token}`
                 }
             });
-            setLoans([...Loans, res.data])
+            console.log(res.data.newLoan);
+            setLoans([...Loans, res.data.newLoan])
+            setCreateLoan(!createLoan)
+            setBalanceuser(prevBalance => Number(prevBalance.replace(/,/g, "")) + Number(res.data.newLoan.amount));
+            setBalanceuser(prevBalance => prevBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
             console.log(res);
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err);
@@ -84,13 +88,13 @@ export default function CreateLoan({ Loans, setLoans }) {
                     <>
                         <form onSubmit={submitHandler}>
                             <h1>create loan</h1>
-                            <select onChange={handleChange} name="idAccount" >
+                            <select required onChange={handleChange} name="idAccount" >
                                 <option value="" disabled selected>Select account</option>
                                 {accounts?.map((account, i) => (
                                     <option key={i} value={account._id}>{account.fullName}</option>
                                 ))}
                             </select><br />
-                            <label htmlFor="amount">how much you want tot loan?</label><br />
+                            <label htmlFor="amount">how much you want to loan?</label><br />
                             <input name='amount' type="number" placeholder='how much?' value={Loan.amount} onChange={handleChange} /><br />
                             <input
                                 name='dueDate'
@@ -106,6 +110,7 @@ export default function CreateLoan({ Loans, setLoans }) {
                             <input readOnly name='interest' type="number" value={0.04} /><br />
                             <label htmlFor="monthlyPayment">Monthly payment</label><br />
                             <input readOnly name='everyMonth' type="number" value={Loan.everyMonth} /><br />
+                            <label htmlFor="finalAmount">Final amount</label><br />
                             <input readOnly type="number" value={finalAmountState} />
                             <button>Request loan</button>
                         </form>

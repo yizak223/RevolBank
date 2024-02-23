@@ -30,7 +30,7 @@ export default function navBar() {
           <h1>Hello {user?.fullName}</h1>
           {
             choosenAccount ?
-              <h3>Account: {choosenAccount?.idIsraeli}</h3>
+              <h3>ID: {choosenAccount?.idIsraeli}</h3>
               : null
           }
           <button onClick={logOut}>Log out</button><br />

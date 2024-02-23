@@ -27,6 +27,9 @@ const loanScheme = new mongoose.Schema({
     },
     status: {
         type: String, required: true, default: 'pending'
+    },
+    createdAt: {
+        type: Date, required: true, default: Date.now
     }
 })
 const Loan = mongoose.model('Loan', loanScheme)

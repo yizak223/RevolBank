@@ -6,31 +6,50 @@ import Axios from 'axios'
 
 export default function SingleTransfer({ transfer }) {
   const [nameTo, setNameTo] = useState()
+  const [nameFrom, setNameFrom] = useState()
   const { token } = useContext(UserContext)
+  const { choosenAccount } = useContext(AccountContext)
 
-  const fetchData = async () => {
+  const fetchNameTo = async () => {
     console.log(transfer.to);
     try {
-      const res = await Axios.get(`${baseUrl}/accounts?_id=${transfer.to}`, {
+      const resNameTo = await Axios.get(`${baseUrl}/accounts?_id=${transfer.to}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(res.data.accounts[0].fullName);
-      setNameTo(res.data.accounts[0].fullName)
+      const resNameFrom = await Axios.get(`${baseUrl}/accounts?_id=${transfer.from}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      console.log(resNameTo.data.accounts[0].fullName);
+      setNameTo(resNameTo.data.accounts[0].fullName)
+      console.log(resNameFrom.data.accounts[0].fullName);
+      setNameFrom(resNameFrom.data.accounts[0].fullName)
     } catch (err) {
       console.log(err)
     }
   }
-useEffect(()=>{
-  fetchData()
-},[token])
+  console.log('choosen account id' + choosenAccount?._id);
+  console.log('choosen account id from ' + transfer?.from);
+  console.log('choosen account id to ' + transfer?.to);
+  console.log(transfer);
+
+  useEffect(() => {
+    fetchNameTo()
+
+  }, [token])
+
   return (
     <div className='singleLoan'>
-      <h3>Type: {transfer.type==null?'expenditure':transfer.type}</h3>
+      <h3>Type: {transfer.type == null ? 'expenditure' : transfer.type}</h3>
       <h3>Transfer Number: {transfer._id}</h3>
       <h3>Amount: {transfer.amount}</h3>
-      <h3>To: {nameTo}</h3>
+      {choosenAccount?._id == transfer.to ?
+        <h3>from: {nameFrom}</h3>
+        : <h3>To: {nameTo}</h3>
+      }
     </div>
   )
 }

@@ -27,6 +27,9 @@ const creditCardScheme = new mongoose.Schema({
     },
     isActive: {
         type: Boolean, required: true, default: true
+    },
+    createdAt: {
+        type: Date, required: true, default: Date.now
     }
 })
 const CreditCard = mongoose.model('CreditCard', creditCardScheme)

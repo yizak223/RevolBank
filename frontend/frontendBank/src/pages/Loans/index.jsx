@@ -16,8 +16,8 @@ export default function Loans() {
   const fetchData = async () => {
     try {
       const idAccount = choosenAccount?._id
-      console.log(choosenAccount);
-      console.log(idAccount);
+      // console.log(choosenAccount);
+      // console.log(idAccount);
       const res = await Axios.get(`${baseUrl}/loans?idAccount=${idAccount}`, {
         headers: {
           Authorization: `Bearer ${token}`

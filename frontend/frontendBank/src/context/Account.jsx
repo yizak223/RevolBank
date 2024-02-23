@@ -9,6 +9,7 @@ export default function AccountProvider({ children }) {
   const { user, token, setToken } = useContext(UserContext)
   const [choosenAccount, setChoosenAccount] = useState(null)
   const [accounts, setAccounts] = useState([])
+  const [balanceuser, setBalanceuser] = useState('')
 
   const fetchData = async () => {
     try {
@@ -41,10 +42,12 @@ export default function AccountProvider({ children }) {
     setChoosenAccount(accounts[0])
   }, [accounts])
   useEffect(() => {
-
-    // console.log(choosenAccount?._id);
+    setBalanceuser(choosenAccount?.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+    
+    console.log(choosenAccount);
+    console.log(choosenAccount?._id);
   }, [choosenAccount])
-  const shared = { accounts, setChoosenAccount, choosenAccount }
+  const shared = { accounts, setAccounts, setChoosenAccount, choosenAccount, setBalanceuser, balanceuser }
   return (
     <AccountContext.Provider value={shared}>
       {/* <h1>{choosenAccount?.fullName}</h1> */}

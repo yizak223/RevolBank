@@ -26,12 +26,12 @@ const createTransactions = async (req, res) => {
         const newTransaction = new Transaction(body);
         newTransaction.status = "succeed";
 
-        senderAccount.balance -= body.amount;
+        senderAccount.balance -= Number(body.amount);
         newTransaction.type="expenditure"
         senderAccount.transactions.push(newTransaction);
         await senderAccount.save();
 
-        recipientAccount.balance += body.amount;
+        recipientAccount.balance += Number(body.amount);
         newTransaction.type="income"
         recipientAccount.transactions.push(newTransaction);
         await recipientAccount.save();

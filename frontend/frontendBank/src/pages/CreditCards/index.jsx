@@ -5,6 +5,7 @@ import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import './creditCard.css'
 import BaseUrl from '../../config/BaseUrl'
+import CreateCard from '../../components/CreateCard'
 
 export default function CreditCard() {
   const { user, token } = useContext(UserContext)
@@ -53,6 +54,7 @@ export default function CreditCard() {
         }
       });
       setCards([...cards, res.data])
+      setCreateCardMode(!createCardMode)
       console.log(res.data);
     } catch (error) {
       console.error('Error creating account:', error);
@@ -61,29 +63,20 @@ export default function CreditCard() {
   useEffect(() => {
     fetchData()
   }, [token, choosenAccount])
-  
+
   return (
     <div>
-      <button onClick={() => { setCreateCardMode(!createCardMode) }}>Create Card</button>
       {
-        createCardMode ?
-          <>
-            <form onSubmit={submitHandler}>
-              <select onChange={handleChange} name="idAccount" >
-                <option value="" disabled selected>Select account</option>
-                {accounts?.map((account, i) => {
-                  return (
-                    <option key={i} value={account._id}>{account.fullName}</option>
-                  )
-                })}
-              </select>
-              {/* <input onChange={handleChange} type="number" name='idAccount' /> */}
-              <input value={4000} type="number" name='limit' />
-              <button>invite card</button>
-            </form>
-          </>
-          : null
+        cards.length < 2 ? <>
+          <button onClick={() => { setCreateCardMode(!createCardMode) }}>Create Card</button>
+          {
+            createCardMode ?
+              <CreateCard submitHandler={submitHandler} handleChange={handleChange} accounts={accounts} />
+              : null
+          }
+        </> : null
       }
+
       {cards?.map((card, i) => (
         card.isActive ? <SingleCard key={i} card={card} cards={cards} setCards={setCards} /> : null
       ))}

@@ -32,7 +32,10 @@ const createLoan = async (req, res) => {
         console.log(finalPayment);
 
         newLoan.everyMonth = finalPayment
-        loanAccount.balance += body.amount 
+        console.log(loanAccount.balance);
+        loanAccount.balance += Number(body.amount) 
+        console.log(body.amount);
+        console.log(loanAccount.balance);
         loanAccount.loans.push(newLoan);
         await loanAccount.save();
 
