@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import baseUrl from '../../config/BaseUrl'
 import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
+import ModalTransfer from '../../components/ModaLTransfer'
 import Axios from 'axios'
 
 export default function Transfers() {
   const navigate = useNavigate()
-  const { user, token } = useContext(UserContext)
+  const { token } = useContext(UserContext)
+  const [modalOpen, setModalOpen] = useState(false);
   const { choosenAccount } = useContext(AccountContext)
 
   const [transfers, setTransfers] = useState([])
@@ -53,13 +55,23 @@ export default function Transfers() {
           </>
           : null}
 
-
+      {modalOpen && (
+        <ModalTransfer
+          // NameBring={NameBring}
+          // addItemToUser={addItemToUser}
+          // index={index}
+          // itemName={itemName}
+          setOpenModal={setModalOpen}
+        />
+      )}
       {transfers?.filter(transfer => {
         if (modeType === 1) return true;
         if (modeType === 2) return transfer.type === 'expenditure';
         if (modeType === 3) return transfer.type === 'income';
       }).map((transfer, i) => (
-        <SingleTransfer key={i} transfer={transfer} />
+        <div onClick={() => { setModalOpen(true); }}>
+          <SingleTransfer key={i} transfer={transfer} />
+        </div>
       ))}
     </div>
   );
