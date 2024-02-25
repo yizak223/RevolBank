@@ -5,7 +5,7 @@ import Axios from 'axios'
 import baseUrl from '../../config/BaseUrl'
 
 export default function CreateLoan({ Loans, setLoans }) {
-    const { accounts, setBalanceuser, balanceuser } = useContext(AccountContext)
+    const { accounts, setBalanceuser } = useContext(AccountContext)
     const { token } = useContext(UserContext)
     const [createLoan, setCreateLoan] = useState(false)
     const today = new Date();

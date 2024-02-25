@@ -44,8 +44,8 @@ export default function AccountProvider({ children }) {
   useEffect(() => {
     setBalanceuser(choosenAccount?.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
     
-    console.log(choosenAccount);
-    console.log(choosenAccount?._id);
+    // console.log(choosenAccount);
+    // console.log(choosenAccount?._id);
   }, [choosenAccount])
   const shared = { accounts, setAccounts, setChoosenAccount, choosenAccount, setBalanceuser, balanceuser }
   return (

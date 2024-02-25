@@ -1,8 +1,8 @@
 const { app } = require('./app')
 const mongoose = require('mongoose')
-const mongoUrl = 'mongodb://localhost:27017/revolBank'
+const { config } = require('./config')
 
-mongoose.connect(mongoUrl)
+mongoose.connect(config.MONGO_URL)
     .then(() => {
         console.log('connected to db');
     }).catch(err => {

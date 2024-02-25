@@ -12,6 +12,17 @@ const getLoans = async (req, res) => {
     }
 }
 
+const getRecentLoans = async (req, res) => {
+    try {
+        const query = req.query;
+        const recentLoans = await Loan.find({ ...query }).sort({ createdAt: -1 }).limit(5);
+        return res.send({ recentLoans });
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+}
+
 const createLoan = async (req, res) => {
     const body = req.body;
     try {
@@ -33,7 +44,7 @@ const createLoan = async (req, res) => {
 
         newLoan.everyMonth = finalPayment
         console.log(loanAccount.balance);
-        loanAccount.balance += Number(body.amount) 
+        loanAccount.balance += Number(body.amount)
         console.log(body.amount);
         console.log(loanAccount.balance);
         loanAccount.loans.push(newLoan);
@@ -47,4 +58,4 @@ const createLoan = async (req, res) => {
     }
 }
 
-module.exports = { getLoans, createLoan }
+module.exports = { getLoans, createLoan, getRecentLoans }

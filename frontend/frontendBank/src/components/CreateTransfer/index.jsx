@@ -6,8 +6,9 @@ import { UserContext } from '../../context/User'
 
 export default function CreateTransfer({ transfers, setTransfers }) {
     const { token } = useContext(UserContext)
-    const { choosenAccount } = useContext(AccountContext)
+    const { choosenAccount, setBalanceuser } = useContext(AccountContext)
     const [CreateTransfer, setCreateTransfer] = useState(false)
+    const [accountExist, setAccountExist] = useState(false)
     const [transferState, setTransferState] = useState({
         amount: '',
         from: choosenAccount,
@@ -24,22 +25,30 @@ export default function CreateTransfer({ transfers, setTransfers }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {
-            const response = await fetch(`${baseUrl}/transactions`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify(transferState)
-            })
-            const data = await response.json()
-            setTransfers([...transfers, data.senderAccount.
-                transactions[data.senderAccount.transactions.length-1]
+        if (choosenAccount?._id == transferState.to) {
+            setAccountExist(true)
+        } else {
+            try {
+                const response = await fetch(`${baseUrl}/transactions`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify(transferState)
+                })
+                const data = await response.json()
+                setTransfers([...transfers, data.senderAccount.
+                    transactions[data.senderAccount.transactions.length - 1]
                 ])
-            console.log(data)
-        } catch (err) {
-            console.error('There was a problem with the fetch operation:', err);
+                setBalanceuser(prevBalance => Number(prevBalance.replace(/,/g, "")) - Number(data.newTransaction.amount));
+                setBalanceuser(prevBalance => prevBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+                setCreateTransfer(!CreateTransfer)
+                console.log(data)
+            } catch (err) {
+                console.error('There was a problem with the fetch operation:', err);
+                setAccountExist(true)
+            }
         }
     }
     return (
@@ -50,15 +59,19 @@ export default function CreateTransfer({ transfers, setTransfers }) {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>From</label>
-                        <input readOnly name='from' type="text" placeholder="Account number" value={choosenAccount?._id} />
+
+                        <input required readOnly name='from' type="text" placeholder="Account number" value={choosenAccount?._id} />
                     </div>
                     <div>
-                        <label>To</label>
-                        <input onChange={handleChange} name='to' type="text" placeholder="Account number" />
+                        <label> {accountExist ?
+                            `this account doesn't exist`
+                            : 'To'}</label>
+
+                        <input required onChange={handleChange} name='to' type="text" placeholder="Account number" />
                     </div>
                     <div>
                         <label>Amount</label>
-                        <input onChange={handleChange} name='amount' type="number" placeholder="amount" />
+                        <input required onChange={handleChange} name='amount' type="number" placeholder="amount" />
                     </div>
                     <button type="submit">Submit</button>
                 </form>

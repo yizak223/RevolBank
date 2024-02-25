@@ -6,6 +6,7 @@ import { AccountContext } from '../../context/Account'
 import './creditCard.css'
 import BaseUrl from '../../config/BaseUrl'
 import CreateCard from '../../components/CreateCard'
+import ModalCreditCard from '../../components/ModalCreditCard'
 
 export default function CreditCard() {
   const { user, token } = useContext(UserContext)
@@ -13,6 +14,8 @@ export default function CreditCard() {
   const [cards, setCards] = useState([])
   const [accountState, setAccountState] = useState(choosenAccount)
   const [createCardMode, setCreateCardMode] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false);
+  const [card, setcard] = useState([])
   const [creditCard, setCreditCard] = useState({
     idAccount: accountState
   })
@@ -36,6 +39,10 @@ export default function CreditCard() {
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err);
     }
+  }
+
+  const fetchModal = (transfer) => {
+    setcard(transfer)
   }
 
   const handleChange = (e) => {
@@ -76,9 +83,20 @@ export default function CreditCard() {
           }
         </> : null
       }
-
+      {modalOpen && (
+        <ModalCreditCard
+          card={card}
+          setOpenModal={setModalOpen}
+        />
+      )}
       {cards?.map((card, i) => (
-        card.isActive ? <SingleCard key={i} card={card} cards={cards} setCards={setCards} /> : null
+        <div onClick={() => {
+          setModalOpen(true);
+          fetchModal(card)
+        }} key={i}>
+          {card.isActive ? <SingleCard card={card} cards={cards} setCards={setCards} />
+            : null}
+        </div>
       ))}
     </div>
   )

@@ -22,7 +22,7 @@ const accountSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Object,
         ref: 'Loan'
     }],
-    openedDate: {
+    createdAt: {
         type: Date,
         required: true,
         default: Date.now

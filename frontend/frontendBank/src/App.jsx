@@ -26,16 +26,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {!user ?
-            <Route path="/Authntication" element={<Authntication />} />
+            <Route path="/authntication" element={<Authntication />} />
             : <>
-              <Route path='/CreditCards' element={<CreditCard />} />
-              <Route path='/CreditCards/:id' element={<BigCreditCard />} />
-              <Route path='/Balances' element={<Balances />} />
+              <Route path='/creditCards' element={<CreditCard />} />
+              <Route path='/creditCards/:id' element={<BigCreditCard />} />
+              <Route path='/balances' element={<Balances />} />
               <Route path='/menu' element={<Menu />} />
-              <Route path='/Loans' element={<Loans />} />
-              <Route path='/Loans/:id' element={<BigLoan />} />
-              <Route path='/Transfers' element={<Transfers />} />
-              <Route path='/Transfers/:id' element={<BigTransfer />} />
+              <Route path='/loans' element={<Loans />} />
+              <Route path='/loans/:id' element={<BigLoan />} />
+              <Route path='/transfers' element={<Transfers />} />
+              <Route path='/transfers/:id' element={<BigTransfer />} />
             </>
           }
         </Routes>

@@ -15,12 +15,12 @@ export default function navBar() {
   return (
     <header>
       <nav>
-        <Link to="/">Home</Link>
+        <Link to="/">home</Link>
         {!user ?
-          <Link to="/Authntication">log-in</Link>
+          <Link to="/authntication">log-in</Link>
           : <>
-            <Link to="/Balances">Balances</Link>
-            <Link to="/CreditCards">Credit cards</Link>
+            <Link to="/balances">activities</Link>
+            <Link to="/CreditCards">credit cards</Link>
             <Link to="/menu">menu</Link>
           </>}
 

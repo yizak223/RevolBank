@@ -18,8 +18,8 @@ const tansactionScheme = new mongoose.Schema({
     type:{
         type: String, required: false
     },
-    date: {
-        type: Date, default: Date.now
+    createdAt: {
+        type: Date, default: Date.now()
     }
 })
 const Transaction = mongoose.model('Transaction', tansactionScheme)

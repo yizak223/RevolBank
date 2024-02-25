@@ -67,6 +67,12 @@ export default function Home() {
               }
             </> : null
           }
+          <div>
+            <h1>Here will show</h1>
+            <h1>1.concentration of balances</h1>
+            <h1>2.Billing next month</h1>
+            <h1>3.your charges and payments</h1>
+          </div>
         </> : <About />
       }
 
