@@ -5,6 +5,8 @@ import Register from '../../components/Register'
 import { UserContext } from '../../context/User'
 import { useNavigate } from 'react-router-dom'
 import BaseUrl from '../../config/BaseUrl'
+import styles from '../../components//CreateAccount/createAccount.module.css'
+
 
 export default function Authntication() {
     const [logOrSign, setlogOrSign] = useState(false)
@@ -55,7 +57,7 @@ export default function Authntication() {
         } catch (error) {
             console.error("Error logging in:", error);
             console.log(error.response.data.index);
-            if (error.response.data.index>=0) {
+            if (error.response.data.index >= 0) {
                 setEmailExist(true)
             }
         }
@@ -69,27 +71,30 @@ export default function Authntication() {
         }
         const urlUsers = `${BaseUrl}/users`
         fetch(urlUsers)
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            setUsers(data.users)
-          })
-          .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-          });
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setUsers(data.users)
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
     }, [])
     return (
-        <div>
+        <div className={styles.containerPage}>
             {
                 logOrSign ? <>
-                    <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange} />
-                    <p>Have an acconout?</p>
-                    <p className="lgin-signup" onClick={() => setlogOrSign(!logOrSign)}>Log in</p>
+                    <div className={styles.Container}>
+                        <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
+                        setlogOrSign={setlogOrSign}  logOrSign={logOrSign} />
+                       
+                    </div>
                 </>
                     : <>
-                        <LogIn handleSubmit={handleSubmit} handleChange={handleChange} />
-                        <p>Don't have acconout? </p>
-                        <p className="lgin-signup" onClick={() => setlogOrSign(!logOrSign)}>Sign up</p>
+                        <div className={styles.Container}>
+                            <LogIn handleSubmit={handleSubmit} handleChange={handleChange}  
+                            setlogOrSign={setlogOrSign}  logOrSign={logOrSign}/>                            
+                        </div >
                     </>
             }
 

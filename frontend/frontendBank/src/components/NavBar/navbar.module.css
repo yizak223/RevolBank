@@ -1,0 +1,11 @@
+.selectAccount{
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--mainbg);
+    color: #ffffff;
+    border: #fff;
+    box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
+}
+
+

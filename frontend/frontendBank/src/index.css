@@ -12,7 +12,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*/
+:root {
+  --mainbg: #44b1b4;
+  
+  --defaultMargin: 1vh 0 1vh 0
+}
 
+/*
 a {
   font-weight: 500;
   color: #646cff;

@@ -16,5 +16,13 @@ const auth = (req, res, next) => {
         return res.status(401).send("UnAuthorized")
     }
 }
-
-module.exports = { auth }
+const authorize = (roles) => {
+    console.log(roles);
+    return (req, res, next) => {
+        const user = req.user
+        //if (user.roles === role) next()
+        if (roles.includes(user.role)) next()
+        else return res.status(401).send("UnAuthorized")
+    }
+}
+module.exports = { auth, authorize }

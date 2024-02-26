@@ -25,7 +25,7 @@ export default function UserProvider({ children }) {
         localStorage.removeItem('tokenLocal');
         setUser(null);
         setIsLoggedIn(false);
-        location.reload();
+        
     }
     // console.log(user);
 
