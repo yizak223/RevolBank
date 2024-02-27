@@ -1,8 +1,7 @@
-import { useContext, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import NavBar2 from './components/NavBar2'
 import Home from './pages/Home'
 import Authntication from './pages/Authntication'
 import CreditCard from './pages/CreditCards'
@@ -15,13 +14,23 @@ import BigTransfer from './components/BigTransfer'
 import Transfers from './pages/Transfers'
 import { UserContext } from '../src/context/User'
 import Menu from './pages/Menu'
+import { PathContext } from './context/Path'
 
 function App() {
   const { user } = useContext(UserContext)
+  const { path } = useContext(PathContext)
 
+  // useEffect(() => {
+  //   setPath(location.pathname);
+  // }, [location.pathname])
   return (
     <>
       <BrowserRouter>
+        {/* {
+          path === '/'?
+          <NavBar2/>
+          
+        } */}
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,13 +38,13 @@ function App() {
             <Route path="/authntication" element={<Authntication />} />
             : <>
               <Route path='/creditCards' element={<CreditCard />} />
-              <Route path='/creditCards/:id' element={<BigCreditCard />} />
+              {/* <Route path='/creditCards/:id' element={<BigCreditCard />} /> */}
               <Route path='/balances' element={<Balances />} />
               <Route path='/menu' element={<Menu />} />
               <Route path='/loans' element={<Loans />} />
-              <Route path='/loans/:id' element={<BigLoan />} />
+              {/* <Route path='/loans/:id' element={<BigLoan />} /> */}
               <Route path='/transfers' element={<Transfers />} />
-              <Route path='/transfers/:id' element={<BigTransfer />} />
+              {/* <Route path='/transfers/:id' element={<BigTransfer />} /> */}
             </>
           }
         </Routes>

@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    justify-content: center;
+}
+.containerBalances{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.activities {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70vw;
+    margin: var(--defaultMargin);
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    /* height: 75vh; */
+}
+
+.select {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: var(--mainbg);
+    color: #ffffff;
+    border: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    margin-bottom: 2vh;
+}

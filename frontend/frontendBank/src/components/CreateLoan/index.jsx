@@ -3,11 +3,12 @@ import { AccountContext } from '../../context/Account'
 import { UserContext } from '../../context/User'
 import Axios from 'axios'
 import baseUrl from '../../config/BaseUrl'
+import styles from './createLoan.module.css'
+// import style from '../CreateAccount/createAccount.module.css'
 
-export default function CreateLoan({ Loans, setLoans }) {
+export default function CreateLoan({ Loans, setLoans, setCreateLoan, createLoan }) {
     const { accounts, setBalanceuser } = useContext(AccountContext)
     const { token } = useContext(UserContext)
-    const [createLoan, setCreateLoan] = useState(false)
     const today = new Date();
     const twoMonthsLater = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
     // console.log(twoMonthsLater);
@@ -82,40 +83,37 @@ export default function CreateLoan({ Loans, setLoans }) {
 
     return (
         <>
-            <button onClick={() => { setCreateLoan(!createLoan) }}>Create Loan</button>
-            {
-                createLoan ?
-                    <>
-                        <form onSubmit={submitHandler}>
-                            <h1>create loan</h1>
-                            <select required onChange={handleChange} name="idAccount" >
-                                <option value="" disabled selected>Select account</option>
-                                {accounts?.map((account, i) => (
-                                    <option key={i} value={account._id}>{account.fullName}</option>
-                                ))}
-                            </select><br />
-                            <label htmlFor="amount">how much you want to loan?</label><br />
-                            <input name='amount' type="number" placeholder='how much?' value={Loan.amount} onChange={handleChange} /><br />
-                            <input
-                                name='dueDate'
-                                type="date"
-                                value={dueDateState.toISOString().split('T')[0]} // Extracting yyyy-mm-dd from the ISO string
-                                onChange={handleChange}
-                                // onkeydown="return false"
-                                onKeyDown={(e) => e.preventDefault()}
-                                onFocus={(e) => e.target.blur()} // Blur the input field when it's focused to prevent manual input
-                            />
-                            <br />
-                            <label htmlFor="interest">Interest</label><br />
-                            <input readOnly name='interest' type="number" value={0.04} /><br />
-                            <label htmlFor="monthlyPayment">Monthly payment</label><br />
-                            <input readOnly name='everyMonth' type="number" value={Loan.everyMonth} /><br />
-                            <label htmlFor="finalAmount">Final amount</label><br />
-                            <input readOnly type="number" value={finalAmountState} />
-                            <button>Request loan</button>
-                        </form>
-                    </>
-                    : null}
+      <div className={styles.Container}>
+        <form onSubmit={submitHandler} className={styles.Form}>
+                <h2 className={styles.h2}>create loan</h2>
+                <select className={styles.select} required onChange={handleChange} name="idAccount" >
+                    <option value="" disabled selected>Select account</option>
+                    {accounts?.map((account, i) => (
+                        <option key={i} value={account._id}>{account.fullName}</option>
+                    ))}
+                </select><br />
+                <label className={styles.label} htmlFor="amount"> <p>how much you want to loan?</p></label>
+                <input className={styles.input} name='amount' type="number" placeholder='how much?' value={Loan.amount} onChange={handleChange} /><br />
+                <input className={styles.input}
+                    name='dueDate'
+                    type="date"
+                    value={dueDateState.toISOString().split('T')[0]} // Extracting yyyy-mm-dd from the ISO string
+                    onChange={handleChange}
+                    // onkeydown="return false"
+                    onKeyDown={(e) => e.preventDefault()}
+                    onFocus={(e) => e.target.blur()} // Blur the input field when it's focused to prevent manual input
+                />
+                <br />
+                  <label className={styles.label} htmlFor="interest"><p>Interest</p></label>
+                <input className={styles.input} readOnly name='interest' type="number" value={0.04} /><br />
+                <label className={styles.label} htmlFor="monthlyPayment"><p>Monthly payment</p></label>
+                <input className={styles.input} readOnly name='everyMonth' type="number" value={Loan.everyMonth} /><br />
+                <label className={styles.label} htmlFor="finalAmount"><p>Final amount</p></label>
+                <input className={styles.input} readOnly type="number" value={finalAmountState} />
+                <button className={styles.submitBtn}>Request loan</button>
+            </form>
+      </div>
+            
         </>
     )
 }

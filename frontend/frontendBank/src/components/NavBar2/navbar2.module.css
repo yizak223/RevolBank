@@ -1,0 +1,9 @@
+.img{
+    height: 6.5vh;
+    border-radius: 50%;
+}
+.nav{
+    padding: 0.2rem;
+    border-bottom: solid #fff 0.001rem;
+    /* background-color: ; */
+}

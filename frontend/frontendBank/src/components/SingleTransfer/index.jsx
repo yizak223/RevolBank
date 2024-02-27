@@ -3,8 +3,8 @@ import baseUrl from '../../config/BaseUrl'
 import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import Axios from 'axios'
-import { fetchNameTo, fetchNameFrom } from '../../config/fetchNameTrans'
-
+import styles from './singleTransfer.module.css'
+import { formatDateTime2 } from '../../config/dateFormat'
 export default function SingleTransfer({ transfer }) {
   const [nameTo, setNameTo] = useState()
   const [nameFrom, setNameFrom] = useState()
@@ -43,14 +43,25 @@ export default function SingleTransfer({ transfer }) {
   }, [token])
 
   return (
-    <div className='singleLoan'>
-      <h3>Amount: {transfer.amount}</h3>
-      <h3>Type: {transfer.type == null ? 'expenditure' : transfer.type}</h3>
-      {choosenAccount?._id == transfer.to ?
-        <h3>from:{nameFrom} </h3>
-        : <h3>To: {nameTo}</h3>
-      }
-      <p>{transfer.status=='succeed'? 'succeed':'still waiting...'}</p>
+    <div className={styles.singleTransfer}>
+      <div className={styles.container}>
+        <div className={styles.transfer}>
+          <div>
+            <h1 className={choosenAccount?._id == transfer.to ? styles.plus : styles.minus}>{choosenAccount?._id == transfer.to ? '+' : '-'}{transfer.amount}</h1>
+            <p>{transfer.status == 'succeed' ? 'succeed' : 'still waiting...'}</p>
+          </div>
+          <div>
+            <p> {formatDateTime2(transfer.createdAt)}</p>
+            {
+              choosenAccount?._id == transfer.to ?
+                <h3>{nameFrom} </h3>
+                : <h3> {nameTo}</h3>
+            }
+          </div>
+        </div>
+
+
+      </div>
     </div>
   )
 }

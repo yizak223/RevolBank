@@ -1,0 +1,31 @@
+.singleBalnce {
+    /* display: flex;
+    width: 100%; */
+}
+
+.loan {
+    display: flex;
+    justify-content: space-between;
+    background-color: #94d4d7da;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.transfer {
+    display: flex;
+    justify-content: space-between;
+    background-color: #94d4d7da;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.idBalance {
+    text-align: right;
+}
+
+.minus {
+    color: red;
+}
+.plus {
+    color: green;
+}

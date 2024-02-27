@@ -1,10 +1,22 @@
 .accountbalance h2 {
     margin: 0;
 }
+.About{
+    display: flex;
+    justify-content: space-between;
+    width: 70vw;
+    margin: var(--defaultMargin);
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    height: 75vh;
+    min-height: fit-content;
 
+}
 .accountbalance {
     margin: 3vh 0 3vh 0;
-    background-color: rgba(144, 201, 201, 0.639);
+    background-color: #44b0b4da;
     padding: 0.5rem;
     border-radius: 10px;
 }
@@ -18,8 +30,9 @@
 }
 
 .homeComponent {
-    margin: auto;
-    width: 78%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     margin-top: 5vh;
     color: white;
 }
@@ -49,11 +62,11 @@
 }
 
 .createAccount {
-    /* background-color: rgba(144, 201, 201, 0.639); */
+    /* background-color: #44b0b4da; */
 
 }
 
-.btnCreate {
+.btnCreate ,.btnCreateClosa {
     background-color: #4caf50;
     color: #fff;
     padding: 10px;
@@ -62,16 +75,20 @@
     cursor: pointer;
     width: 8vw;
 }
+.btnCreateClosa{
+    background-color: red;
+
+}
 
 .createAccountContainer {
     display: flex;
-    background-color: rgba(144, 201, 201, 0.639);
+    background-color: #44b0b4da; ;
     border-radius: 10px;
     justify-content: space-between;
     padding: 0.5rem;
-
 }
 .container{
     display: flex;
     justify-content: center;
+    transition: 1s;
 }

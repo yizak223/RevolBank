@@ -1,0 +1,26 @@
+.singleTransfer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: var(--defaultMargin);
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    width: 25vw;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.minus{
+color: red;
+}
+.plus{
+color: green;
+}
+.transfer{
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+}

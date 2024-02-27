@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './ModalTransfer.css'
-import formatDateTime from '../../config/dateFormat';
+import {formatDateTime} from '../../config/dateFormat';
 import { AccountContext } from '../../context/Account';
 import { UserContext } from '../../context/User';
 import baseUrl from '../../config/BaseUrl';

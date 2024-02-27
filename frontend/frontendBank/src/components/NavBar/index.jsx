@@ -49,6 +49,7 @@ export default function navBar() {
   return (
     <header>
       <nav className="navBar">
+        <img className={styles.img} src="src/images/KB.png" alt="" />
         <Link onClick={() => { setPath('/') }} className={path === '/' ? 'nav-link active' : 'nav-link'} to="/">home</Link>
         {!user ?
           <Link onClick={() => { setPath('/authntication') }} className={path === '/authntication' ? 'nav-link active' : 'nav-link'} to="/authntication">log-in</Link>

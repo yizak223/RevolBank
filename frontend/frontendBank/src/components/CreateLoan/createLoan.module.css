@@ -1,0 +1,99 @@
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #F4F4F4;
+}
+.h2{
+    border-radius: 10px;
+    background-color: #09143c93;
+    color: white;
+    padding: 2vh;
+}
+.Container {
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    /* margin: var(--defaultMargin); */
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    /* width: 80%; */
+    /* margin: auto; */
+}
+
+.Form h2 {
+    margin-bottom: 10px;
+}
+
+.Form p {
+    /* margin-bottom: 20px; */
+}
+.label{
+    /* display: flex;
+    align-items: left; */
+    align-self: self-start;
+}
+.input {
+    padding: 10px;
+    /* margin-bottom: 10px; */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* width: 15vw; */
+}
+
+
+.submitBtn {
+    margin-top: 0.5rem;
+    padding: 15px;
+    color: #fff;
+    background: #4E3EC9;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.submitBtn:hover {
+    background: #6057c8;
+}
+
+.loginLink {
+    color: #4E3EC9;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* styles.module.css */
+.select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    /* Text color */
+    background-color: #fff;
+    /* Background color */
+    font-size: 16px;
+    /* Adjust font size */
+    width: 100%;
+    /* Adjust width */
+    /* margin-bottom: 10px; */
+    /* Adjust margin */
+}
+
+.select option {
+    color: #333;
+    background-color: #fff;
+}

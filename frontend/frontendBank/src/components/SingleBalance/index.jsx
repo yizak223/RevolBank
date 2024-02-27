@@ -3,9 +3,10 @@ import { AccountContext } from '../../context/Account'
 import { UserContext } from '../../context/User'
 import baseUrl from '../../config/BaseUrl'
 import Axios from 'axios'
-import formatDateTime from '../../config/dateFormat'
+import { formatDateTime, formatDateTime2 } from '../../config/dateFormat'
+import styles from './singleBalance.module.css'
 
-export default function SingleBalance({ balance ,i}) {
+export default function SingleBalance({ balance, i }) {
   const { choosenAccount } = useContext(AccountContext)
   const { token } = useContext(UserContext)
   const [nameTo, setNameTo] = useState(null)
@@ -41,27 +42,33 @@ export default function SingleBalance({ balance ,i}) {
 
   return (
     <div>
-      <div className="singleBalance">
-        <div className="balance">
+      <div className={styles.singleBalnce}>
+        <div >
           {
             balance.dueDate ?
-              <>
-                <h3>loan</h3>
-                <p>Amount: {balance.amount}</p>
-                <p>Due date: {formatDateTime(balance.dueDate)}</p>
-                <p>trnasfer number: {balance._id}</p>
-                <p>In date: {formatDateTime(balance.createdAt)}</p>
-              </>
-              : <>
-                <h3>transfer</h3>
-                <p>Amount: {balance.amount}</p>
-                {
+              <div className={styles.loan}>
+                <div>
+                  <h1 className={styles.plus}>+{balance.amount}</h1>
+                  <p>loan</p>
+                </div>
+                <div>
+                  <p> {formatDateTime2(balance.createdAt)} - {formatDateTime2(balance.dueDate)} </p>
+                  <p className={styles.idBalance}>{balance._id.substring(15, 23)}</p>
+                </div>
+              </div>
+              :
+              <div className={styles.transfer}>
+                <div>
+                  <h1 className={choosenAccount?._id == balance.to ? styles.plus : styles.minus}>{choosenAccount?._id == balance.to ?'+':'-'}{balance.amount}</h1>
+                  <p >transfer</p>
+                </div>
+                {/* {
                   choosenAccount?._id == balance.to ?
                     <p>From: {nameFrom}</p>
                     : <p>To: {nameTo}</p>
-                }
-                <p>In date: {formatDateTime(balance.createdAt)}</p>
-              </>
+                } */}
+                <p> {formatDateTime2(balance.createdAt)}</p>
+              </div>
           }
 
         </div>

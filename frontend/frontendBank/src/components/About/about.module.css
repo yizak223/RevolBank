@@ -1,7 +1,5 @@
-.About{
+.About {
     /* margin: auto;
-    
-   
     margin-top: 5vh;
     color: white;
     background-color: #c2cad999;
@@ -9,34 +7,121 @@
     padding: 2vh;
     box-shadow: -10px 11px 10px 1px rgba(55, 79, 186, 0.75); */
     display: flex;
+    justify-content: space-between;
     width: 80vw;
     margin: var(--defaultMargin);
     padding: 20px;
     background: rgba(144, 201, 201, 0.639);
     border-radius: 8px;
-    box-shadow: 6px 13px 20px 0px rgba(80,125,206,0.7);
-    height: 80vh;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    height: 75vh;
 }
-.left{
+
+.left {
     padding: 2vh;
     /* flex: 80%; */
+    display: flex;
+    flex-direction: column;
+    gap: 8vh;
 }
-.right{
+
+.right {
     /* flex: 20%; */
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 2vh;
 }
-.h1{
-    width: 60%;
-    font-size: 68px;
+
+.h1 {
+    width: 80%;
+    font-size: 64px;
     color: rgb(255, 255, 255);
+    /* text-align: right; */
 }
-.span{
+
+.span {
     color: rgb(13, 44, 101);
 }
-.img{
+
+.img {
     border-radius: 50%;
     height: 80%;
+}
+
+.advantages {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.advantage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5vh;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* height: 20vh; */
+}
+
+.imgservice {
+    height: 13vh;
+    width: 8vw;
+    border-radius: 0;
+}
+
+.imgtransfers {
+    height: 13vh;
+    width: 11vw;
+    border-radius: 0;
+}
+
+.imgloans {
+    height: 13vh;
+    width: 8vw;
+    border-radius: 0;
+}
+.containerBtn{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    align-self: center;
+    width: fit-content;
+    padding: 15px;
+    color: #fff;
+    background: var(--mainbg);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer; 
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background: #3E32B6;
+}
+.red, .green{
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+}
+
+.green{
+    background-color: green;
+}
+.dltBtn{
+    background-color: red;
+    color: #fff;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 3vw;
 }

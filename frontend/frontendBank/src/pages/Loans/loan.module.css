@@ -1,0 +1,57 @@
+.containerPage {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5vh;
+    color: rgb(0, 0, 0);
+}
+
+.secContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 75vw;
+    margin: var(--defaultMargin);
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    /* height: 65vh; */
+    min-height: fit-content;
+}
+
+.logoimg {
+    border-radius: 50%;
+    height: 90%;
+}
+.left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.red, .green{
+    background-color: red;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* width: 8vw; */
+}
+
+.green{
+    background-color: green;
+}
+.backBtn{
+    background: #4E3EC9;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    /* margin-bottom: 0.5rem; */
+}
+.containerBtns{
+    display: flex;
+    justify-content: space-evenly;
+}

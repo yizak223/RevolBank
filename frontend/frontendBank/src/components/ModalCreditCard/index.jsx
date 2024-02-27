@@ -1,5 +1,5 @@
 import React from 'react'
-import formatDateTime from '../../config/dateFormat';
+import {formatDateTime} from '../../config/dateFormat';
 
 export default function ModalCreditCard({ setOpenModal, card }) {
     console.log(card);

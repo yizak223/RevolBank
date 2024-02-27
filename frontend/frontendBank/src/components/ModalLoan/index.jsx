@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import formatDateTime from '../../config/dateFormat';
+import {formatDateTime} from '../../config/dateFormat';
 import { AccountContext } from '../../context/Account';
 import { UserContext } from '../../context/User';
 
@@ -9,6 +9,7 @@ export default function ModalLoan({setOpenModal,loan}) {
     console.log(loan);
     return (
         <div className="modalBackground">
+          <h1></h1>
           <div className="modalContainer">
             <div className="titleCloseBtn">
               <button onClick={() => { setOpenModal(false); }} >X </button>

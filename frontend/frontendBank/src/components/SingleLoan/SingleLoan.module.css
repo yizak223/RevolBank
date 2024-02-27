@@ -1,0 +1,44 @@
+.SingleLoan{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: var(--defaultMargin);
+    padding: 20px;
+    background: rgba(144, 201, 201, 0.639);
+    border-radius: 8px;
+    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
+    width: 35vw;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}
+.secContianer{
+    display: flex;
+    justify-content: space-between;
+    text-align: right;
+
+}
+.btndeny{
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+}
+.btnconfirm{
+    margin: 1vh 1vh 0 0;
+    background-color: green;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+}
+.waiting{
+    color: blue;
+    margin-top: 1vh;
+}

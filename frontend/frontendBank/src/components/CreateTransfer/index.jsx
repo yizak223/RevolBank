@@ -3,11 +3,11 @@ import { AccountContext } from '../../context/Account'
 import './CreateTransfer.css'
 import baseUrl from '../../config/BaseUrl'
 import { UserContext } from '../../context/User'
+import styles from './createTrasfer.module.css'
 
-export default function CreateTransfer({ transfers, setTransfers }) {
+export default function CreateTransfer({ transfers, setTransfers, createTransfer, setCreateTransfer }) {
     const { token } = useContext(UserContext)
     const { choosenAccount, setBalanceuser } = useContext(AccountContext)
-    const [CreateTransfer, setCreateTransfer] = useState(false)
     const [accountExist, setAccountExist] = useState(false)
     const [transferState, setTransferState] = useState({
         amount: '',
@@ -43,7 +43,7 @@ export default function CreateTransfer({ transfers, setTransfers }) {
                 ])
                 setBalanceuser(prevBalance => Number(prevBalance.replace(/,/g, "")) - Number(data.newTransaction.amount));
                 setBalanceuser(prevBalance => prevBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-                setCreateTransfer(!CreateTransfer)
+                setCreateTransfer(!createTransfer)
                 console.log(data)
             } catch (err) {
                 console.error('There was a problem with the fetch operation:', err);
@@ -52,31 +52,26 @@ export default function CreateTransfer({ transfers, setTransfers }) {
         }
     }
     return (
-        <div>
-            <button onClick={() => { setCreateTransfer(!CreateTransfer) }}>Create Transfer</button>
-            {CreateTransfer ? <>
-                <h1>CreateTransfer</h1>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>From</label>
+        <div className={styles.Container}>
+            <h2 className={styles.h2}>Create Transfer</h2>
+            <form  className={styles.Form} onSubmit={handleSubmit}>
+                <div>
+                    <label className={styles.label}>From</label><br />
+                    <input className={styles.input} required readOnly name='from' type="text" placeholder="Account number" value={choosenAccount?._id} />
+                </div>
+                <div>
+                    <label className={styles.label}> {accountExist ?
+                        `this account doesn't exist`
+                        : 'To'}</label><br />
 
-                        <input required readOnly name='from' type="text" placeholder="Account number" value={choosenAccount?._id} />
-                    </div>
-                    <div>
-                        <label> {accountExist ?
-                            `this account doesn't exist`
-                            : 'To'}</label>
-
-                        <input required onChange={handleChange} name='to' type="text" placeholder="Account number" />
-                    </div>
-                    <div>
-                        <label>Amount</label>
-                        <input required onChange={handleChange} name='amount' type="number" placeholder="amount" />
-                    </div>
-                    <button type="submit">Submit</button>
-                </form>
-            </>
-                : null}
+                    <input className={styles.input} required onChange={handleChange} name='to' type="text" placeholder="Account number" />
+                </div>
+                <div>
+                    <label className={styles.label}>Amount</label><br />
+                    <input className={styles.input} required onChange={handleChange} name='amount' type="number" placeholder="amount" />
+                </div>
+                <button className={styles.submitBtn} type="submit">Submit</button>
+            </form>
         </div>
     )
 }
