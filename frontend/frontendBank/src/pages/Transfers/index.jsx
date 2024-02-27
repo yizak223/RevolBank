@@ -42,6 +42,8 @@ export default function Transfers() {
   }
 
   const handleChange = (e) => {
+    setFirstFour(0)
+    setLastFour(4)
     switch (e.target.value) {
       case 'all':
         setModeType(1);
