@@ -76,6 +76,7 @@
     .secContainer{
         flex-direction: column;
         width: 80vw;
+        gap: 2rem;
     }
     .logoimg{
         height: 30vh;

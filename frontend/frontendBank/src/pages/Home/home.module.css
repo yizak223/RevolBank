@@ -22,11 +22,11 @@
 }
 
 .morning h1, .afternoon h1 , .evening h1 {
-    font-size: 48px;
+    /* font-size: 48px; */
     margin: 3vh 0 3vh 0;
-    background-color: rgba(144, 201, 201, 0.639);
+    /* background-color: rgba(144, 201, 201, 0.639);
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: 10px; */
 }
 
 .homeComponent {
@@ -63,6 +63,7 @@
 
 .createAccount {
     /* background-color: #44b0b4da; */
+    
 
 }
 
@@ -98,6 +99,20 @@
     }
     .About{
         flex-direction: column;
-        height: 57vh;
+        height: fit-content;
+        padding-bottom: 3rem;
+        width: 85vw;
+    }
+    .morning, .afternoon , .evening {
+        font-size: 28px;    
+    }
+    .createAccount{
+        font-size: 18px;
+    }
+    .btnCreate{
+        width: fit-content;
+    }
+    .btnCreateClosa{
+        width: fit-content;
     }
 }

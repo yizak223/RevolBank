@@ -59,9 +59,10 @@
     .secContainer{
         flex-direction: column;
         width: 80vw;
+        gap: 2rem;
     }
     .logoimg{
-        height: 60%;
+        height: 30vh;
     }
     .right{
         align-items: flex-start;

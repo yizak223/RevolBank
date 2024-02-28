@@ -65,7 +65,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 2vh;
 }
 .red, .green{
     background-color: red;
@@ -88,9 +87,13 @@
     .secContainer{
         flex-direction: column;
         width: 80vw;
+        height: fit-content;
+        gap: 2rem;
+        /* justify-content: normal; */
+        /* height: fit-content; */
     }
     .img{
-        height: 60%;
+        height: 30vh;
     }
     .right{
         align-items: flex-start;

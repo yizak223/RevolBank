@@ -74,6 +74,37 @@ export default function navBar() {
             </div>
           </>
         }
+         {
+              user ?
+                <div className="containerLogUser linkContainer">
+                  {/* <p className="UserHello">hello {user.fullName}</p> */}
+                  {
+                    choosenAccount ?
+                      <h3 className="UserHello"> {choosenAccount?.fullName}</h3>
+                      : <h1 className="UserHello">{user.fullName}</h1>
+                  }
+                  <div className="logoutBtnDiv">
+                    {
+                      accounts.length != 0 ?
+                        <>
+                          <div>
+                          </div>
+                          <select className={styles.selectAccount} onChange={handleOption} name="account" >
+                            <option value="" disabled selected>Change account</option>
+                            {
+                              accounts?.map((account, i) => (
+                                <option key={i} value={JSON.stringify(account)}>{account.fullName}</option>
+                              ))
+                            }
+                          </select>
+                        </>
+                        : null
+                    }
+                    <button className="logoutBtn" onClick={logOut}>Log out</button>
+                  </div>
+                </div>
+                : null
+            }
         <div className={`navItems ${isOpen ? 'activeResponsive' : ''}`}>
           <div className="hamburger" onClick={toggleMenu}>
             <div className="line"></div>

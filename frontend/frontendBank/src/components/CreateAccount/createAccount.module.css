@@ -118,5 +118,13 @@
   @media only screen and (max-width: 768px){
    .Container{
     padding: 0.5rem;
+    width: 80vw;
+    margin: 0;
+   }
+   .input{
+    width: 70vw;
+   }
+   .select{
+    width: 75vw;
    }
 }
