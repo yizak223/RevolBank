@@ -60,8 +60,6 @@ export default function SingleTransfer({ transfer }) {
             }
           </div>
         </div>
-
-
       </div>
     </div>
   )

@@ -31,3 +31,28 @@
     width: fit-content;
     margin-bottom: 2vh;
 }
+.nextBtn{
+    background-color: green;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    right: 0;
+    width: fit-content;
+}
+.prevBtn{
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    right: 0;
+    width: fit-content;
+}
+@media only screen and (max-width: 768px){
+    .h2{
+        text-align: center;
+    }
+  }

@@ -104,7 +104,9 @@
         width: 85vw;
     }
     .morning, .afternoon , .evening {
-        font-size: 28px;    
+        font-size: 28px;
+        width: 75vw;    
+        text-align: center;
     }
     .createAccount{
         font-size: 18px;
@@ -114,5 +116,8 @@
     }
     .btnCreateClosa{
         width: fit-content;
+    }
+    .accountbalance{
+        width: 75vw;
     }
 }

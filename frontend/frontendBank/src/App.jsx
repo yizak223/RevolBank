@@ -15,7 +15,7 @@ import Transfers from './pages/Transfers'
 import { UserContext } from '../src/context/User'
 import Menu from './pages/Menu'
 import { PathContext } from './context/Path'
-
+import DeviceHomePage from './pages/DeviceHome'
 function App() {
   const { user } = useContext(UserContext)
   const { path } = useContext(PathContext)
@@ -31,9 +31,14 @@ function App() {
           <NavBar2/>
           
         } */}
-        <NavBar />
+        {
+          path === '/h' ?
+            null : <NavBar />
+        }
+        {/* <NavBar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/h" element={< DeviceHomePage />} />
           {!user ?
             <Route path="/authntication" element={<Authntication />} />
             : <>

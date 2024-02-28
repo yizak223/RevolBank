@@ -8,6 +8,14 @@
     border-radius: 8px;
     box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
     width: 25vw;
+    transition: 0.5s;
+}
+.singleTransfer:hover{
+    opacity: 50%;
+    transform: translateY(-5px);
+}
+.container:hover .maximize{
+    display: block;
 }
 .container{
     display: flex;
@@ -24,6 +32,7 @@ color: green;
     justify-content: space-between;
     text-align: right;
 }
+
 @media only screen and (max-width: 768px){
     .singleTransfer{
         width: 71vw;

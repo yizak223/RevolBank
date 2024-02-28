@@ -74,7 +74,7 @@ export default function Loans() {
                 }
                 {
             firstFour == 0 ? null
-              : <button onClick={() => {
+              : <button className={styles.prevBtn} onClick={() => {
                 setFirstFour(firstFour - 4)
                 setLastFour(lastFour - 4)
               }}>previous</button>
@@ -82,7 +82,7 @@ export default function Loans() {
           {
             lastFour >= Loans.length ?
               null
-              : <button onClick={() => {
+              : <button className={styles.nextBtn} onClick={() => {
                 setFirstFour(firstFour + 4)
                 setLastFour(lastFour + 4)
               }}>next</button>

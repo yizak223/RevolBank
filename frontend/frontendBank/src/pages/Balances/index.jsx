@@ -64,12 +64,15 @@ export default function Balances() {
       <div className={styles.activities}>
         {/* Render your sorted balancses here */}
         {/* Example: */}
-        <select className={styles.select} name="" id="">
+       {
+       balances.length!=0? <select className={styles.select} name="" id="">
           <option disabled selected>activities</option>
           <option value="">last ten</option>
           <option value="">last month</option>
           <option value="">last year</option>
         </select>
+        : <h2 className={styles.h2}>NO ACTIVITIES </h2>
+        }
         <div className={styles.containerBalances}>
           {sortBalancesByDate(balances).map((balance, i) => (           
                 firstFour <= i && i < lastFour ?
@@ -78,7 +81,7 @@ export default function Balances() {
           ))}
           {
             firstFour == 0 ? null
-              : <button onClick={() => {
+              : <button className={styles.prevBtn} onClick={() => {
                 setFirstFour(firstFour - 7)
                 setLastFour(lastFour - 7)
               }}>previous</button>
@@ -86,7 +89,7 @@ export default function Balances() {
           {
             lastFour >= balances.length ?
               null
-              : <button onClick={() => {
+              : <button className={styles.nextBtn} onClick={() => {
                 setFirstFour(firstFour + 7)
                 setLastFour(lastFour + 7)
               }}>next</button>
