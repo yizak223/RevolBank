@@ -92,3 +92,12 @@
     justify-content: center;
     transition: 1s;
 }
+@media only screen and (max-width: 768px){
+    .img{
+        display: none;
+    }
+    .About{
+        flex-direction: column;
+        height: 57vh;
+    }
+}

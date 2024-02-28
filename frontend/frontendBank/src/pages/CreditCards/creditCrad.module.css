@@ -60,3 +60,45 @@
     justify-content: space-between;
     opacity: 100;
 }
+.right {
+    /* flex: 20%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2vh;
+}
+.red, .green{
+    background-color: red;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 8vw;
+}
+
+.green{
+    background-color: green;
+}
+.img {
+    border-radius: 50%;
+    height: 80%;
+}
+@media only screen and (max-width: 768px){
+    .secContainer{
+        flex-direction: column;
+        width: 80vw;
+    }
+    .img{
+        height: 60%;
+    }
+    .right{
+        align-items: flex-start;
+    }
+    .red , .green{
+        width:100%;
+    }
+    .containerCard{
+        padding: 0.5rem;
+    }
+}

@@ -43,3 +43,8 @@
     justify-content: center;
     margin-left: 6vh;
 }
+@media only screen and (max-width: 768px){
+   .dltBtn{
+    width: fit-content;
+   }
+ }

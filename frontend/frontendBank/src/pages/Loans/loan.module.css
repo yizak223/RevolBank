@@ -55,3 +55,20 @@
     display: flex;
     justify-content: space-evenly;
 }
+@media only screen and (max-width: 768px){
+    .secContainer{
+        flex-direction: column;
+        width: 80vw;
+    }
+    .logoimg{
+        height: 60%;
+    }
+    .right{
+        align-items: flex-start;
+    }
+
+    .containerCard{
+        padding: 0.5rem;
+    }
+    
+}

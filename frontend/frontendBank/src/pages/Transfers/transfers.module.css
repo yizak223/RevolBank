@@ -72,3 +72,18 @@
     border: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+@media only screen and (max-width: 768px){
+    .secContainer{
+        flex-direction: column;
+        width: 80vw;
+    }
+    .logoimg{
+        height: 30vh;
+    }
+    .containerBtns{
+        gap: 1.2rem;
+    }
+    .green, .red{
+        width: fit-content;
+    }
+   }

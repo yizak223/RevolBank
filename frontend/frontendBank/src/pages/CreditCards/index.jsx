@@ -121,15 +121,15 @@ export default function CreditCard() {
             ))}
             {
               cards.length < 2 ? <>
-                <button className={createCardMode ? styles.red : styles.green} onClick={() => { setCreateCardMode(!createCardMode) }}>{createCardMode ? 'cancel' : 'Create Card'}</button> </>
+                <button className={createCardMode ? styles3.red : styles3.green} onClick={() => { setCreateCardMode(!createCardMode) }}>{createCardMode ? 'cancel' : 'Create Card'}</button> </>
                 : null
             }
           </div>
-          <div className={styles.right}>
+          <div className={styles3.right}>
             {
               createCardMode ?
                 <CreateCard submitHandler={submitHandler} handleChange={handleChange} accounts={accounts} />
-                : <img className={styles.img} src="src/images/KB.png" alt="" />
+                : <img className={styles3.img} src="src/images/KB.png" alt="" />
             }
 
           </div>

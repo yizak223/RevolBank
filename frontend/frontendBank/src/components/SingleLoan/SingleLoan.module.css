@@ -42,3 +42,8 @@
     color: blue;
     margin-top: 1vh;
 }
+@media only screen and (max-width: 768px){
+   .SingleLoan{
+    width: 71vw;
+   }
+  }

@@ -125,3 +125,12 @@
     cursor: pointer;
     width: 3vw;
 }
+
+@media only screen and (max-width: 768px){
+    .right{
+        display: none;
+    }
+    .left{
+        gap: 0;
+    }
+}

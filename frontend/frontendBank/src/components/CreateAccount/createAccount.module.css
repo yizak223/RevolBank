@@ -115,3 +115,8 @@
   .loginLink:hover {
     text-decoration: underline;
   }
+  @media only screen and (max-width: 768px){
+   .Container{
+    padding: 0.5rem;
+   }
+}

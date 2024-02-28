@@ -1,22 +1,22 @@
-
-
 .navBar {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     border-bottom: solid 0.01rem #ffffff;
-    
     /* background-color: #fff; */
 }
 
 .nav-link {
     font-size: 20px;
     font-weight: 500;
+    padding: 10px;
     color: #000;
     text-decoration: none;
-    padding: 10px;
-
+}
+.a{
+        color: #000;
+    text-decoration: none;
 }
 
 .nav-link:hover {
@@ -76,16 +76,100 @@
 .logoutBtn:hover {
     background-color: #43d790;
 }
-
-/* select{
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 10px;
-    background-color: var(--mainbg);
-    color: #ffffff;
-    border: #fff;
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.1) ;
+@media only screen and (max-width: 1000px){
+    .navBar{
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0;
+    }
+    .UserHello{
+        background-color: #44b1b4;
+        color: black;
+    }
+    .navItems ul li {
+        width: 99vw;
+    }
 }
-option{
 
-} */
+nav {
+    top: 0;
+    padding: 0 20px;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #94bfe8;
+    border-bottom: solid 0.01rem #ffffff;
+    box-shadow: var(--navShadow);
+}
+
+nav .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
+
+nav .hamburger .line {
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.navItems ul {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+* {
+    list-style: none;
+}
+
+.navItems ul a:hover {
+    color: var(--btnHover);
+    font-weight: 700;
+}
+
+@media (max-width: 800px) {
+    .linkContainer{
+        display: none;
+    }
+    .navItems ul {
+        display: none;
+        flex-direction: column;
+        background-color: #94bfe8b8;
+        padding: 10px;
+        border-radius: 5px;
+        position: absolute;
+        top: 53px;
+        right: 0px;
+        width: 99vw;
+        align-items: flex-start;
+    }
+
+    .navItems.activeResponsive ul {
+        display: flex;
+        animation: slideIn 0.5s ease forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .navItems .hamburger {
+        display: flex;
+        margin: 1rem;
+    }
+}

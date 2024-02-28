@@ -13,7 +13,7 @@ export default function CreateCard({
     <div>
       <div className={styles.Container}>
         <form onSubmit={submitHandler} className={styles.Form}>
-          <h2>Create your card</h2>
+          <h2 className={styles.h2}>Create your card</h2>
           <label htmlFor="limit">Limited credit card</label>
           <input className={styles.input} onClick={() => { setOpenModal(true); }} value={4000} type="number" name='limit' />
           <select required onChange={handleChange} className={styles.select} name="idAccount" >

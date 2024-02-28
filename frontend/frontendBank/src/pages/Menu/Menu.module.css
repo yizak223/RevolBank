@@ -34,3 +34,12 @@
     border-radius: 4px;
     cursor: pointer;
 }
+@media only screen and (max-width: 768px){
+    .containerLogo{
+        display: none;
+    }
+    .containerMenu{
+        width: 65vw;
+        justify-content: center;
+    }
+  }
