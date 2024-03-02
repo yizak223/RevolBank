@@ -4,27 +4,27 @@
 }
 
 .containerSides {
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     display: flex;
     width: 87vw;
     height: 100%;
 }
 
 .left , .right{
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-between; */
     height: 100%;
     width: 50%;
-    border: solid;
 }
 .smallContainer{
     height: 30%;
     width: 95%;
     border: solid;
+    padding: 1.5rem;
 }
 .creditCard{
     box-sizing: border-box;
@@ -35,59 +35,61 @@
     border-radius: 15px;
     background-color: #f8f8f8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    padding: 2rem;
+    padding: 1.5rem;
 }
-.titleCard{
-    align-self: flex-start;
-}
-.lftCrdtCrd{
+.RecentTransaction, .mySaving{
+    border: none;
+    /* box-sizing: border-box; */
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    width: 65%;
-    height: 110%;
+    gap: 0.5rem;
+    height: 100%;
 }
-.rightCard{
+.BarChart{
+    border: none;
+    padding: 0;
+}
+.summaryTransaction{
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    border: none;
+   padding-left: 0.7rem;
+}
+.summary{
+    display: flex;
+    gap: 1rem;
+    width: 50%;
+}
+.cilnbox{
+    font-size: 60px;
+    border: solid grey;
+    border-radius: 10px;
+    padding: 0.5rem;
+    color: var(--mainbg);
+}
+.cilnboxOut{
+    color: var(--secbg);
+}
+.h5{
+    color: gray;
+    font-size: 15px;
+}
+.howMuchIn{
+    font-size: 36px;
+    color: var(--mainbg);
+}
+.howMuchEx{
+    font-size: 36px;
+    color: var(--secbg);
+}
+.totalSpend{
+    border: none;
+    /* box-sizing: border-box; */
+    padding: 0;
     display: flex;
     flex-direction: column;
-}
-.addCard{
-    align-self: flex-end;
-    color: #f4cc76;
-    font-size: 20px;
-}
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 0.3rem;
-    /* width: 55%; */
-    padding: 20px;
-    background: rgb(0, 0, 0);
-    color: #281dc1;
-    border-radius: 8px;
-    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
-    transition: 0.5s;
-}
-.container:hover{
-    opacity: 50%;
-    
-}
-.titles{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.empty{
-    color: rgb(0, 0, 0);
-}
-.numCard{
-    display: flex;
-    justify-content: center;
-    font-size: 25px;
-}
-.date{
-    display: flex;
-    justify-content: center;
-    margin-left: 6vh;
+    gap: 0.5rem;
+    /* height: 100%; */
 }

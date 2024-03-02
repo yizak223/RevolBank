@@ -1,0 +1,48 @@
+.TransactionContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.recentTransaction {
+    margin-bottom: 1rem;
+}
+
+.seeAll {
+    align-self: flex-end;
+    color: #f4cc76;
+    font-size: 20px;
+}
+
+.iconTran {
+    border: solid grey;
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.iconAndType {
+    display: flex;
+    width: 50%;
+    ;
+    gap: 1rem;
+}
+
+.type {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+.typeBuy {
+    font-size: 16px;
+    color: gray;
+}
+
+.whereBuy {
+    font-weight: 600;
+}
+.howMuch{
+    font-weight: 600;
+
+}

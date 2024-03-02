@@ -5,8 +5,7 @@ import styles from './DeviceHomePage.module.css'
 
 export default function DeviceHomePage() {
   return (
-    <div className={styles.containerPage}>
-        <NavBar2 />
+    <div >
         <DeviceHome />
     </div>
   )

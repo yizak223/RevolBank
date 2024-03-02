@@ -16,6 +16,8 @@ import { UserContext } from '../src/context/User'
 import Menu from './pages/Menu'
 import { PathContext } from './context/Path'
 import DeviceHomePage from './pages/DeviceHome'
+import styles from './app.module.css'
+
 function App() {
   const { user } = useContext(UserContext)
   const { path } = useContext(PathContext)
@@ -25,20 +27,22 @@ function App() {
   // }, [location.pathname])
   return (
     <>
-      <BrowserRouter>
+    <div className={styles.containerPage}>
+      <BrowserRouter >
         {/* {
           path === '/'?
           <NavBar2/>
           
         } */}
-        {
+        {/* {
           path === '/h' ?
-            null : <NavBar />
-        }
+            null : <NavBar />\
+        } */}
         {/* <NavBar /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/h" element={< DeviceHomePage />} />
+            <NavBar2 />
+        <Routes >
+            <Route path="/" element={< DeviceHomePage />} />
+          {/* <Route path="/" element={<Home />} /> */}
           {!user ?
             <Route path="/authntication" element={<Authntication />} />
             : <>
@@ -54,6 +58,7 @@ function App() {
           }
         </Routes>
       </BrowserRouter>
+      </div>
     </>
   )
 }

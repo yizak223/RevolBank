@@ -1,0 +1,80 @@
+.lftCrdtCrd{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    /* justify-content: space-evenly; */
+    width: 65%;
+    height: 110%;
+}
+.titleCard{
+    align-self: flex-start;
+    display: flex ;
+    justify-content: space-evenly;
+    width: 60%;
+}
+.titleCard2{
+    align-self: flex-start;
+    display: flex ;
+    width: 60%;
+}
+.arrows{
+    display: flex;
+    width: 30%;
+    justify-content: space-evenly;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.3rem;
+    /* width: 55%; */
+    padding: 20px;
+    background: linear-gradient(#008773,#008773,#f4cc76);
+    color: #000000;
+    border-radius: 8px;
+    box-shadow: 6px 5px 10px 0px rgba(0, 0, 0, 0.568);
+    transition: 0.5s;
+}
+.container:hover{
+    opacity: 50%;
+    background: linear-gradient(#f4cc76,#008773,#008773);
+}
+.titles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.empty{
+    color: rgb(0, 0, 0);
+}
+.numCard{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+}
+.date{
+    display: flex;
+    justify-content: center;
+    margin-left: 6vh;
+}
+.rightCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.addCard{
+    align-self: flex-end;
+    color: #f4cc76;
+    font-size: 20px;
+}
+.transferLoan{
+    height: 33%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #008773;
+}

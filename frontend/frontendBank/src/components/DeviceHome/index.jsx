@@ -1,5 +1,19 @@
-import React from 'react'
-import styles from './DeviceHome.module.css'
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './DeviceHome.module.css';
+import './DeviceHome.css';
+import MyCard from '../MyCard';
+import RecentTransaction from '../RecentTransaction';
+import UserSaving from '../UserSaving';
+import CreateAccount from '../CreateAccount';
+import BarChart from '../TransactionChart';
+import { UserContext } from '../../context/User';
+import { AccountContext } from '../../context/Account';
+import axios from 'axios';
+import baseUrl from '../../config/BaseUrl';
+import { CiInboxOut } from "react-icons/ci";
+import { CiInboxIn } from "react-icons/ci";
+import TotalSpend from '../TotalSpend';
+
 
 export default function DeviceHome() {
     return (
@@ -7,47 +21,40 @@ export default function DeviceHome() {
             <div className={styles.containerSides}>
                 <div className={styles.left}>
                     <div className={`${styles.smallContainer} ${styles.creditCard}`}>
-                        <div className={styles.lftCrdtCrd}>
-                            <h3 className={styles.titleCard}>My Card</h3>
-                            <div className={styles.container}>
-                                <div className={styles.titles}>
-                                    <div >
-                                        <p>RB</p>
-                                    </div>
-                                    <div>
-                                        <p>VISA</p>
-                                    </div>
-                                </div>
-                                <div className={styles.empty}>
-                                    EMPTY
-                                </div>
-                                <div className={styles.numCard}>
-                                    4444-4444-4444-4444
-                                </div>
-                                <div className={styles.date}>
-                                    <p>02/27</p>
-                                </div>
-                                <div>
-                                    <p>Yitzhak Alaluf</p>
-                                    <p>322294190</p> </div>
-                            </div>
-                        </div>
-                        <div className={styles.rightCard}>
-                            <div className={styles.addCard}><i class="fa-solid fa-plus"></i>Add card</div>
-                            <div>sdf</div>
-                            <div>asdfg</div>
-                        </div>
+                        <MyCard />
                     </div>
-                    <div className={styles.smallContainer}></div>
-                    <div className={styles.smallContainer}></div>
+                    <div className={`${styles.smallContainer} ${styles.RecentTransaction}`}>
+                        <RecentTransaction />
+                    </div>
+                    <div className={`${styles.smallContainer} ${styles.mySaving}`}>
+                        <UserSaving />
+                    </div>
                 </div>
                 <div className={styles.right}>
-                    <div className={styles.smallContainer}></div>
-                    <div className={styles.smallContainer}></div>
-                    <div className={styles.smallContainer}></div>
+                    <div className={`${styles.smallContainer} ${styles.BarChart}`}>
+                        <BarChart />
+                    </div>
+                    <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
+                        <div className={styles.summary}>
+                            <CiInboxIn className={styles.cilnbox}/>
+                            <div>
+                                <h5 className={styles.h5}>Income</h5>
+                                <h2 className={styles.howMuchIn}>1,900</h2>
+                            </div>
+                        </div>
+                        <div className={styles.summary}>
+                            <CiInboxOut className={`${styles.cilnbox} ${styles.cilnboxOut}`}/>
+                            <div>
+                                <h5 className={styles.h5}>Expanses</h5>
+                                <h2 className={styles.howMuchEx}>2,000</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
+                    <TotalSpend />
+                    </div>
                 </div>
             </div>
         </body>
-
-    )
+    );
 }

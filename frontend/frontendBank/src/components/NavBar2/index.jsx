@@ -1,7 +1,48 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styles from './navbar2.module.css'
+import { PathContext } from '../../context/Path'
+import { UserContext } from '../../context/User'
+import { AccountContext } from '../../context/Account'
 
 export default function NavBar2() {
+    const { user, logOut } = useContext(UserContext)
+    const { accounts, choosenAccount, setChoosenAccount } = useContext(AccountContext)
+    const { path, setPath } = useContext(PathContext)
+    const location = useLocation()
+    const [greeting, setGreeting] = useState('');
+
+    const handleOption = (e) => {
+        setChoosenAccount(JSON.parse(e.target.value))
+    }
+
+    useEffect(() => {
+        const getGreeting = () => {
+            const currentTime = new Date().getHours();
+
+            if (currentTime >= 5 && currentTime < 12) {
+                setGreeting('Good Morning');
+            } else if (currentTime >= 12 && currentTime < 17) {
+                setGreeting('Good Afternoon');
+            } else if (currentTime >= 17 && currentTime < 20) {
+                setGreeting('Good Evening');
+            } else {
+                setGreeting('Good Night');
+            }
+        };
+
+        getGreeting();
+
+        // Update the greeting every minute
+        const interval = setInterval(getGreeting, 60000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        setPath(location.pathname);
+    }, [location.pathname])
+
     return (
         <header>
             <nav className={styles.nav}>
@@ -10,20 +51,32 @@ export default function NavBar2() {
                         <li><img className={styles.img} src="src/images/Black & White Minimalist Business Logo.png" alt="" /></li>
                     </div>
                     <div className={styles.itemsNav}>
-                        <li className={`${styles.active} ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li>
-                        <li className={styles.item}><i class="fa-solid fa-wallet"></i>activities</li>
-                        <li className={styles.item}><i class="fa-regular fa-credit-card"></i>credit card</li>
-                        <li className={styles.item}><i class="fa-solid fa-landmark"></i>loan</li>
-                        <li className={styles.item}><i class="fa-solid fa-money-bill-transfer"></i>transfer</li>
+                        <Link className={`${styles.a} ${path === '/' ? styles.active : ''}`} to='/'><li className={`$ ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li></Link>
+                        <Link className={`${styles.a} ${path === '/balances' ? styles.active : ''}`} to='/balances'><li className={styles.item}><i class="fa-solid fa-wallet"></i>activities</li></Link>
+                        <Link className={`${styles.a} ${path === '/CreditCards' ? styles.active : ''}`} to='/CreditCards'><li className={styles.item}><i class="fa-regular fa-credit-card"></i>credit card</li></Link>
+                        <Link className={`${styles.a} ${path === '/loans' ? styles.active : ''}`} to='/loans'><li className={styles.item}><i class="fa-solid fa-landmark"></i>loan</li></Link>
+                        <Link className={`${styles.a} ${path === '/transfers' ? styles.active : ''}`} to='/transfers'><li className={styles.item}><i class="fa-solid fa-money-bill-transfer"></i>transfer</li></Link>
                     </div>
                     <div className={styles.user}>
-                            <li className={`${styles.active} ${styles.item}`}><i class="fa-regular fa-user"></i>User</li>
-                            <select className={styles.select} name="" id="">
-                                <option value="">account1</option>
-                                <option value="">account1</option>
-                                <option value="">account1</option>
-                            </select>
-                            <button className={styles.logOutBtn}>Log out</button>
+                        {
+                            user ?
+                                <>
+                                    <li className={`${styles.active} ${styles.item}`}><i class="fa-regular fa-user"></i>{user.fullName.split(' ')[0]}</li>
+                                    {accounts.length != 0 ?
+                                        <>
+                                            <select className={styles.select} onChange={handleOption} name="account" >
+                                                <option value="" disabled >Change account</option>
+                                                {accounts?.map((account, i) => (
+                                                    <option key={i} value={JSON.stringify(account)}>{account.idIsraeli}</option>
+                                                ))}
+                                            </select>
+                                        </> : null
+                                    }
+                                    <button onClick={logOut} className={styles.logOutBtn}>Log out</button>
+                                </>
+                                : null
+                        }
+
                     </div>
                 </ul>
             </nav>

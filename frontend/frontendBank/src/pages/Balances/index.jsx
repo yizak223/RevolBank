@@ -17,7 +17,7 @@ export default function Balances() {
     try {
       const idAccount = choosenAccount?._id
       // console.log(choosenAccount);
-      // console.log(idAccount);
+      console.log(idAccount);
       const res = await Axios.get(`${baseUrl}/loans/latestLoans?idAccount=${idAccount}`, {
         headers: {
           Authorization: `Bearer ${token}`

@@ -13,6 +13,7 @@ export default function Authntication() {
     const { setToken, setUser } = useContext(UserContext)
     const [users, setUsers] = useState([])
     const [emailExist, setEmailExist] = useState(false)
+    console.log(BaseUrl);
     const [userdata, setUserData] = useState({
         fullName: '',
         email: '',

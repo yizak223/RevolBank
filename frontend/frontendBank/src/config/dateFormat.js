@@ -13,7 +13,14 @@ const formatDateTime2 = (dateString) => {
 const formatDateTime3 = (dateString) => {
     const month = String(new Date(dateString).getMonth() + 1).padStart(2, '0')
     const year = new Date(dateString).getFullYear()
-    const year2 = String(year).substring(2,4)
+    const year2 = String(year).substring(2, 4)
     return `${month}/${year2}`
 }
-export { formatDateTime, formatDateTime2 ,formatDateTime3}
+const getMonthName = (monthNumber) => {
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    return months[monthNumber - 1]; // Subtract 1 because month is zero-based
+};
+export { formatDateTime, formatDateTime2, formatDateTime3, getMonthName }

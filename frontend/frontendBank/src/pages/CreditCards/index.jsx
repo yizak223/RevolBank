@@ -108,10 +108,10 @@ export default function CreditCard() {
                         <i onClick={() => {
                           setModalOpen(true);
                           fetchModal(card)
-                        }} class="fa-solid fa-maximize"></i>
+                        }} className="fa-solid fa-maximize"></i>
                       </div>
                       <button className={styles.dltBtn} onClick={() => { deleteCard(card._id) }}>
-                        <i class="fa-sharp fa-solid fa-trash"></i>
+                        <i className="fa-sharp fa-solid fa-trash"></i>
                       </button>
                     </div>
                     <SingleCard card={card} cards={cards} setCards={setCards} />
