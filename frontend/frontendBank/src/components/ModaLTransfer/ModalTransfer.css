@@ -2,23 +2,25 @@
     position: fixed;
     top: 47px;
     left: 0;
-    height: 95vh;
+    height: 100%;
     width: 100vw;
     background-color: rgba(10, 10, 10, 0.395);
     display: flex;
     justify-content: center;
     align-items: center;
+    top: 0;
   }
   
   .modalContainer {
-    height: 300px;
+    height: fit-content;
     border-radius: 12px;
     background-color: white;
     box-shadow: rgba(232, 232, 232, 0.879) 0px 0px 15px;
     display: flex;
     flex-direction: column;
     padding: 25px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
+    transform: translateY(-100px);
   }
   
   .modalContainer .title {

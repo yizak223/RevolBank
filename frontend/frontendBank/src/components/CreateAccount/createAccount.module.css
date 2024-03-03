@@ -10,6 +10,11 @@
     color: white;
     padding: 2vh;
 }
+.label{
+    /* align-self: flex-start; */
+    font-size: 18px;
+    color: grey;
+}
 .Container {
     justify-content: center;
     width: 100%;
