@@ -30,7 +30,7 @@
     /* width: 55%; */
     padding: 20px;
     background: linear-gradient(#008773,#008773,#f4cc76);
-    color: #000000;
+    color: #ffffff;
     border-radius: 8px;
     box-shadow: 6px 5px 10px 0px rgba(0, 0, 0, 0.568);
     transition: 0.5s;
@@ -45,7 +45,7 @@
     justify-content: space-between;
 }
 .empty{
-    color: rgb(0, 0, 0);
+    color: #008773;
 }
 .numCard{
     display: flex;

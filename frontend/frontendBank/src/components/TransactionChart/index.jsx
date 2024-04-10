@@ -25,7 +25,6 @@ export default function BarChart() {
             }
         ],
     });
-
     const fetchIncomes = async (idAccount, token) => {
         try {
             const res = await axios.get(`${baseUrl}/incomes?idAccount=${idAccount}`, {
@@ -43,7 +42,7 @@ export default function BarChart() {
             return chartData;
         } catch (err) {
             console.log(err);
-            return 0; 
+            return 0;
         }
     };
 
@@ -67,7 +66,7 @@ export default function BarChart() {
             return 10; // Return 0 if there's an error
         }
     };
-
+    console.log(chartData);
     const fetchData = async () => {
         try {
             if (!choosenAccount || !choosenAccount._id) {
@@ -77,7 +76,7 @@ export default function BarChart() {
 
             const incomeAmount = await fetchIncomes(idAccount, token);
             const expenseAmount = await fetchExpenses(idAccount, token);
-            const monthArray = incomeAmount.month[0].map(element=>{
+            const monthArray = incomeAmount.month[0].map(element => {
                 return getMonthName(element)
             })
             setChartData({

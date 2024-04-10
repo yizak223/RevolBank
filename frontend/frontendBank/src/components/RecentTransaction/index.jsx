@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './RecentTransaction.module.css'
 
 export default function RecentTransaction() {
+    
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>

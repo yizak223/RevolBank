@@ -17,7 +17,7 @@
     margin: var(--defaultMargin);
     padding: 20px;
     background: linear-gradient(#008773,#008773,#f4cc76);
-    color: #000000;
+    color: #ffffff;
     border-radius: 8px;
     box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
     transition: 0.5s;
@@ -32,7 +32,7 @@
     justify-content: space-between;
 }
 .empty{
-    color: rgb(0, 0, 0);
+    color: var(--mainbg);
 }
 .numCard{
     display: flex;

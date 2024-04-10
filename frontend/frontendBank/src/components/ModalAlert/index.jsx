@@ -5,7 +5,7 @@ import { UserContext } from '../../context/User';
 import baseUrl from '../../config/BaseUrl';
 import axios from 'axios';
 
-export default function ModalAlert({ setOpenModal }) {
+export default function ModalAlert({ setOpenModal, openModal }) {
     const { token } = useContext(UserContext)
     const { choosenAccount } = useContext(AccountContext)
     const [cards, setCards] = useState([])
@@ -35,6 +35,7 @@ export default function ModalAlert({ setOpenModal }) {
             setCards([...cards, res.data])
             setCreateCardMode(!createCardMode)
             console.log(res.data);
+            setOpenModal(!openModal)
         } catch (error) {
             console.error('Error creating account:', error);
         }
@@ -49,7 +50,11 @@ export default function ModalAlert({ setOpenModal }) {
                     {/* <h1>You are not allowed to change it now</h1> */}
                 </div>
                 <div className="body">
-                    <CreateCard  submitHandler={submitHandler} handleChange={handleChange}/>
+                    <CreateCard submitHandler={submitHandler} handleChange={handleChange} />
+                </div>
+                <div className="footer">
+                    <button onClick={() => { setOpenModal(false); }} id="cancelBtn"> cancel </button>
+                    {/* <button >Sent me cvv</button> */}
                 </div>
             </div>
         </div>

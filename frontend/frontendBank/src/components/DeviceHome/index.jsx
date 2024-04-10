@@ -21,6 +21,7 @@ export default function DeviceHome() {
             {openModal && (
                 <ModalAlert
                     setOpenModal={setOpenModal}
+                    openModal={openModal}
                 />
             )}
             <div className={styles.containerSides}>

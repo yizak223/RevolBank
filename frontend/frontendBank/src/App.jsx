@@ -41,8 +41,8 @@ function App() {
         {/* <NavBar /> */}
             <NavBar2 />
         <Routes >
-            <Route path="/" element={< DeviceHomePage />} />
-          {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/overView" element={< DeviceHomePage />} />
+          <Route path="/" element={<Home />} />
           {!user ?
             <Route path="/authntication" element={<Authntication />} />
             : <>

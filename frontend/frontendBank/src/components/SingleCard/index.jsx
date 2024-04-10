@@ -16,12 +16,6 @@ export default function SingleCard({ card }) {
 
   return (
     <div>
-      {/* <h3 className={styles.titleCard}>My Card
-        <div className={styles.arrows}>
-          <i className="fa-solid fa-chevron-left"></i>
-          <i className="fa-solid fa-chevron-right"></i>
-        </div>
-      </h3> */}
       <div className={styles.container}>
         <div className={styles.titles}>
           <div >
@@ -43,14 +37,6 @@ export default function SingleCard({ card }) {
         <div>
           <p>{choosenAccount.fullName}</p>
           <p>{card.idAccount}</p> </div>
-        <>
-          {card.isActive ? <>
-            {/* <button className={styles.dltBtn} onClick={() => {
-            deleteCard(card._id
-            )
-          }}><i className="fa-sharp fa-solid fa-trash"></i></button> */}
-          </> : <h3>Don't active</h3>}
-        </>
       </div>
     </div>
 

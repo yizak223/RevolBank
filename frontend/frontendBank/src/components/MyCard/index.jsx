@@ -23,11 +23,8 @@ export default function MyCard({ setOpenModal }) {
                         Authorization: `Bearer ${token}`
                     }
                 })
-            console.log(res.data);
             const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
             setCards(updatedCards);
-            console.log(updatedCards);
-            console.log(cards);
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err);
         }
@@ -85,11 +82,43 @@ export default function MyCard({ setOpenModal }) {
                         /> : null
                     ))
                 }
+                {
+                    cards.length == 0 ?
+                        <div>
+                            <div className={styles.container}>
+                                <div className={styles.titles}>
+                                    <div >
+                                        <p>RB</p>
+                                    </div>
+                                    <div>
+                                        <p>VISA</p>
+                                    </div>
+                                </div>
+                                <div className={styles.empty}>
+                                    EMPTY
+                                </div>
+                                <div className={styles.numCard}>
+                                   ORDER YOUR CARD
+                                </div>
+                                <div className={styles.date}>
+                                    <p></p>
+                                </div>
+                                <div>
+                                    <p>{choosenAccount?.fullName}</p>
+                                    <p>{choosenAccount?._id}</p> </div>
+                            </div>
+                        </div>
+                        : null
+                }
             </div>
             <div className={styles.rightCard}>
                 <div onClick={() => { setOpenModal(true) }} className={styles.addCard}><i className={styles.i} class="fa-solid fa-plus"></i>Add card</div>
-                <div className={styles.transferLoan}><i class="fa-solid fa-lock"></i>CVV</div>
-                <div className={styles.transferLoan}> <i className="fa-sharp fa-solid fa-trash"></i>DELETE</div>
+                <div onClick={()=>{
+                    cards?
+                    alert(`${cards[showCard]?.cvv}`)
+                    :alert('nothing')
+                    }} className={styles.transferLoan}><i class="fa-solid fa-lock"></i>CVV</div>
+                <div onClick={() => { deleteCard(cards[showCard]._id) }} className={styles.transferLoan}> <i className="fa-sharp fa-solid fa-trash"></i>DELETE</div>
             </div>
         </>
     )

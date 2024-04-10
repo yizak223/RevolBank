@@ -21,7 +21,7 @@
     max-width: 400px;
     margin: var(--defaultMargin);
     padding: 20px;
-    background: rgba(144, 201, 201, 0.639);
+    background: rgb(144, 201, 201);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
