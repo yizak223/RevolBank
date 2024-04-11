@@ -51,7 +51,6 @@ export default function CreateAccount({
                     Authorization: `Bearer ${token}`
                 }
             });
-            console.log(res.data);
             setAccounts([...accounts, res.data.newAccount]);
             // setCreateAccountMode(!createAccountMode)
         } catch (error) {

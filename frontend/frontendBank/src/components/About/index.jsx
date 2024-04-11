@@ -7,7 +7,6 @@ export default function About() {
 
   const { setlogOrSign } = useContext(RegisterContext)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const location = useNavigate()
 
   const handleGetStrted = () => {
     setlogOrSign(true)
@@ -35,7 +34,7 @@ export default function About() {
       <p className={styles2.paragraph}>Revolutionize your banking experience with Revol Bank
         Say goodbye to headaches and hello to seamless financial solutions.
       </p>
-      <Link className={styles2.a} onClick={handleGetStrted} to="/authntication">
+      <Link className={styles2.a} to="/authntication">
         <div className={styles2.navlink}>
           <li>Get started</li>
         </div>
