@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import '../NavBar/navBar.css'
 import { PathContext } from '../../context/Path'
 import styles from './navbar.module.css'
 import { RegisterContext } from '../../context/RegisterMode'

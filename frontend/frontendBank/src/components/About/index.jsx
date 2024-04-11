@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles2 from './landingPage.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { RegisterContext } from '../../context/RegisterMode';
 
 export default function About() {
