@@ -4,16 +4,25 @@ import styles from './navbar2.module.css'
 import { PathContext } from '../../context/Path'
 import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function NavBar2() {
     const { user, logOut } = useContext(UserContext)
     const { accounts, choosenAccount, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
     const location = useLocation()
+    const navigate = useNavigate()
     const [greeting, setGreeting] = useState('');
 
     const handleOption = (e) => {
         setChoosenAccount(JSON.parse(e.target.value))
+    }
+
+    const handleLogOut = () => {
+        logOut()
+        navigate('/')
+        setPath('/')
     }
 
     useEffect(() => {
@@ -72,7 +81,7 @@ export default function NavBar2() {
                                             </select>
                                         </> : null
                                     }
-                                    <button onClick={logOut} className={styles.logOutBtn}>Log out</button>
+                                    <button onClick={handleLogOut} className={styles.logOutBtn}>Log out</button>
                                 </>
                                 : null
                         }
