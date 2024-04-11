@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../CreateAccount/createAccount.module.css'
 import './register.module.css'
+import { RegisterContext } from '../../context/RegisterMode'
 
-export default function Register({ handleSubmit, handleChange, emailExist, setlogOrSign, logOrSign }) {
+export default function Register({ handleSubmit, handleChange, emailExist }) {
+    const { logOrSign, setlogOrSign } = useContext(RegisterContext)
+
     return (
         <>
             <div >

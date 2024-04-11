@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from '../CreateAccount/createAccount.module.css'
+import { RegisterContext } from '../../context/RegisterMode'
 
-export default function LogIn({ handleSubmit, handleChange, setlogOrSign, logOrSign }) {
+export default function LogIn({ handleSubmit, handleChange }) {
+    const { logOrSign, setlogOrSign } = useContext(RegisterContext)
+
     return (
         <div >
         <form onSubmit={handleSubmit} className={styles.Form}>

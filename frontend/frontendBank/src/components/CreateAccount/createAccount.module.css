@@ -6,7 +6,7 @@
 }
 .h2{
     border-radius: 10px;
-    background-color: #09143c93;
+    background-color: var(--mainbg);
     color: white;
     padding: 2vh;
 }
@@ -54,18 +54,18 @@
 .submitBtn {
     padding: 15px;
     color: #fff;
-    background: #4E3EC9;
+    background: var(--mainbg);
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .submitBtn:hover {
-    background: #3E32B6;
+    background: var(--mainbg);
 }
 
 .loginLink {
-    color: #4E3EC9;
+    color: var(--mainbg);
     text-decoration: none;
     cursor: pointer;
 }
@@ -77,7 +77,7 @@
 }
 
 .small a {
-    color: #4E3EC9;
+    color: var(--mainbg);
     text-decoration: none;
 }
 
@@ -113,7 +113,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    margin-top: 10vh;
 }
 
   

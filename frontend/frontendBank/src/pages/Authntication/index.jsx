@@ -6,14 +6,14 @@ import { UserContext } from '../../context/User'
 import { useNavigate } from 'react-router-dom'
 import BaseUrl from '../../config/BaseUrl'
 import styles from '../../components//CreateAccount/createAccount.module.css'
+import { RegisterContext } from '../../context/RegisterMode'
 
 
 export default function Authntication() {
-    const [logOrSign, setlogOrSign] = useState(false)
     const { setToken, setUser } = useContext(UserContext)
+    const { logOrSign, setlogOrSign } = useContext(RegisterContext)
     const [users, setUsers] = useState([])
     const [emailExist, setEmailExist] = useState(false)
-    console.log(BaseUrl);
     const [userdata, setUserData] = useState({
         fullName: '',
         email: '',
@@ -22,6 +22,7 @@ export default function Authntication() {
     const navigate = useNavigate()
     const urlLogIn = `${BaseUrl}/users/login`
     const urlRegister = `${BaseUrl}/users/register`
+    
     const handleChange = (e) => {
         const newData = { ...userdata }
         newData[e.target.name] = e.target.value
@@ -41,7 +42,7 @@ export default function Authntication() {
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
                 console.log("Token saved to local storage:", tokenLocal);
-                navigate('/')
+                navigate('/overView')
             }
             else {
                 const response = await Axios.post(urlRegister, {
@@ -53,7 +54,7 @@ export default function Authntication() {
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
                 console.log("Token saved to local storage:", tokenLocal);
-                navigate('/')
+                navigate('/overView')
             }
         } catch (error) {
             console.error("Error logging in:", error);
@@ -87,14 +88,13 @@ export default function Authntication() {
                 logOrSign ? <>
                     <div className={styles.Container}>
                         <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
-                        setlogOrSign={setlogOrSign}  logOrSign={logOrSign} />
-                       
+                             />
                     </div>
                 </>
                     : <>
                         <div className={styles.Container}>
-                            <LogIn handleSubmit={handleSubmit} handleChange={handleChange}  
-                            setlogOrSign={setlogOrSign}  logOrSign={logOrSign}/>                            
+                            <LogIn handleSubmit={handleSubmit} handleChange={handleChange}
+                                />
                         </div >
                     </>
             }

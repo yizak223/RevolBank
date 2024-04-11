@@ -1,29 +1,73 @@
-/* .selectAccount {
-    cursor: pointer;
-    padding: 0.5rem;
+.navBar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    height: 10vh;
+    width: 80vw;
+    justify-content: space-between;
+    padding-left: 3vh;
+    padding-right: 3vh;
     border-radius: 10px;
+    margin-top: 3vh;
+    background-color: rgba(255, 255, 255, 0.589);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.navlink {
+    transition: 0.3s;
+    padding: 0.7rem;
+    border-radius: 10px;
+}
+
+.navlink:hover,
+.navActive {
     background-color: var(--mainbg);
-    color: #ffffff;
-    border: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0.7rem;
+    border-radius: 10px;
+}
+
+.navlink:hover {
+    color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 3vh;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--mainbg);
 }
 
 .img {
-    height: 5vh;
+    height: 7vh;
     border-radius: 50%;
-    position: absolute;
-    left: 0.1rem;
-    top: 0;
     margin: 0.1rem;
 }
-.a{
-    color: #000;
+
+.a,
+.aActive,
+.aHome,
+.aHomeActive {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--mainbg);
     text-decoration: none;
+    transition: 0.3s;
 }
-@media only screen and (max-width: 1000px){
-.img{
-    position: relative;
-    height: 5vh;
+
+.aActive {
+    color: white;
+    transition: 0.3s;
 }
+
+.aHomeActive ,.aHome:hover{
+    border-bottom: solid;
+    padding-bottom: 1vh;
 }
- */

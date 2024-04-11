@@ -17,47 +17,45 @@ import Menu from './pages/Menu'
 import { PathContext } from './context/Path'
 import DeviceHomePage from './pages/DeviceHome'
 import styles from './app.module.css'
+import About from './components/About'
 
 function App() {
   const { user } = useContext(UserContext)
-  const { path } = useContext(PathContext)
+  const { path, setPath } = useContext(PathContext)
 
-  // useEffect(() => {
-  //   setPath(location.pathname);
-  // }, [location.pathname])
+  useEffect(() => {
+    setPath(location.pathname);
+  }, [location.pathname])
+  
   return (
     <>
-    <div className={styles.containerPage}>
-      <BrowserRouter >
-        {/* {
-          path === '/'?
-          <NavBar2/>
-          
-        } */}
-        {/* {
-          path === '/h' ?
-            null : <NavBar />\
-        } */}
-        {/* <NavBar /> */}
-            <NavBar2 />
-        <Routes >
-            <Route path="/overView" element={< DeviceHomePage />} />
-          <Route path="/" element={<Home />} />
-          {!user ?
-            <Route path="/authntication" element={<Authntication />} />
-            : <>
-              <Route path='/creditCards' element={<CreditCard />} />
-              {/* <Route path='/creditCards/:id' element={<BigCreditCard />} /> */}
-              <Route path='/balances' element={<Balances />} />
-              <Route path='/menu' element={<Menu />} />
-              <Route path='/loans' element={<Loans />} />
-              {/* <Route path='/loans/:id' element={<BigLoan />} /> */}
-              <Route path='/transfers' element={<Transfers />} />
-              {/* <Route path='/transfers/:id' element={<BigTransfer />} /> */}
-            </>
+      <div class={path == '/' || path == '/authntication' ? styles.containerPage2 : styles.containerPage1}>
+        <BrowserRouter >
+          {
+            path == '/' || path == '/authntication' ?
+              <NavBar />
+              : <NavBar2 />
           }
-        </Routes>
-      </BrowserRouter>
+          <Routes >
+            {!user ?
+              <>
+                <Route path="/authntication" element={<Authntication />} />
+                <Route path="/" element={<About />} />
+              </>
+              : <>
+                <Route path="/overView" element={< DeviceHomePage />} />
+                <Route path='/creditCards' element={<CreditCard />} />
+                {/* <Route path='/creditCards/:id' element={<BigCreditCard />} /> */}
+                <Route path='/balances' element={<Balances />} />
+                <Route path='/menu' element={<Menu />} />
+                <Route path='/loans' element={<Loans />} />
+                {/* <Route path='/loans/:id' element={<BigLoan />} /> */}
+                <Route path='/transfers' element={<Transfers />} />
+                {/* <Route path='/transfers/:id' element={<BigTransfer />} /> */}
+              </>
+            }
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   )

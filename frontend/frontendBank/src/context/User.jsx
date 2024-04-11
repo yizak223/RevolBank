@@ -26,6 +26,7 @@ export default function UserProvider({ children }) {
         setUser(null);
         setIsLoggedIn(false);
         
+        
     }
     // console.log(user);
 

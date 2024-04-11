@@ -1,34 +1,47 @@
-import React from 'react'
-import styles from './about.module.css'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import styles2 from './landingPage.module.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { RegisterContext } from '../../context/RegisterMode';
 
 export default function About() {
+
+  const { setlogOrSign } = useContext(RegisterContext)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const location = useNavigate()
+
+  const handleGetStrted = () => {
+    setlogOrSign(true)
+    setPath('/authntication')
+  }
+
+  useEffect(() => {
+    const handleWindowSizeChange = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowSizeChange);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const mobileImage = <img className={styles2.img} src="src/images/mobileImage.png" alt="Mobile Image" />;
+  const desktopImage = <img className={styles2.img} src="src/images/Blue Modern Debit Card Promotion Facebook Ad (1).png" alt="Desktop Image" />;
+
   return (
-    <div className={styles.About}>
-      <div className={styles.left}>
-        <h1 className={styles.h1}>You deserve a bank that wants you <span className={styles.span}>extra!</span></h1>
-        <div className={styles.advantages}>
-          <div className={styles.advantage}>
-            <h2 className={styles.h2}>Cheaper loans</h2>
-            <img className={styles.imgloans} src="https://time4me.co.il/wp-content/uploads/2023/07/image-1410.png" alt="" />
-          </div>
-          <div className={styles.advantage}>
-            <h2 className={styles.h2}>Free transfers</h2>
-            <img className={styles.imgtransfers} src="https://upload.wikimedia.org/wikipedia/he/thumb/d/d6/Bit_logo.svg/800px-Bit_logo.svg.png" alt="" />
-          </div>
-          <div className={styles.advantage}>
-            <h2 className={styles.h2}>The best service</h2>
-            <img className={styles.imgservice} src="https://alltips.co.il/wp-content/uploads/2017/09/call-customer-service.png" alt="" />
-          </div>
+    <div className={styles2.page}>
+      <h1 className={styles2.h1}>No more banking headaches</h1>
+      <p className={styles2.paragraph}>Revolutionize your banking experience with Revol Bank
+        Say goodbye to headaches and hello to seamless financial solutions.
+      </p>
+      <Link className={styles2.a} onClick={handleGetStrted} to="/authntication">
+        <div className={styles2.navlink}>
+          <li>Get started</li>
         </div>
-        <div className={styles.containerBtn}>
-          <button onClick={()=>{location('/authntication')}} className={styles.btn}>Create Account</button>
-        </div>
-      </div>
-      <div className={styles.right}>
-        <img className={styles.img} src="src/images/KB.png" alt="" />
-      </div>
+      </Link>
+      {screenWidth < 768 ? mobileImage : desktopImage}
+
     </div>
   )
 }
