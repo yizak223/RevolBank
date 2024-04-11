@@ -26,13 +26,13 @@ function App() {
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])
-  
+
   return (
     <>
       <div class={path == '/' || path == '/authntication' ? styles.containerPage2 : styles.containerPage1}>
         <BrowserRouter >
           {
-            path == '/' || path == '/authntication' ?
+            (path == '/' && user!=null) || path == '/authntication' ?
               <NavBar />
               : <NavBar2 />
           }
