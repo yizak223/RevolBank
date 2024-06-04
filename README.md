@@ -30,6 +30,6 @@
     <li>node-schedule - to create every beginning of the month a new expanses and incomes.</li>
     <li>creditcard-generator - to generate the creditCard</li><br>
     <h1>Deployment</h1>
-    <p>Still doesn't have a hosting, if you want you can fork the repo and run it on your local host.</p>
+    <p>https://revol-bank.onrender.com/</p>
     
     
