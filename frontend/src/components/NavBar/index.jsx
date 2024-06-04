@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { PathContext } from '../../context/Path'
 import styles from './navbar.module.css'
 import { RegisterContext } from '../../context/RegisterMode'
+import logo from '../../images/KB.png'
 
 export default function navBar() {
 
@@ -29,7 +30,7 @@ export default function navBar() {
     <header>
       <nav className={styles.navBar}>
         <div className={styles.logo}>
-          <img className={styles.img} src="src/images/KB.png" alt="" />
+          <img className={styles.img} src={logo} alt="" />
           <Link to='/' className={path == '/' ? styles.aHomeActive : styles.aHome}><p>REVOL-BANK</p></Link>
         </div>
         <div className={styles.container}>

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import styles2 from './landingPage.module.css'
 import { Link } from 'react-router-dom'
 import { RegisterContext } from '../../context/RegisterMode';
+import mobileImg from '../../images/mobileImage.png'
+import desktopImg from '../../images/Blue Modern Debit Card Promotion Facebook Ad (1).png'
 
 export default function About() {
 
@@ -25,8 +27,8 @@ export default function About() {
     };
   }, []);
 
-  const mobileImage = <img className={styles2.img} src="src/images/mobileImage.png" alt="Mobile Image" />;
-  const desktopImage = <img className={styles2.img} src="src/images/Blue Modern Debit Card Promotion Facebook Ad (1).png" alt="Desktop Image" />;
+  const mobileImage = <img className={styles2.img} src={mobileImg} alt="Mobile Image" />;
+  const desktopImage = <img className={styles2.img} src={desktopImg} alt="Desktop Image" />;
 
   return (
     <div className={styles2.page}>

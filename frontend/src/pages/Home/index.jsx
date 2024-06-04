@@ -7,6 +7,7 @@ import BaseUrl from '../../config/BaseUrl'
 import CreateAccount from '../../components/CreateAccount'
 import styles from './home.module.css'
 import styles2 from '../../components/About/about.module.css'
+import image from '../../images/KB.png'
 
 export default function Home() {
   const { user, token } = useContext(UserContext)
@@ -115,7 +116,7 @@ export default function Home() {
                       setfullNameState={setfullNameState} fullNameState={fullNameState}
                       handleSubmit={handleSubmit} />
                   </div>
-                   : <img className={styles2.img} src="src/images/KB.png" alt="" />
+                   : <img className={styles2.img} src={image} alt="" />
               }
             </div>
 
