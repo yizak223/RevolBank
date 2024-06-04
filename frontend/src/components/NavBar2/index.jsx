@@ -5,6 +5,7 @@ import { PathContext } from '../../context/Path'
 import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../images/Black & White Minimalist Business Logo.png'
 
 
 export default function NavBar2() {
@@ -57,7 +58,7 @@ export default function NavBar2() {
             <nav className={styles.nav}>
                 <ul className={styles.ul}>
                     <div>
-                        <li><img className={styles.img} src="src/images/Black & White Minimalist Business Logo.png" alt="" /></li>
+                        <li><img className={styles.img} src={logo} alt="" /></li>
                     </div>
                     <div className={styles.itemsNav}>
                         <Link className={`${styles.a} ${path === '/overView' ? styles.active : ''}`} to='/overView'><li className={`$ ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li></Link>

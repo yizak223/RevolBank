@@ -28,7 +28,7 @@ function App() {
       <div class={path == '/' || path == '/authntication' ? styles.containerPage2 : styles.containerPage1}>
         <BrowserRouter >
           {
-            path == '/'  || path == '/authntication' ?
+            path == '/' || path == '/authntication' ?
               <NavBar />
               : <NavBar2 />
           }
