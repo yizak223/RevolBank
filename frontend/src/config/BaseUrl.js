@@ -1,4 +1,4 @@
-const baseUrl = 'https://revolbank-2.onrender.com'
+const baseUrl = 'https://revolbank-2.onrender.com/api/v1'
 
 export default baseUrl
 
