@@ -23,12 +23,14 @@ function App() {
     setPath(location.pathname);
   }, [location.pathname])
 
+
+
   return (
     <>
-      <div class={path == '/' || path == '/authntication' ? styles.containerPage2 : styles.containerPage1}>
+      <div class={!user ? styles.containerPage2 : styles.containerPage1}>
         <BrowserRouter >
           {
-            path == '/' || path == '/authntication' ?
+            !user ?
               <NavBar />
               : <NavBar2 />
           }
@@ -39,7 +41,7 @@ function App() {
                 <Route path="/" element={<About />} />
               </>
               : <>
-                <Route path="/overView" element={< DeviceHomePage />} />
+                <Route path="/" element={< DeviceHomePage />} />
                 <Route path='/creditCards' element={<CreditCard />} />
                 <Route path='/balances' element={<Balances />} />
                 <Route path='/menu' element={<Menu />} />

@@ -42,7 +42,7 @@ export default function Authntication() {
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
                 console.log("Token saved to local storage:", tokenLocal);
-                navigate('/overView')
+                navigate('/')
             }
             else {
                 const response = await Axios.post(urlRegister, {
@@ -54,7 +54,7 @@ export default function Authntication() {
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
                 console.log("Token saved to local storage:", tokenLocal);
-                navigate('/overView')
+                navigate('/')
             }
         } catch (error) {
             console.error("Error logging in:", error);
