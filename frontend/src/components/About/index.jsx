@@ -4,16 +4,15 @@ import { Link } from 'react-router-dom'
 import { RegisterContext } from '../../context/RegisterMode';
 import mobileImg from '../../images/mobileImage.png'
 import desktopImg from '../../images/Blue Modern Debit Card Promotion Facebook Ad (1).png'
+import baseUrl from '../../config/BaseUrl';
+import Axios from 'axios';
+import { UserContext } from '../../context/User';
 
 export default function About() {
+  const { setUser } = useContext(UserContext)
 
   const { setlogOrSign } = useContext(RegisterContext)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  const handleGetStrted = () => {
-    setlogOrSign(true)
-    setPath('/authntication')
-  }
 
   useEffect(() => {
     const handleWindowSizeChange = () => {
@@ -26,6 +25,24 @@ export default function About() {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);
+
+  const logDemoUser = async () => {
+    const urlLogIn = `${baseUrl}/users/login`
+    try {
+      const response = await Axios.post(urlLogIn, {
+        email: 'roi@gmail.com',
+        password: '123123'
+      });
+      setUser(response.data.user)
+      const tokenLocal = response.data.token;
+      localStorage.setItem('tokenLocal', tokenLocal);
+      console.log("Token saved to local storage:", tokenLocal);
+      navigate('/')
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
+
+  }
 
   const mobileImage = <img className={styles2.img} src={mobileImg} alt="Mobile Image" />;
   const desktopImage = <img className={styles2.img} src={desktopImg} alt="Desktop Image" />;
@@ -42,7 +59,7 @@ export default function About() {
             <li>Get started</li>
           </div>
         </Link>
-        <p>
+        <p onClick={logDemoUser}>
           <div className={styles2.navlink}>
             <li>Use Demo User</li>
           </div>
