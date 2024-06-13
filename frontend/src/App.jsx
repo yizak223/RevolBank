@@ -17,13 +17,11 @@ import About from './components/About'
 
 function App() {
   const { user } = useContext(UserContext)
-  const { path, setPath } = useContext(PathContext)
+  const { setPath } = useContext(PathContext)
 
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])
-
-
 
   return (
     <>

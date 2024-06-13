@@ -61,7 +61,7 @@ export default function NavBar2() {
                         <li><img className={styles.img} src={logo} alt="" /></li>
                     </div>
                     <div className={styles.itemsNav}>
-                        <Link className={`${styles.a} ${path === '/overView' ? styles.active : ''}`} to='/overView'><li className={`$ ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li></Link>
+                        <Link className={`${styles.a} ${path === '/' ? styles.active : ''}`} to='/'><li className={`$ ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li></Link>
                         <Link className={`${styles.a} ${path === '/balances' ? styles.active : ''}`} to='/balances'><li className={styles.item}><i class="fa-solid fa-wallet"></i>activities</li></Link>
                         <Link className={`${styles.a} ${path === '/CreditCards' ? styles.active : ''}`} to='/CreditCards'><li className={styles.item}><i class="fa-regular fa-credit-card"></i>credit card</li></Link>
                         <Link className={`${styles.a} ${path === '/loans' ? styles.active : ''}`} to='/loans'><li className={styles.item}><i class="fa-solid fa-landmark"></i>loan</li></Link>
@@ -86,7 +86,6 @@ export default function NavBar2() {
                                 </>
                                 : null
                         }
-
                     </div>
                 </ul>
             </nav>
