@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles2 from './landingPage.module.css'
 import { Link } from 'react-router-dom'
-import { RegisterContext } from '../../context/RegisterMode';
 import mobileImg from '../../images/mobileImage.png'
 import desktopImg from '../../images/Blue Modern Debit Card Promotion Facebook Ad (1).png'
 import baseUrl from '../../config/BaseUrl';
@@ -10,8 +9,6 @@ import { UserContext } from '../../context/User';
 
 export default function About() {
   const { setUser } = useContext(UserContext)
-
-  const { setlogOrSign } = useContext(RegisterContext)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   useEffect(() => {
