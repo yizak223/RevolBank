@@ -27,7 +27,7 @@ export default function About() {
     const urlLogIn = `${baseUrl}/users/login`
     try {
       const response = await Axios.post(urlLogIn, {
-        email: 'roi@gmail.com',
+        email: 'User@gmail.com',
         password: '123123'
       });
       setUser(response.data.user)
