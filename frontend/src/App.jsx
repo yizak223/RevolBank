@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import NavBar2 from './components/NavBar2'
@@ -18,7 +18,8 @@ import About from './components/About'
 function App() {
   const { user } = useContext(UserContext)
   const { setPath } = useContext(PathContext)
-
+  const [modalAcount, setmodalAcount] = useState(false)
+console.log(modalAcount);
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])
@@ -30,7 +31,9 @@ function App() {
           {
             !user ?
               <NavBar />
-              : <NavBar2 />
+              : <NavBar2
+                setmodalAcount={setmodalAcount}
+                modalAcount={modalAcount} />
           }
           <Routes >
             {!user ?
@@ -39,7 +42,8 @@ function App() {
                 <Route path="/" element={<About />} />
               </>
               : <>
-                <Route path="/" element={< DeviceHomePage />} />
+                <Route path="/" element={< DeviceHomePage setmodalAcount={setmodalAcount}
+                modalAcount={modalAcount}  />} />
                 <Route path='/creditCards' element={<CreditCard />} />
                 <Route path='/balances' element={<Balances />} />
                 <Route path='/menu' element={<Menu />} />

@@ -65,6 +65,7 @@
     width: 10vw;
     color: white;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .user {

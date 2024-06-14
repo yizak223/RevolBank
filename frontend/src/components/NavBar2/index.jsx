@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import logo from '../../images/Black & White Minimalist Business Logo.png'
 
 
-export default function NavBar2() {
+export default function NavBar2({setmodalAcount, modalAcount}) {
     const { user, logOut } = useContext(UserContext)
     const { accounts, choosenAccount, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
@@ -71,7 +71,7 @@ export default function NavBar2() {
                         {
                             user ?
                                 <>
-                                    <li className={`${styles.active} ${styles.item}`}><i class="fa-regular fa-user"></i>{user.fullName.split(' ')[0]}</li>
+                                    <li onClick={() => setmodalAcount(!modalAcount)} className={`${styles.active} ${styles.item}`}><i class="fa-regular fa-user"></i>{user.fullName.split(' ')[0]}</li>
                                     {accounts.length != 0 ?
                                         <>
                                             <select className={styles.select} onChange={handleOption} name="account" >
