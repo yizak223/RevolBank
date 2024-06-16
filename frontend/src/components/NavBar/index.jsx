@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { PathContext } from '../../context/Path'
 import styles from './navbar.module.css'
@@ -6,7 +6,7 @@ import { RegisterContext } from '../../context/RegisterMode'
 import logo from '../../images/KB.png'
 
 export default function navBar() {
-
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { setlogOrSign, logOrSign } = useContext(RegisterContext)
   const { path, setPath } = useContext(PathContext)
   const location = useLocation()
@@ -47,6 +47,7 @@ export default function navBar() {
                     <li> Sign-up</li>
                   </div>
                 </Link>
+
               </>
 
               :
@@ -63,9 +64,9 @@ export default function navBar() {
                 </Link>
               </>
           }
-
         </div>
       </nav>
+      {/* <i class="fa-solid fa-bars"></i> */}
 
     </header>
   )
