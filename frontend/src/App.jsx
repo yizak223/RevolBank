@@ -19,7 +19,6 @@ function App() {
   const { user } = useContext(UserContext)
   const { setPath } = useContext(PathContext)
   const [modalAcount, setmodalAcount] = useState(false)
-console.log(modalAcount);
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])

@@ -78,6 +78,7 @@
     .navBar{
         flex-direction: column;
         align-items: flex-start;
+        height: 100px;
     }
     .container{
         flex-direction: column;
@@ -87,6 +88,8 @@
     }
     .img{
         margin-top: 0.8rem;
+        position: relative;
+        right: 15px;
         align-self: flex-start;
     }
     .aHome,.aHomeActive{
@@ -97,4 +100,17 @@
         max-height: 0;
         opacity: 0;
     }
+    .hamburger{
+        display: block;
+        color: black;
+        font-size: 40px;
+        margin-top: 0.8rem;
+    }
+    .responsive{
+        display: flex;
+        justify-content: space-between;
+        width: 70vw;
+        align-items: center;
+    }
+
 }

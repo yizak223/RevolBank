@@ -6,7 +6,7 @@ import { RegisterContext } from '../../context/RegisterMode'
 import logo from '../../images/KB.png'
 
 export default function navBar() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isNavBarOpen, setIsNavBarOpen] = useState(false);
   const { setlogOrSign, logOrSign } = useContext(RegisterContext)
   const { path, setPath } = useContext(PathContext)
   const location = useLocation()
@@ -21,17 +21,55 @@ export default function navBar() {
     setPath('/authntication')
   }
 
+  const openNavBar = () => {
+    if (!isNavBarOpen) {
+      setIsNavBarOpen(true)
+      const aHome = document.getElementById('revolBankLink');
+      const navbar = document.getElementById('navbar')
+      if (navbar) {
+        navbar.style.height = '150px';
+        navbar.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+      }
+      if (aHome) {
+        aHome.style.maxHeight = '100%';
+        aHome.style.opacity = '1'; // Example: changing opacity to make it fully visible
+        aHome.style.transition = 'max-width 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+      }
+    }else{
+      setIsNavBarOpen(false)
+      const aHome = document.getElementById('revolBankLink');
+      const navbar = document.getElementById('navbar')
+      if (navbar) {
+        navbar.style.height = '100px';
+        navbar.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; // Adding transition for smooth effect
+      }
+      if (aHome) {
+        aHome.style.maxHeight = '0%';
+        aHome.style.opacity = '0'; // Example: changing opacity to make it fully visible
+        aHome.style.transition = 'max-width 0.3s ease-out'; // Adding transition for smooth effect
+      }
+    }
+
+  }
+
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])
 
-  console.log(logOrSign);
   return (
     <header>
-      <nav className={styles.navBar}>
+      <nav id='navbar' className={styles.navBar}>
         <div className={styles.logo}>
-          <img className={styles.img} src={logo} alt="" />
-          <Link to='/' className={path == '/' ? styles.aHomeActive : styles.aHome}><p>REVOL-BANK</p></Link>
+          <div onClick={openNavBar} className={styles.responsive}>
+            <img className={styles.img} src={logo} alt="" />
+            <div className={styles.hamburger}>
+              <i class="fa-solid fa-bars"></i>
+            </div>
+          </div>
+          <Link
+            to='/'
+            id="revolBankLink"
+            className={path == '/' ? styles.aHomeActive : styles.aHome}><p>REVOL-BANK</p></Link>
         </div>
         <div className={styles.container}>
           {
