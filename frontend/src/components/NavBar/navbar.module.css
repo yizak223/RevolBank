@@ -77,7 +77,6 @@
 @media only screen and (max-width: 768px) {
     .navBar{
         flex-direction: column;
-        /* align-items: flex-start; */
         height: 90px;
     }
     .container{
@@ -112,4 +111,9 @@
         align-items: center;
     }
 
+}
+@media only screen and (max-width: 740px){
+    .navBar{
+        height: 80px;
+    }
 }

@@ -53,8 +53,8 @@
 
 @media only screen and (max-width: 768px) {
     .btnContainer{
-        flex-direction: column;
-        gap: 0;
+        flex-direction: row;
+        gap: 1rem;
     }
     .navlink{
         width: 35vw;
@@ -65,5 +65,16 @@
     }
     .h1{
         font-size: 30px;
+    }
+}
+@media only screen and (max-width: 740px){
+    .navlink{
+        width: 40vw;
+    }
+    .h1{
+        font-size: 25px;
+    }
+    .paragraph{
+        font-size: 15px;
     }
 }
