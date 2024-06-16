@@ -50,3 +50,20 @@
     display: flex;
     gap: 1rem;
 }
+
+@media only screen and (max-width: 768px) {
+    .btnContainer{
+        flex-direction: column;
+        gap: 0;
+    }
+    .navlink{
+        width: 35vw;
+    }
+    .paragraph{
+        width: 85vw;
+        font-size: 18px;
+    }
+    .h1{
+        font-size: 30px;
+    }
+}

@@ -131,9 +131,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-    * {
-        color: #2914ed;
-    }
 
     .right {
         /* display: none; */
