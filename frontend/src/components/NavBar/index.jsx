@@ -26,8 +26,9 @@ export default function navBar() {
       setIsNavBarOpen(true)
       const aHome = document.getElementById('revolBankLink');
       const navbar = document.getElementById('navbar')
+      const container = document.getElementById('container')
       if (navbar) {
-        navbar.style.height = '150px';
+        navbar.style.height = '260px';
         navbar.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
       }
       if (aHome) {
@@ -35,12 +36,23 @@ export default function navBar() {
         aHome.style.opacity = '1'; // Example: changing opacity to make it fully visible
         aHome.style.transition = 'max-width 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
       }
-    }else{
+      if (container) {
+        container.style.height = '100%';
+        container.style.opacity = '1'
+        container.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+      }
+    } else {
       setIsNavBarOpen(false)
       const aHome = document.getElementById('revolBankLink');
       const navbar = document.getElementById('navbar')
+      const container = document.getElementById('container')
+      if (container) {
+        container.style.height = '0%';
+        container.style.opacity = '0'
+        container.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; // Adding transition for smooth effect
+      }
       if (navbar) {
-        navbar.style.height = '100px';
+        navbar.style.height = '90px';
         navbar.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; // Adding transition for smooth effect
       }
       if (aHome) {
@@ -71,7 +83,7 @@ export default function navBar() {
             id="revolBankLink"
             className={path == '/' ? styles.aHomeActive : styles.aHome}><p>REVOL-BANK</p></Link>
         </div>
-        <div className={styles.container}>
+        <div id='container' className={styles.container}>
           {
             path == '/authntication' ?
               <>
