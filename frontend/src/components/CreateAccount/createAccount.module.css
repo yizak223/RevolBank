@@ -120,6 +120,10 @@
   .loginLink:hover {
     text-decoration: underline;
   }
+  .loading{
+    display: flex;
+    flex-direction: column;
+  }
   @media only screen and (max-width: 768px){
    .Container{
     padding: 0.5rem;

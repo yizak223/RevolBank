@@ -14,6 +14,7 @@ export default function Authntication() {
     const { logOrSign, setlogOrSign } = useContext(RegisterContext)
     const [users, setUsers] = useState([])
     const [emailExist, setEmailExist] = useState(false)
+    const [loading, setloading] = useState(true)
     const [userdata, setUserData] = useState({
         fullName: '',
         email: '',
@@ -22,7 +23,7 @@ export default function Authntication() {
     const navigate = useNavigate()
     const urlLogIn = `${BaseUrl}/users/login`
     const urlRegister = `${BaseUrl}/users/register`
-    
+
     const handleChange = (e) => {
         const newData = { ...userdata }
         newData[e.target.name] = e.target.value
@@ -32,7 +33,7 @@ export default function Authntication() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            console.log(logOrSign);
+            setloading(false)
             if (!logOrSign) {
                 const response = await Axios.post(urlLogIn, {
                     email: userdata.email,
@@ -41,7 +42,6 @@ export default function Authntication() {
                 setUser(response.data.user)
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
-                console.log("Token saved to local storage:", tokenLocal);
                 navigate('/')
             }
             else {
@@ -53,7 +53,6 @@ export default function Authntication() {
                 setUser(response.data.user)
                 const tokenLocal = response.data.token;
                 localStorage.setItem('tokenLocal', tokenLocal);
-                console.log("Token saved to local storage:", tokenLocal);
                 navigate('/')
             }
         } catch (error) {
@@ -85,17 +84,38 @@ export default function Authntication() {
     return (
         <div className={styles.containerPage}>
             {
-                logOrSign ? <>
-                    <div className={styles.Container}>
-                        <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
-                             />
-                    </div>
-                </>
-                    : <>
-                        <div className={styles.Container}>
-                            <LogIn handleSubmit={handleSubmit} handleChange={handleChange}
+                logOrSign ?
+                    <>{
+                        loading ?
+                            <div className={styles.Container}>
+                                <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
                                 />
-                        </div >
+                            </div>
+                            :
+                            <>
+                                <div className={styles.loading}>
+                                    <h3 className='h3Loader'>Loading...</h3>
+                                    <div class="loader"></div>
+                                </div>
+                            </>
+                    }
+                    </>
+                    :
+                    <>
+                        {
+                            loading ?
+                                <div className={styles.Container}>
+                                    <LogIn handleSubmit={handleSubmit} handleChange={handleChange}
+                                    />
+                                </div >
+                                :
+                                <>
+                                    <div className={styles.loading}>
+                                        <h3 className='h3Loader'>Loading...</h3>
+                                        <div class="loader"></div>
+                                    </div>
+                                </>
+                        }
                     </>
             }
 
