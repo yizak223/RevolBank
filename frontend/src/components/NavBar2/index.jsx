@@ -7,8 +7,7 @@ import { AccountContext } from '../../context/Account'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../images/Black & White Minimalist Business Logo.png'
 
-
-export default function NavBar2({setmodalAcount, modalAcount}) {
+export default function NavBar2({ setmodalAcount, modalAcount }) {
     const { user, logOut } = useContext(UserContext)
     const { accounts, choosenAccount, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
@@ -25,29 +24,6 @@ export default function NavBar2({setmodalAcount, modalAcount}) {
         navigate('/')
         setPath('/')
     }
-
-    useEffect(() => {
-        const getGreeting = () => {
-            const currentTime = new Date().getHours();
-
-            if (currentTime >= 5 && currentTime < 12) {
-                setGreeting('Good Morning');
-            } else if (currentTime >= 12 && currentTime < 17) {
-                setGreeting('Good Afternoon');
-            } else if (currentTime >= 17 && currentTime < 20) {
-                setGreeting('Good Evening');
-            } else {
-                setGreeting('Good Night');
-            }
-        };
-
-        getGreeting();
-
-        // Update the greeting every minute
-        const interval = setInterval(getGreeting, 60000);
-
-        return () => clearInterval(interval);
-    }, []);
 
     useEffect(() => {
         setPath(location.pathname);
@@ -90,6 +66,5 @@ export default function NavBar2({setmodalAcount, modalAcount}) {
                 </ul>
             </nav>
         </header>
-
     )
 }

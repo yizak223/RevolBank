@@ -3,7 +3,6 @@ import DeviceHome from '../../components/DeviceHome'
 import CreateAccount from '../../components/CreateAccount'
 
 export default function DeviceHomePage({setmodalAcount, modalAcount}) {
-  console.log({modalAcount});
   return (
     <div >
       {

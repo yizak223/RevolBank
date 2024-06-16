@@ -14,6 +14,7 @@ export default function Authntication() {
     const { logOrSign, setlogOrSign } = useContext(RegisterContext)
     const [users, setUsers] = useState([])
     const [emailExist, setEmailExist] = useState(false)
+    const [error, setError] = useState(false)
     const [loading, setloading] = useState(true)
     const [userdata, setUserData] = useState({
         fullName: '',
@@ -28,7 +29,6 @@ export default function Authntication() {
         const newData = { ...userdata }
         newData[e.target.name] = e.target.value
         setUserData(newData)
-        console.log(newData)
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -57,7 +57,10 @@ export default function Authntication() {
             }
         } catch (error) {
             console.error("Error logging in:", error);
-            console.log(error.response.data.index);
+            setloading(true)
+            if (error.response.status === 401) {
+                setError(true)
+            }
             if (error.response.data.index >= 0) {
                 setEmailExist(true)
             }
@@ -74,13 +77,13 @@ export default function Authntication() {
         fetch(urlUsers)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setUsers(data.users)
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
             });
     }, [])
+
     return (
         <div className={styles.containerPage}>
             {
@@ -105,7 +108,10 @@ export default function Authntication() {
                         {
                             loading ?
                                 <div className={styles.Container}>
-                                    <LogIn handleSubmit={handleSubmit} handleChange={handleChange}
+                                    <LogIn 
+                                    handleSubmit={handleSubmit} 
+                                    handleChange={handleChange}
+                                    error={error}
                                     />
                                 </div >
                                 :

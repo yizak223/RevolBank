@@ -29,17 +29,17 @@ export default function navBar() {
       const container = document.getElementById('container')
       if (navbar) {
         navbar.style.height = '260px';
-        navbar.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+        navbar.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; 
       }
       if (aHome) {
         aHome.style.maxHeight = '100%';
-        aHome.style.opacity = '1'; // Example: changing opacity to make it fully visible
-        aHome.style.transition = 'max-width 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+        aHome.style.opacity = '1'; 
+        aHome.style.transition = 'max-width 0.5s ease-out, opacity 0.5s ease-out'; 
       }
       if (container) {
         container.style.height = '100%';
         container.style.opacity = '1'
-        container.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; // Adding transition for smooth effect
+        container.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; 
       }
     } else {
       setIsNavBarOpen(false)
@@ -49,16 +49,16 @@ export default function navBar() {
       if (container) {
         container.style.height = '0%';
         container.style.opacity = '0'
-        container.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; // Adding transition for smooth effect
+        container.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; 
       }
       if (navbar) {
         navbar.style.height = '90px';
-        navbar.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; // Adding transition for smooth effect
+        navbar.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; 
       }
       if (aHome) {
         aHome.style.maxHeight = '0%';
-        aHome.style.opacity = '0'; // Example: changing opacity to make it fully visible
-        aHome.style.transition = 'max-width 0.3s ease-out'; // Adding transition for smooth effect
+        aHome.style.opacity = '0'; 
+        aHome.style.transition = 'max-width 0.3s ease-out'; 
       }
     }
 
@@ -99,7 +99,6 @@ export default function navBar() {
                 </Link>
 
               </>
-
               :
               <>
                 <Link className={styles.a} onClick={handleSignIn} to="/authntication">
@@ -116,8 +115,6 @@ export default function navBar() {
           }
         </div>
       </nav>
-      {/* <i class="fa-solid fa-bars"></i> */}
-
     </header>
   )
 }

@@ -14,7 +14,7 @@ export default function Register({ handleSubmit, handleChange, emailExist }) {
                     <input className={styles.input} onChange={handleChange} name='fullName' type="name" placeholder="Full name" required />
                     {emailExist ?
                         <>
-                            <p>this email already in use</p>
+                            <p className={styles.error}>This email already in use</p>
                         </>
                         : null}
                     <input className={styles.input} onChange={handleChange} name='email' type="email" placeholder="email@email.com" required />
