@@ -11,6 +11,7 @@ const getUser = async (req, res) => {
         return res.status(400).send(err);
     }
 }
+
 const register = async (req, res) => {
     const body = req.body;
     try {
@@ -18,8 +19,9 @@ const register = async (req, res) => {
         body.password = hash
         const newUser = new User(body);
         await newUser.save();
-        if(newUser){
+        if (newUser) {
             const token = generateToken({ id: newUser._id, email: newUser.email, role: 'user' });
+            
             return res.send({ user: newUser, token });
         }
     } catch (err) {
@@ -27,6 +29,7 @@ const register = async (req, res) => {
         res.status(400).send(err);
     }
 }
+
 const logIn = async (req, res) => {
     const body = req.body;
     console.log(body);

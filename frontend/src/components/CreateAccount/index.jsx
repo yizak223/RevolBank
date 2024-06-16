@@ -10,6 +10,8 @@ export default function CreateAccount({
     // fullNameState,
     // setfullNameState,
     // account, setAccount
+    modalAcount,
+    setmodalAcount
 }) {
     const { user, token } = useContext(UserContext)
     const { accounts, setAccounts, choosenAccount, balanceuser } = useContext(AccountContext)
@@ -44,7 +46,6 @@ export default function CreateAccount({
     const urlAccount = `${baseUrl}/accounts`
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(account);
         try {
             const res = await Axios.post(urlAccount, account, {
                 headers: {
@@ -52,20 +53,20 @@ export default function CreateAccount({
                 }
             });
             setAccounts([...accounts, res.data.newAccount]);
-            // setCreateAccountMode(!createAccountMode)
+            setmodalAcount(!modalAcount)
         } catch (error) {
             console.error('Error creating account:', error);
         }
     };
     return (
-        <>
+        <div className="modalBackground">
             <div className={styles.Container}>
                 <form onSubmit={handleSubmit} className={styles.Form}>
                     <h2>Create your account</h2>
-                    <input placeholder='Full name' className={styles.input} type="text" value={fullNameState} onChange={handleFullNameChange} />
-                    <input placeholder='ID' className={styles.input} type="number" value={idIsraeli} onChange={handleIdIsraeliChange} />
+                    <input required placeholder='Full name' className={styles.input} type="text" value={fullNameState} onChange={handleFullNameChange} />
+                    <input required placeholder='ID' className={styles.input} type="number" value={idIsraeli} onChange={handleIdIsraeliChange} />
                     <label >How much do you want to deposit?</label>
-                    <input placeholder='Balance' className={styles.input} type="number" onChange={handleBalanceChange} />
+                    <input required placeholder='Balance' className={styles.input} type="number" onChange={handleBalanceChange} />
                     <select className={styles.select} onChange={handlePremiumChange}>
                         <option className={styles.option} value="" disabled selected>Select subscription</option>
                         <option className={styles.option} value={false}>Regular</option>
@@ -75,7 +76,8 @@ export default function CreateAccount({
                     <button type="submit" className={styles.submitBtn}>Create your account</button>
                     <small className={styles.small}>By creating an account you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</small>
                 </form>
+                    <button onClick={() => { setmodalAcount(false); }} className={styles.cancel}> Cancel </button>
             </div>
-        </>
+        </div>
     )
 }

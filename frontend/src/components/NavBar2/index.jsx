@@ -56,7 +56,7 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
                                                     <option key={i} value={JSON.stringify(account)}>{account.idIsraeli}</option>
                                                 ))}
                                             </select>
-                                        </> : null
+                                        </> : <p>create account</p>
                                     }
                                     <button onClick={handleLogOut} className={styles.logOutBtn}>Log out</button>
                                 </>

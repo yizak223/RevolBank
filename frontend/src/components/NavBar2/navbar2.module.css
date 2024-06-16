@@ -1,7 +1,6 @@
 .img {
     height: 20vh;
     width: 11vw;
-
 }
 
 .nav {
@@ -100,4 +99,21 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .nav{
+        width: 10vw;
+    }
+    .img{
+        width: 0;
+    }
+    .logOutBtn{
+        width: 0%;
+        height: 0;
+        padding: 0;
+        opacity: 0;
+    }
+
+
 }
