@@ -26,7 +26,6 @@ export default function RecentTransaction() {
         }
     }
 
-
     useEffect(() => {
         fetchData()
     }, [token, choosenAccount])
