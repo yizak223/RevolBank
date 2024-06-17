@@ -10,12 +10,12 @@ export default function Transaction({ transfer, token }) {
 
     const fetchNameTo = async () => {
         try {
-            const resNameTo = await axios.get(`${baseUrl}/accounts?_id=${transfer.to}`, {
+            const resNameTo = await axios.get(`${baseUrl}/accounts?_id=${transfer.from}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-            const resNameFrom = await axios.get(`${baseUrl}/accounts?_id=${transfer.from}`, {
+            const resNameFrom = await axios.get(`${baseUrl}/accounts?_id=${transfer.to}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -26,7 +26,7 @@ export default function Transaction({ transfer, token }) {
             console.log(err)
         }
     }
-
+    
     useEffect(() => {
         fetchNameTo()
     }, [])
@@ -38,12 +38,12 @@ export default function Transaction({ transfer, token }) {
                     <i className="fa-solid fa-cart-shopping"></i>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.whereBuy}  ${transfer.type === 'expenditure' ? styles.expenditure : styles.income}`}>{transfer.type}</p>
+                    <p className={`${styles.whereBuy} ${transfer.type === 'expenditure' ? styles.expenditure : styles.income}`}>{transfer.type}</p>
                     <p className={styles.typeBuy}>{transfer.type === 'expenditure' ? nameFrom : nameTo}</p>
                 </div>
             </div>
             <div>
-                <p className={styles.howMuch}>- $ {transfer.amount} </p>
+                <p className={`${styles.howMuch} ${transfer.type === 'expenditure' ? styles.expenditure : styles.income}`}>{transfer.type === 'expenditure' ? '-' : '+'} $ {transfer.amount} </p>
             </div>
         </div>
     )

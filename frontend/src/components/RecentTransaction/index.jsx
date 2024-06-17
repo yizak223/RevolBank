@@ -37,7 +37,7 @@ export default function RecentTransaction() {
                 <p className={styles.seeAll}>see all</p>
             </div>
             {transfers?.map((transfer, i) => (
-                <Transaction transfer={transfer} token={token}/>
+                <Transaction key={i} transfer={transfer} token={token}/>
             ))}
         </>
     )
