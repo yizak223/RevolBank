@@ -10,8 +10,6 @@ export default function DeviceHomePage({ setmodalAcount, modalAcount }) {
         modalAcount ?
           <>
             <CreateAccount setmodalAcount={setmodalAcount} modalAcount={modalAcount} />
-            {/* <ModalAlert /> */}
-
           </>
           :
           null
