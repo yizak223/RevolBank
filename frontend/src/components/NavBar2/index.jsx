@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import styles from './navbar2.module.css'
 import { PathContext } from '../../context/Path'
@@ -9,11 +9,10 @@ import logo from '../../images/Black & White Minimalist Business Logo.png'
 
 export default function NavBar2({ setmodalAcount, modalAcount }) {
     const { user, logOut } = useContext(UserContext)
-    const { accounts, choosenAccount, setChoosenAccount } = useContext(AccountContext)
+    const { accounts, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
     const location = useLocation()
     const navigate = useNavigate()
-    const [greeting, setGreeting] = useState('');
 
     const handleOption = (e) => {
         setChoosenAccount(JSON.parse(e.target.value))
