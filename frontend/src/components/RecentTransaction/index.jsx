@@ -36,9 +36,17 @@ export default function RecentTransaction() {
                 <h2>Recent Transaction</h2>
                 <p className={styles.seeAll}>see all</p>
             </div>
-            {transfers?.map((transfer, i) => (
-                <Transaction key={i} transfer={transfer} token={token}/>
-            ))}
+            {
+                transfers.length == 0 ?
+                    transfers?.map((transfer, i) => (
+                        <Transaction key={i} transfer={transfer} token={token} />
+                    ))
+                    : 
+                    <div className={styles.noTransaction}>
+                        <h2>No recent transaction</h2>
+                    </div>
+            }
+
         </>
     )
 }
