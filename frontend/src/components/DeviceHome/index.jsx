@@ -40,7 +40,7 @@ export default function DeviceHome() {
                     <div className={`${styles.smallContainer} ${styles.BarChart}`}>
                         <BarChart />
                     </div>
-                    <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
+                    {/* <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
                         <div className={styles.summary}>
                             <CiInboxIn className={styles.cilnbox} />
                             <div>
@@ -55,7 +55,7 @@ export default function DeviceHome() {
                                 <h2 className={styles.howMuchEx}>2,000</h2>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
                         <TotalSpend />
                     </div>

@@ -6,7 +6,9 @@ import { AccountContext } from "../../context/Account";
 import axios from "axios";
 import baseUrl from "../../config/BaseUrl";
 import styles from './TransactionChart.module.css';
+import styles2 from '../DeviceHome/DeviceHome.module.css'
 import { getMonthName } from "../../config/dateFormat";
+import { CiInboxIn, CiInboxOut } from "react-icons/ci";
 
 export default function BarChart() {
     const { token } = useContext(UserContext);
@@ -63,10 +65,10 @@ export default function BarChart() {
             return chartData;
         } catch (err) {
             console.log(err);
-            return 10; // Return 0 if there's an error
+            return 10; 
         }
     };
-    console.log(chartData);
+    // console.log(chartData);
     const fetchData = async () => {
         try {
             if (!choosenAccount || !choosenAccount._id) {
@@ -109,6 +111,7 @@ export default function BarChart() {
 
     useEffect(() => {
         fetchData();
+        
     }, [token, choosenAccount]);
 
     return (
@@ -116,7 +119,22 @@ export default function BarChart() {
             <div className={styles.container}>
                 <Bar data={chartData} />
             </div>
-
+            <div className={`${styles2.smallContainer} ${styles2.summaryTransaction}`}>
+                <div className={styles2.summary}>
+                    <CiInboxIn className={styles2.cilnbox} />
+                    <div>
+                        <h5 className={styles2.h5}>Income</h5>
+                        <h2 className={styles2.howMuchIn}>{chartData.datasets[0].data[0]}</h2>
+                    </div>
+                </div>
+                <div className={styles2.summary}>
+                    <CiInboxOut className={`${styles2.cilnbox} ${styles2.cilnboxOut}`} />
+                    <div>
+                        <h5 className={styles2.h5}>Expanses</h5>
+                        <h2 className={styles2.howMuchEx}>{chartData.datasets[1].data[0]}</h2>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
