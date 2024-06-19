@@ -5,15 +5,12 @@ import { GrCafeteria } from "react-icons/gr";
 import { GiIsland } from "react-icons/gi";
 import { GiMusicSpell } from "react-icons/gi";
 
-
-
-
 export default function TotalSpend() {
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
-                <h2>Total Spend</h2>
-                <p className={styles.seeAll}>see all</p>
+                <h2>Total Amount</h2>
+                {/* <p className={styles.seeAll}>see all</p> */}
             </div>
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
@@ -21,7 +18,7 @@ export default function TotalSpend() {
                         <CiShoppingBasket  className={styles.reactIcon}/>
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>Transfer</p>
+                        <p className={styles.whereBuy}>Transfer income</p>
                     </div>
                 </div>
                 <div>
@@ -34,7 +31,7 @@ export default function TotalSpend() {
                         <i class="fa-solid fa-money-bill-transfer"></i>
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>Shooping</p>
+                        <p className={styles.whereBuy}>Transfer outcome</p>
                     </div>
                 </div>
                 <div>
@@ -47,14 +44,14 @@ export default function TotalSpend() {
                     <GrCafeteria  className={styles.reactIcon}/>
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>Cafe & Restaurant</p>
+                        <p className={styles.whereBuy}>loans</p>
                     </div>
                 </div>
                 <div>
                     <p className={styles.howMuch}>- $ 355.0 </p>
                 </div>
             </div>
-            <div className={styles.TransactionContainer}>
+            {/* <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
                     <GiIsland  className={styles.reactIcon}/>
@@ -79,8 +76,7 @@ export default function TotalSpend() {
                 <div>
                     <p className={styles.howMuch}>- $ 355.0 </p>
                 </div>
-            </div>
-
+            </div> */}
         </>
     )
 }
