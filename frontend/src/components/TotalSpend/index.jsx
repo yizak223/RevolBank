@@ -74,7 +74,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome} </p>
+                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome.toString().substring(0,1) +' $ '+outcome.toString().substring(1)}</p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
