@@ -60,7 +60,7 @@ export default function TotalSpend() {
                         <p className={styles.whereBuy}>Receipts</p>
                     </div>
                 </div>
-                <div>
+                <div className={styles.type}>
                     <p className={`${styles.howMuch} ${styles.green}`}>+ $ {income} </p>
                 </div>
             </div>
@@ -73,8 +73,8 @@ export default function TotalSpend() {
                         <p className={styles.whereBuy}>Transfers</p>
                     </div>
                 </div>
-                <div>
-                    <p className={`${styles.howMuch} ${styles.red}`}>- $ {outcome} </p>
+                <div className={styles.type}>
+                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome} </p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
