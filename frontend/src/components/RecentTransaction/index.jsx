@@ -18,9 +18,7 @@ export default function RecentTransaction() {
                     Authorization: `Bearer ${token}`
                 }
             })
-            console.log(res.data.accounts[0].transactions);
             setTransfers(res.data.accounts[0].transactions)
-            console.log({ transfers });
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err)
         }

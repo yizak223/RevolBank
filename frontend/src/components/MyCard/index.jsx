@@ -15,8 +15,8 @@ export default function MyCard({ setOpenModal }) {
     const fetchData = async () => {
         try {
             const idAccount = choosenAccount?._id
-            console.log(choosenAccount);
-            console.log(idAccount);
+            // console.log(choosenAccount);
+            // console.log(idAccount);
             const res = await Axios.get(`${BaseUrl}/crditCard?idAccount=${idAccount}`,
                 {
                     headers: {
@@ -38,8 +38,8 @@ export default function MyCard({ setOpenModal }) {
             })
             const updatedCards = cards.filter(card => card._id != id);
             setCards(updatedCards);
-            console.log(cards);
-            console.log(res.data);
+            // console.log(cards);
+            // console.log(res.data);
         } catch (err) {
             console.log(err);
         }
