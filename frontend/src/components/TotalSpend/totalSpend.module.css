@@ -46,5 +46,10 @@
 }
 .howMuch{
     font-weight: 600;
-
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
 }

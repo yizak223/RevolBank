@@ -13,9 +13,9 @@ export default function TotalSpend() {
     const { token } = useContext(UserContext)
     const { choosenAccount } = useContext(AccountContext)
 
-    const [income, setIncome] = useState()
-    const [outcome, setOutcome] = useState()
-    const [loans, setLoans] = useState()
+    const [income, setIncome] = useState([])
+    const [outcome, setOutcome] = useState([])
+    const [loans, setLoans] = useState([])
 
     const getIncomeAndOutcomeData = async ()=>{
         try {
@@ -26,9 +26,9 @@ export default function TotalSpend() {
             })
             res.data.accounts[0].transactions.forEach(transfer => {
                 if(transfer.type === "expenditure"){
-                    setIncome(transfer.amount)
+                    setIncome((prevCount) => +prevCount + +transfer.amount)
                 }else{
-                    setOutcome(transfer.amount)
+                    setOutcome((prevCount) => +prevCount - +transfer.amount)
                 }
             })
         } catch (err) {
@@ -57,11 +57,11 @@ export default function TotalSpend() {
                         <CiShoppingBasket className={styles.reactIcon} />
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>Transfer income</p>
+                        <p className={styles.whereBuy}>Receipts</p>
                     </div>
                 </div>
                 <div>
-                    <p className={styles.howMuch}>{income} </p>
+                    <p className={`${styles.howMuch} ${styles.green}`}>+ $ {income} </p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -70,11 +70,11 @@ export default function TotalSpend() {
                         <i class="fa-solid fa-money-bill-transfer"></i>
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>Transfer outcome</p>
+                        <p className={styles.whereBuy}>Transfers</p>
                     </div>
                 </div>
                 <div>
-                    <p className={styles.howMuch}>{outcome} </p>
+                    <p className={`${styles.howMuch} ${styles.red}`}>- $ {outcome} </p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
