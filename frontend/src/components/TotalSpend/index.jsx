@@ -45,7 +45,7 @@ export default function TotalSpend() {
                 }
             })
             res.data.loans.forEach(loan => {
-                setLoans((prev)=>+prev + +loan.amount)
+                setLoans((prev) => +prev + +loan.amount)
             })
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err)
@@ -93,7 +93,8 @@ export default function TotalSpend() {
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
-                        <GrCafeteria className={styles.reactIcon} />
+                        <i class="fa-solid fa-landmark"></i>
+                        {/* <GrCafeteria className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>loans</p>
