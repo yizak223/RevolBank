@@ -13,11 +13,11 @@ export default function TotalSpend() {
     const { token } = useContext(UserContext)
     const { choosenAccount } = useContext(AccountContext)
 
-    const [income, setIncome] = useState([])
-    const [outcome, setOutcome] = useState([])
-    const [loans, setLoans] = useState([])
+    const [income, setIncome] = useState(0)
+    const [outcome, setOutcome] = useState(0)
+    const [loans, setLoans] = useState(0)
 
-    const getIncomeAndOutcomeData = async ()=>{
+    const getIncomeAndOutcomeData = async () => {
         try {
             const res = await axios.get(`${baseUrl}/accounts?_id=${choosenAccount?._id}`, {
                 headers: {
@@ -25,9 +25,9 @@ export default function TotalSpend() {
                 }
             })
             res.data.accounts[0].transactions.forEach(transfer => {
-                if(transfer.type === "expenditure"){
+                if (transfer.type === "expenditure") {
                     setIncome((prevCount) => +prevCount + +transfer.amount)
-                }else{
+                } else {
                     setOutcome((prevCount) => +prevCount - +transfer.amount)
                 }
             })
@@ -36,15 +36,29 @@ export default function TotalSpend() {
         }
     }
 
-    
+    const fetchData = async () => {
+        try {
+            const idAccount = choosenAccount?._id
+            const res = await axios.get(`${baseUrl}/loans?idAccount=${idAccount}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            res.data.loans.forEach(loan => {
+                setLoans((prev)=>+prev + +loan.amount)
+            })
+        } catch (err) {
+            console.error('There was a problem with the fetch operation:', err)
+        }
+    }
 
     useEffect(() => {
         getIncomeAndOutcomeData()
-      console.log();
-    
+        fetchData()
+
     }, [choosenAccount])
-    
-    
+
+
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
@@ -74,7 +88,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome.toString().substring(0,1) +' $ '+outcome.toString().substring(1)}</p>
+                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome.toString().substring(0, 1) + ' $ ' + outcome.toString().substring(1)}</p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -87,7 +101,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div>
-                    <p className={styles.howMuch}>{loans} </p>
+                    <p className={styles.howMuch}> {loans}</p>
                 </div>
             </div>
             {/* <div className={styles.TransactionContainer}>
