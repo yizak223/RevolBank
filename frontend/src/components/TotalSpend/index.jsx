@@ -58,7 +58,6 @@ export default function TotalSpend() {
 
     }, [choosenAccount])
 
-
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>

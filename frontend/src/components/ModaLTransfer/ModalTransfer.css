@@ -43,6 +43,9 @@
     border: none;
     font-size: 25px;
     cursor: pointer;
+    position: relative;
+    top: 10vh;
+    right: 2vh;
   }
   
   .modalContainer .body {
@@ -84,5 +87,7 @@
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
+    position: relative;
+    bottom: 12vh;
   }
   
