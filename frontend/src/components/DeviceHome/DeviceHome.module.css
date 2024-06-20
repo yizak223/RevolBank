@@ -1,7 +1,7 @@
-.body {
-    /* background-color: white; */
-    /* height: 100vh; */
-}
+/* .body {
+    background-color: white;
+    height: 100vh;
+} */
 
 .containerSides {
     /* box-sizing: border-box; */
@@ -92,4 +92,11 @@
     flex-direction: column;
     gap: 0.5rem;
     /* height: 100%; */
+}
+.coins{
+    padding: 1rem 0 1rem 0;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }

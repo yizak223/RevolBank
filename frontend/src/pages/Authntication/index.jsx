@@ -90,7 +90,7 @@ export default function Authntication() {
                 logOrSign ?
                     <>{
                         loading ?
-                            <div className={styles.Container}>
+                            <div className={styles.Container3}>
                                 <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
                                 />
                             </div>
@@ -107,7 +107,7 @@ export default function Authntication() {
                     <>
                         {
                             loading ?
-                                <div className={styles.Container}>
+                                <div className={styles.Container3}>
                                     <LogIn 
                                     handleSubmit={handleSubmit} 
                                     handleChange={handleChange}

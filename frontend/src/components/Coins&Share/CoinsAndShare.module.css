@@ -1,0 +1,9 @@
+.CoinsAndShareContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.CoinsAndShare {
+    margin-bottom: 1rem;
+}

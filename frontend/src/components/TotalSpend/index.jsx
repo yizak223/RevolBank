@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './totalSpend.module.css'
-import { CiInboxIn, CiShoppingBasket } from "react-icons/ci";
-import { GrCafeteria } from "react-icons/gr";
-import { GiIsland } from "react-icons/gi";
-import { GiMusicSpell } from "react-icons/gi";
+import { CiInboxIn } from "react-icons/ci";
 import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
 import { UserContext } from '../../context/User';
@@ -62,7 +59,6 @@ export default function TotalSpend() {
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
                 <h2>Total Amount</h2>
-                {/* <p className={styles.seeAll}>see all</p> */}
             </div>
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>

@@ -1,15 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './DeviceHome.module.css';
 import './DeviceHome.css';
 import MyCard from '../MyCard';
 import RecentTransaction from '../RecentTransaction';
 import UserSaving from '../UserSaving';
-import CreateAccount from '../CreateAccount';
 import BarChart from '../TransactionChart';
-import { CiInboxOut } from "react-icons/ci";
-import { CiInboxIn } from "react-icons/ci";
 import TotalSpend from '../TotalSpend';
 import ModalAlert from '../ModalAlert';
+import CoinsAndShare from '../Coins&Share/CoinsAndShare';
 
 
 export default function DeviceHome() {
@@ -58,6 +56,9 @@ export default function DeviceHome() {
                     </div> */}
                     <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
                         <TotalSpend />
+                    </div>
+                    <div className={`${styles.smallContainer} ${styles.coins}`}>
+                        <CoinsAndShare />
                     </div>
                 </div>
             </div>

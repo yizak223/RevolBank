@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import styles from '../CreateAccount/createAccount.module.css'
-import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 
 export default function CreateCard({
