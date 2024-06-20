@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from './totalSpend.module.css'
-import { CiShoppingBasket } from "react-icons/ci";
+import { CiInboxIn, CiShoppingBasket } from "react-icons/ci";
 import { GrCafeteria } from "react-icons/gr";
 import { GiIsland } from "react-icons/gi";
 import { GiMusicSpell } from "react-icons/gi";
@@ -67,7 +67,8 @@ export default function TotalSpend() {
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
-                        <CiShoppingBasket className={styles.reactIcon} />
+                    <CiInboxIn className={styles.reactIcon} />
+                        {/* <CiShoppingBasket className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Receipts</p>
