@@ -60,9 +60,9 @@ export default function CreateAccount({
     };
     return (
         <div className="modalBackground">
-            <div className={styles.Container}>
+            <div className={styles.Container2}>
                 <form onSubmit={handleSubmit} className={styles.Form}>
-                    <h2>Create your account</h2>
+                    <h2 className={styles.h2}>Create your account</h2>
                     <input required placeholder='Full name' className={styles.input} type="text" value={fullNameState} onChange={handleFullNameChange} />
                     <input required placeholder='ID' className={styles.input} type="number" value={idIsraeli} onChange={handleIdIsraeliChange} />
                     <label >How much do you want to deposit?</label>
@@ -73,10 +73,10 @@ export default function CreateAccount({
                         <option className={styles.option} value={true}>Premium</option>
                     </select>
                     {/* <label className={styles.label} htmlFor="terms">Enroll in Expo Developer Services</label> */}
-                    <button type="submit" className={styles.submitBtn}>Create your account</button>
-                    <small className={styles.small}>By creating an account you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</small>
+                    <button type="submit" className={styles.submitBtn}>Create</button>
+                    <small className={styles.small2}>By creating an account you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</small>
                 </form>
-                    <button onClick={() => { setmodalAcount(false); }} className={styles.cancel}> Cancel </button>
+                    <button onClick={() => { setmodalAcount(false); }} className={styles.cancel2}> Cancel </button>
             </div>
         </div>
     )
