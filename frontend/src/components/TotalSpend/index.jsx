@@ -100,8 +100,8 @@ export default function TotalSpend() {
                         <p className={styles.whereBuy}>loans</p>
                     </div>
                 </div>
-                <div>
-                    <p className={styles.howMuch}> {loans}</p>
+                <div className={styles.type}>
+                    <p className={styles.howMuch}> $ {loans}</p>
                 </div>
             </div>
             {/* <div className={styles.TransactionContainer}>
