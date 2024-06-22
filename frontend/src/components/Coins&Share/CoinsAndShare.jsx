@@ -11,7 +11,7 @@ export default function CoinsAndShare() {
             .then(res => res.json())
             .then((currency) => {
                 console.log(currency);
-                setShekel(currency.data[73])
+                setShekel(currency.data[73].exchange_rate)
                 setDollar(currency.data[13])
                 setYen(currency.data[75])
                 console.log(currency.data[13]);
@@ -39,7 +39,7 @@ export default function CoinsAndShare() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${styles.red}`}>{} </p>
+                    <p className={`${styles.howMuch} ${styles.red}`}>{shekel} </p>
                 </div>
             </div>
         </>
