@@ -7,3 +7,27 @@
 .CoinsAndShare {
     margin-bottom: 1rem;
 }
+
+.iconAndType {
+    display: flex;
+    width: 50%;
+    gap: 1rem;
+}
+
+.icon {
+    border: solid grey;
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--mainbg);
+}
+
+.type {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+.coin {
+    font-weight: 600;
+}
