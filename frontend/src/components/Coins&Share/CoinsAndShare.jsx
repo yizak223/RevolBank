@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './CoinsAndShare.module.css'
-import { FaBitcoin } from "react-icons/fa";
+import { FaBitcoin, FaEthereum } from "react-icons/fa";
 
 export default function CoinsAndShare() {
     const [shekel, setShekel] = useState(0)
@@ -74,7 +74,7 @@ export default function CoinsAndShare() {
             <div className={styles.CoinsAndShareContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.icon}>
-                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <FaEthereum />
                     </div>
                     <div className={styles.type}>
                         <p className={styles.coin}>Ethereum</p>
