@@ -26,7 +26,7 @@ function App() {
 
   return (
     <>
-      <div class={!user ? styles.containerPage2 : styles.containerPage1}>
+      <div className={!user ? styles.containerPage2 : styles.containerPage1}>
         <BrowserRouter >
           {
             !user ?

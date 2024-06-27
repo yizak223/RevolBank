@@ -72,7 +72,7 @@ export default function About() {
           </div>
           : <>
           <h3 className='h3Loader'>Loading...</h3>
-            <div class="loader"></div>
+            <div className="loader"></div>
           </>
       }
     </>

@@ -79,4 +79,5 @@
     border-radius: 10px;
     color: rgb(234, 34, 34);
     cursor: pointer;
+    align-items: center;
 }

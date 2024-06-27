@@ -5,6 +5,7 @@ import { AccountContext } from '../../context/Account'
 import BaseUrl from '../../config/BaseUrl'
 import styles from './MyCard.module.css'
 import SingleCard from '../SingleCard'
+import { FaLock, FaPlus, FaTrash } from 'react-icons/fa6'
 
 export default function MyCard({ setOpenModal }) {
     const { token, user } = useContext(UserContext)
@@ -122,13 +123,14 @@ export default function MyCard({ setOpenModal }) {
                 }
             </div>
             <div className={styles.rightCard}>
-                <div onClick={() => { setOpenModal(true) }} className={styles.addCard}><i className={styles.i} class="fa-solid fa-plus"></i>Add card</div>
+                <div onClick={() => { setOpenModal(true) }} className={styles.addCard}><FaPlus className={styles.i}/>
+                Add card</div>
                 <div onClick={() => {
                     cards ?
                         alert(`${cards[showCard]?.cvv}`)
                         : alert('nothing')
-                }} className={styles.transferLoan}><i class="fa-solid fa-lock"></i>CVV</div>
-                <div onClick={() => { deleteCard(cards[showCard]._id) }} className={styles.transferLoan}> <i className="fa-sharp fa-solid fa-trash"></i>DELETE</div>
+                }} className={styles.transferLoan}><FaLock />CVV</div>
+                <div onClick={() => { deleteCard(cards[showCard]._id) }} className={styles.transferLoan}> <FaTrash />DELETE</div>
             </div>
         </>
     )

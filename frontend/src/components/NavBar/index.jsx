@@ -4,6 +4,7 @@ import { PathContext } from '../../context/Path'
 import styles from './navbar.module.css'
 import { RegisterContext } from '../../context/RegisterMode'
 import logo from '../../images/KB.png'
+import { FaBars } from "react-icons/fa6";
 
 export default function navBar() {
   const [isNavBarOpen, setIsNavBarOpen] = useState(false);
@@ -75,7 +76,7 @@ export default function navBar() {
           <div onClick={openNavBar} className={styles.responsive}>
             <img className={styles.img} src={logo} alt="" />
             <div className={styles.hamburger}>
-              <i class="fa-solid fa-bars"></i>
+            <FaBars/>
             </div>
           </div>
           <Link
