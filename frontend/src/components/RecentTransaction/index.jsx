@@ -5,11 +5,13 @@ import { UserContext } from '../../context/User';
 import baseUrl from '../../config/BaseUrl';
 import { AccountContext } from '../../context/Account';
 import Transaction from './transaction';
+import { useNavigate } from 'react-router-dom';
 
 export default function RecentTransaction() {
     const { token } = useContext(UserContext)
     const { choosenAccount } = useContext(AccountContext)
     const [transfers, setTransfers] = useState([])
+    const navigate = useNavigate()
 
     const fetchData = async () => {
         try {
@@ -24,6 +26,10 @@ export default function RecentTransaction() {
         }
     }
 
+    const goActivities = () => {
+        navigate('/balances')
+    }
+
     useEffect(() => {
         fetchData()
     }, [token, choosenAccount])
@@ -32,7 +38,7 @@ export default function RecentTransaction() {
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
                 <h2>Recent Transaction</h2>
-                <p className={styles.seeAll}>see all</p>
+                <p onClick={goActivities} className={styles.seeAll}>see all</p>
             </div>
             {
                 transfers.length != 0 ?

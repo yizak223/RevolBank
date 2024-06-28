@@ -12,6 +12,11 @@
     align-self: flex-end;
     color: #f4cc76;
     font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.seeAll:hover{
+    color: #db9f1c;
 }
 
 .iconTran {
