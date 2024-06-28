@@ -67,6 +67,10 @@
     color: #f4cc76;
     font-size: 20px;
     cursor: pointer;
+    transition: 0.3s;
+}
+.addCard:hover{
+    color: #db9f1c;
 }
 .transferLoan{
     height: 33%;
