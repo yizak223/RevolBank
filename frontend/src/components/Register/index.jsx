@@ -19,7 +19,7 @@ export default function Register({ handleSubmit, handleChange, emailExist }) {
                         : null}
                     <input className={styles.input} onChange={handleChange} name='email' type="email" placeholder="email@email.com" required />
                     <input className={styles.input} onChange={handleChange} name='password' type="password" placeholder="*****" required />
-                    <button type="submit" className={styles.submitBtn}>Create your account</button>
+                    <button type="submit" className={styles.submitBtn}>Submit</button>
                     <p className={styles.small}>By creating an account you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</p>
                     <p>Have an acconout? <a onClick={() => setlogOrSign(!logOrSign)} className={styles.loginLink}>Log in</a>.</p>
                 </form>

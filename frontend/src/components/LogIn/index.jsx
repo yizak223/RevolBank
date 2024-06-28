@@ -16,7 +16,7 @@ export default function LogIn({ handleSubmit, handleChange, error }) {
                 }
                 <input className={styles.input} onChange={handleChange} name='email' type="email" placeholder="email@email.com" required />
                 <input className={styles.input} onChange={handleChange} name='password' type="password" placeholder="*****" required />
-                <button type="submit" className={styles.submitBtn}>Submit</button>
+                <button type="submit" className={styles.submitBtn}>Log In</button>
                 <p className={styles.small3}>Don't have acconout? <a onClick={() => setlogOrSign(!logOrSign)} className={styles.loginLink}>Sign up</a>.</p>
             </form>
         </div>
