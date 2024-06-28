@@ -90,7 +90,7 @@ export default function Authntication() {
                 logOrSign ?
                     <>{
                         loading ?
-                            <div className={styles.Container3}>
+                            <div className={styles.ContainerRegister}>
                                 <Register emailExist={emailExist} handleSubmit={handleSubmit} handleChange={handleChange}
                                 />
                             </div>
