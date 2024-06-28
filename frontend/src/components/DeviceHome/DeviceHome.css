@@ -1,8 +1,6 @@
 .fa-chevron-left, .fa-chevron-right{
     color: grey;
-    border: solid 0.5px grey;
     padding: 0.1rem;
-    border-radius: 3px;
 }
 .fa-cart-shopping{
     color: #008773;
