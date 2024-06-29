@@ -80,14 +80,11 @@
   #cancelBtn {
     background-color: crimson;
     width: 150px;
-    height: 45px;
-    margin: 10px;
     border: none;
     color: white;
     border-radius: 8px;
-    font-size: 20px;
     cursor: pointer;
-    position: relative;
-    bottom: 12vh;
+    padding: 10px;
+    margin-bottom: 0;
   }
   

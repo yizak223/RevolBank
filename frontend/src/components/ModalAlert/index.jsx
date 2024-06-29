@@ -43,18 +43,8 @@ export default function ModalAlert({ setOpenModal, openModal }) {
     return (
         <div className="modalBackground">
             <div className="modalContainer">
-                <div className="titleCloseBtn">
-                    {/* <button onClick={() => { setOpenModal(false) }} >X </button> */}
-                </div>
-                <div className="title">
-                    {/* <h1>You are not allowed to change it now</h1> */}
-                </div>
                 <div className="body">
-                    <CreateCard submitHandler={submitHandler} handleChange={handleChange} />
-                </div>
-                <div className="footer">
-                    <button onClick={() => { setOpenModal(false) }} id="cancelBtn"> cancel </button>
-                    {/* <button >Sent me cvv</button> */}
+                    <CreateCard submitHandler={submitHandler} handleChange={handleChange} setOpenModal={setOpenModal} />
                 </div>
             </div>
         </div>

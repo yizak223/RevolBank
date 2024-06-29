@@ -4,17 +4,20 @@
     padding: 0;
     background: #F4F4F4;
 }
-.h2{
+
+.h2 {
     border-radius: 10px;
     background-color: var(--mainbg);
     color: white;
     padding: 2vh;
 }
-.label{
+
+.label {
     /* align-self: flex-start; */
     font-size: 18px;
     color: grey;
 }
+
 .Container {
     display: flex;
     flex-direction: column;
@@ -22,14 +25,15 @@
     justify-content: center;
     width: 100%;
     max-width: 400px;
-    height: 75vh;
+    /* height: 75vh; */
     margin: var(--defaultMargin);
     padding: 20px;
     background: rgb(144, 201, 201);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.Container2{
+
+.Container2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,9 +46,11 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
-    bottom: 15vh; 
+    bottom: 15vh;
 }
-.Container3 ,.ContainerRegister{
+
+.Container3,
+.ContainerRegister {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,9 +63,11 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.ContainerRegister{
+
+.ContainerRegister {
     width: 90%;
 }
+
 .Form {
     display: flex;
     flex-direction: column;
@@ -107,20 +115,23 @@
 
 .small {
     display: block;
-    margin-top: 20px;
-    margin-bottom: 6vh;
+    margin-top: 15px;
+    margin-bottom: 15px;
     color: #000000;
     font-size: 13px;
 }
-.small2{
+
+.small2 {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
 
 }
-.small3{
+
+.small3 {
     margin-top: 20px;
 }
+
 .small a {
     color: var(--mainbg);
     text-decoration: none;
@@ -151,28 +162,33 @@
     background-color: #fff;
     /* Background color */
 }
-.registerOrSign{
+
+.registerOrSign {
     display: flex;
 }
-.containerPage{
+
+.containerPage {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10vh;
 }
 
-  
-  .loginLink:hover {
+
+.loginLink:hover {
     text-decoration: underline;
-  }
-  .loading{
+}
+
+.loading {
     display: flex;
     flex-direction: column;
-  }
-  .error{
+}
+
+.error {
     color: red;
-  }
-  .cancel{
+}
+
+.cancel {
     background-color: crimson;
     width: 150px;
     position: absolute;
@@ -184,8 +200,9 @@
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
-  }
-  .cancel2{
+}
+
+.cancel2 {
     background-color: crimson;
     width: 150px;
     border: none;
@@ -194,17 +211,20 @@
     font-size: 20px;
     cursor: pointer;
     height: 7vh;
-  }
-  @media only screen and (max-width: 768px){
-   .Container{
-    padding: 0.5rem;
-    width: 80vw;
-    margin: 0;
-   }
-   .input{
-    width: 70vw;
-   }
-   .select{
-    width: 75vw;
-   }
+}
+
+@media only screen and (max-width: 768px) {
+    .Container {
+        padding: 0.5rem;
+        width: 80vw;
+        margin: 0;
+    }
+
+    .input {
+        width: 70vw;
+    }
+
+    .select {
+        width: 75vw;
+    }
 }
