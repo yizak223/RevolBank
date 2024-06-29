@@ -57,7 +57,7 @@ export default function MyCard({ setOpenModal }) {
     }
     useEffect(() => {
         fetchData()
-    }, [token, choosenAccount])
+    }, [token, choosenAccount,cards])
 
     return (
         <>
@@ -79,7 +79,6 @@ export default function MyCard({ setOpenModal }) {
                         showCard === i ? <SingleCard
                             key={card._id}
                             card={card}
-                            deleteCard={deleteCard}
                         /> : null
                     ))
                 }

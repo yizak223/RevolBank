@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './singleCard.css'
-import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
 import { formatDateTime3 } from '../../config/dateFormat';
 import styles from './singleCard.module.css';
@@ -8,7 +7,6 @@ import { cardNumberFormat } from '../../config/cardNumberFormat';
 
 export default function SingleCard({ card }) {
   const dateExpiration = card.expirationDate
-  const { token } = useContext(UserContext)
   const { choosenAccount } = useContext(AccountContext)
 
   const dateObject = new Date(dateExpiration);
