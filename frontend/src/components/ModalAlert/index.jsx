@@ -5,14 +5,10 @@ import { UserContext } from '../../context/User';
 import baseUrl from '../../config/BaseUrl';
 import axios from 'axios';
 
-export default function ModalAlert({ setOpenModal, openModal }) {
+export default function ModalAlert({ setOpenModal, openModal, setCards, setShowCard, cards ,showCard}) {
     const { token } = useContext(UserContext)
     const { choosenAccount } = useContext(AccountContext)
-    const [cards, setCards] = useState([])
     const [accountState, setAccountState] = useState(choosenAccount)
-    const [createCardMode, setCreateCardMode] = useState(false)
-    // const [modalOpen, setModalOpen] = useState(false);
-    const [card, setcard] = useState([])
     const [creditCard, setCreditCard] = useState({
         idAccount: accountState
     })
@@ -33,8 +29,7 @@ export default function ModalAlert({ setOpenModal, openModal }) {
                 }
             });
             setCards([...cards, res.data])
-            setCreateCardMode(!createCardMode)
-            console.log(res.data);
+            setShowCard(showCard + 1)
             setOpenModal(!openModal)
         } catch (error) {
             console.error('Error creating account:', error);

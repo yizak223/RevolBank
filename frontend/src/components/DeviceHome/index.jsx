@@ -12,6 +12,8 @@ import CoinsAndShare from '../Coins&Share/CoinsAndShare';
 
 export default function DeviceHome() {
     const [openModal, setOpenModal] = useState(false)
+    const [cards, setCards] = useState([])
+    const [showCard, setShowCard] = useState(-1)
 
     return (
         <>
@@ -20,12 +22,22 @@ export default function DeviceHome() {
                 <ModalAlert
                     setOpenModal={setOpenModal}
                     openModal={openModal}
+                    setCards={setCards}
+                    setShowCard={setShowCard}
+                    cards={cards}
+                    showCard={showCard}
                 />
             )}
             <div className={styles.containerSides}>
                 <div className={styles.left}>
                     <div className={`${styles.smallContainer} ${styles.creditCard}`}>
-                        <MyCard  setOpenModal={setOpenModal}/>
+                        <MyCard 
+                        setOpenModal={setOpenModal}
+                        setCards={setCards}
+                        setShowCard={setShowCard}
+                        showCard={showCard}
+                        cards={cards}
+                        />
                     </div>
                     <div className={`${styles.smallContainer} ${styles.RecentTransaction}`}>
                         <RecentTransaction />

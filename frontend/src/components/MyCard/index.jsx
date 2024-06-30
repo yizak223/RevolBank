@@ -7,17 +7,14 @@ import styles from './MyCard.module.css'
 import SingleCard from '../SingleCard'
 import { FaLock, FaPlus, FaTrash } from 'react-icons/fa6'
 
-export default function MyCard({ setOpenModal }) {
+export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, cards }) {
     const { token, user } = useContext(UserContext)
     const { accounts, choosenAccount } = useContext(AccountContext)
-    const [cards, setCards] = useState([])
-    const [showCard, setShowCard] = useState(0)
+
 
     const fetchData = async () => {
         try {
             const idAccount = choosenAccount?._id
-            // console.log(choosenAccount);
-            // console.log(idAccount);
             const res = await Axios.get(`${BaseUrl}/crditCard?idAccount=${idAccount}`,
                 {
                     headers: {
@@ -30,17 +27,22 @@ export default function MyCard({ setOpenModal }) {
             console.error('There was a problem with the fetch operation:', err);
         }
     }
+    console.log(showCard);
     const deleteCard = async (id) => {
         try {
-            const res = await Axios.patch(`${BaseUrl}/crditCard/${id}`, { isActive: false }, {
+            await Axios.patch(`${BaseUrl}/crditCard/${id}`, { isActive: false }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
             const updatedCards = cards.filter(card => card._id != id);
             setCards(updatedCards);
-            // console.log(cards);
-            // console.log(res.data);
+            if (cards[showCard] == 1) {
+                setShowCard(showCard)
+            } else {
+                setShowCard(showCard - 1)
+            }
+            console.log(showCard);
         } catch (err) {
             console.log(err);
         }
@@ -57,7 +59,7 @@ export default function MyCard({ setOpenModal }) {
     }
     useEffect(() => {
         fetchData()
-    }, [token, choosenAccount,cards])
+    }, [token, choosenAccount, showCard])
 
     return (
         <>
@@ -73,14 +75,6 @@ export default function MyCard({ setOpenModal }) {
                         </h3>
                         :
                         <h3 className={styles.titleCard2}>My Card </h3>
-                }
-                {
-                    cards.map((card, i) => (
-                        showCard === i ? <SingleCard
-                            key={card._id}
-                            card={card}
-                        /> : null
-                    ))
                 }
                 {
                     cards.length == 0 ?
@@ -118,12 +112,21 @@ export default function MyCard({ setOpenModal }) {
                                 </div>
                             </div>
                         </div>
-                        : null
+                        :
+                        cards.map((card, i) => (
+                            showCard === i ?
+                                <SingleCard
+                                    key={card._id}
+                                    card={card}
+                                />
+                                : null
+                        ))
+
                 }
             </div>
             <div className={styles.rightCard}>
-                <div onClick={() => { setOpenModal(true) }} className={styles.addCard}><FaPlus className={styles.i}/>
-                Add card</div>
+                <div onClick={() => { setOpenModal(true) }} className={styles.addCard}><FaPlus className={styles.i} />
+                    Add card</div>
                 <div onClick={() => {
                     cards ?
                         alert(`${cards[showCard]?.cvv}`)
