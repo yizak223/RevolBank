@@ -10,8 +10,8 @@ import { FaLock, FaPlus, FaTrash } from 'react-icons/fa6'
 export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, cards }) {
     const { token, user } = useContext(UserContext)
     const { accounts, choosenAccount } = useContext(AccountContext)
-
-
+    
+    
     const fetchData = async () => {
         try {
             const idAccount = choosenAccount?._id
@@ -21,13 +21,14 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                         Authorization: `Bearer ${token}`
                     }
                 })
-            const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
-            setCards(updatedCards);
-        } catch (err) {
-            console.error('There was a problem with the fetch operation:', err);
+                const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
+                setCards(updatedCards);
+            } catch (err) {
+                console.error('There was a problem with the fetch operation:', err);
+            }
         }
-    }
-    console.log(showCard);
+        console.log(showCard);
+        console.log(cards);
     const deleteCard = async (id) => {
         try {
             await Axios.patch(`${BaseUrl}/crditCard/${id}`, { isActive: false }, {
@@ -37,12 +38,10 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
             })
             const updatedCards = cards.filter(card => card._id != id);
             setCards(updatedCards);
-            if (cards[showCard] == 1) {
-                setShowCard(showCard)
-            } else {
-                setShowCard(showCard - 1)
+            setShowCard(showCard - 1)
+            if (cards.length) {
+                setShowCard(0)
             }
-            console.log(showCard);
         } catch (err) {
             console.log(err);
         }
@@ -61,6 +60,7 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
         fetchData()
     }, [token, choosenAccount, showCard])
 
+
     return (
         <>
             <div className={styles.lftCrdtCrd}>
@@ -77,7 +77,7 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                         <h3 className={styles.titleCard2}>My Card </h3>
                 }
                 {
-                    cards.length == 0 ?
+                    showCard === -1 || cards.length === 0 ?
                         <div>
                             <div className={styles.container}>
                                 <div className={styles.titles}>

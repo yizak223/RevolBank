@@ -13,7 +13,7 @@ import CoinsAndShare from '../Coins&Share/CoinsAndShare';
 export default function DeviceHome() {
     const [openModal, setOpenModal] = useState(false)
     const [cards, setCards] = useState([])
-    const [showCard, setShowCard] = useState(-1)
+    const [showCard, setShowCard] = useState(0)
 
     return (
         <>
