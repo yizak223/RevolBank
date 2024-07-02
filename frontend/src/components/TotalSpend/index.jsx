@@ -50,6 +50,9 @@ export default function TotalSpend() {
     }
 
     useEffect(() => {
+        setLoans(0)
+        setOutcome(0)
+        setIncome(0)
         getIncomeAndOutcomeData()
         fetchData()
 
