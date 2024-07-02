@@ -27,8 +27,7 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                 console.error('There was a problem with the fetch operation:', err);
             }
         }
-        console.log(showCard);
-        console.log(cards);
+
     const deleteCard = async (id) => {
         try {
             await Axios.patch(`${BaseUrl}/crditCard/${id}`, { isActive: false }, {

@@ -16,7 +16,6 @@ export default function ModalAlert({ setOpenModal, openModal, setCards, setShowC
     const handleChange = (e) => {
         setAccountState(e.target.value);
         setCreditCard({ ...creditCard, idAccount: e.target.value })
-        console.log(creditCard);
     }
 
     const submitHandler = async (e) => {
