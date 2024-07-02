@@ -32,7 +32,7 @@ export default function ModalAlert({ setOpenModal, openModal, setCards, setShowC
             if(showCard == 0 && cards.length == 0){
                 setShowCard(0)
             }else{
-                setShowCard(showCard + 1)
+                setShowCard(cards.length)
             }
         } catch (error) {
             console.error('Error creating account:', error);
