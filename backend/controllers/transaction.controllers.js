@@ -13,16 +13,6 @@ const getTransactions = async (req, res) => {
         return res.status(400).send(err);
     }
 }
-const getRecentTransactions = async (req, res) => {
-    try {
-        const query = req.query;
-        const recentTransactions = await Transaction.find({ ...query }).sort({ createdAt: -1 }).limit(5);
-        return res.send({ recentTransactions });
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send(err);
-    }
-}
 
 const createTransactions = async (req, res) => {
     const body = req.body;
@@ -103,4 +93,4 @@ const createTransactions = async (req, res) => {
     }
 };
 
-module.exports = { getTransactions, createTransactions, getRecentTransactions }
+module.exports = { getTransactions, createTransactions }

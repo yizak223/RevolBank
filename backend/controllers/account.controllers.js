@@ -23,6 +23,18 @@ const getAccountSingle = async (req, res) => {
         res.status(400).send(err);
     }
 }
+const getAccountRecentTransaction = async (req, res) => {
+    const id = req.params.id;
+    try {
+        const account = await Account.findById(id)
+        const recentTransaction = await account.transactions
+        res.send({ recentTransaction })
+    } catch (err) {
+        console.log(err);
+        res.status(400).send(err);
+    }
+ }
+
 const createAccount = async (req, res) => {
     const body = req.body;
     try {
@@ -55,4 +67,4 @@ const editAccount = async (req, res) => {
     }
 }
 
-module.exports = { getAccounts, getAccountSingle, createAccount, editAccount }
+module.exports = { getAccounts, getAccountSingle, getAccountRecentTransaction, createAccount, editAccount }
