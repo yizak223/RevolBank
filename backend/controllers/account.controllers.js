@@ -27,13 +27,24 @@ const getAccountRecentTransaction = async (req, res) => {
     const id = req.params.id;
     try {
         const account = await Account.findById(id)
-        const recentTransaction = await account.transactions
-        res.send({ recentTransaction })
+        const Transaction = await account.transactions
+
+        Transaction.sort((a, b) => b.createdAt - a.createdAt);
+        const last4Transaction = Transaction.splice(0, 4);
+
+        let currentDate = new Date();
+        let previousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+
+        const recentTransaction = last4Transaction.filter(transaction =>
+            !(transaction.createdAt.getMonth() === previousMonth.getMonth() &&
+                transaction.createdAt.getFullYear() === previousMonth.getFullYear()))
+
+        res.send(recentTransaction)
     } catch (err) {
         console.log(err);
         res.status(400).send(err);
     }
- }
+}
 
 const createAccount = async (req, res) => {
     const body = req.body;
