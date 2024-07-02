@@ -15,12 +15,12 @@ export default function RecentTransaction() {
 
     const fetchData = async () => {
         try {
-            const res = await axios.get(`${baseUrl}/accounts?_id=${choosenAccount?._id}`, {
+            const res = await axios.get(`${baseUrl}/accounts/${choosenAccount?._id}/recentTransaction`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             })
-            setTransfers(res.data.accounts[0].transactions)
+            setTransfers(res.data)
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err)
         }
