@@ -66,7 +66,7 @@ export default function TotalSpend() {
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
-                    <GrTransaction className={styles.reactIcon} />
+                        <GrTransaction className={styles.reactIcon} />
                         {/* <CiShoppingBasket className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
@@ -74,7 +74,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${styles.green}`}>+ $ {income} </p>
+                    <p className={`${styles.howMuch} ${income === 0 ? '' : styles.green}`}>{income === 0 ? `${income}` : `+ $ ${income}`} </p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -87,7 +87,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${styles.red}`}> {outcome.toString().substring(0, 1) + ' $ ' + outcome.toString().substring(1)}</p>
+                    <p className={`${styles.howMuch} ${outcome === 0 ? '' : styles.red}`}> {`${outcome.toString().substring(0, 1)} ${outcome === 0 ? '' : '$'}   ${outcome.toString().substring(1)}`}</p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -101,7 +101,7 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={styles.howMuch}> $ {loans}</p>
+                    <p className={styles.howMuch}>{loans === 0 ? '' : '$'} {loans}</p>
                 </div>
             </div>
             {/* <div className={styles.TransactionContainer}>
