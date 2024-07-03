@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Bar, Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import { Bar } from "react-chartjs-2";
 import { UserContext } from "../../context/User";
 import { AccountContext } from "../../context/Account";
 import axios from "axios";
@@ -10,9 +9,11 @@ import styles2 from '../DeviceHome/DeviceHome.module.css'
 import { getMonthName } from "../../config/dateFormat";
 import { CiInboxIn, CiInboxOut } from "react-icons/ci";
 
-export default function BarChart() {
+export default function BarChart({ setMonthOrYear, monthOrYear }) {
     const { token } = useContext(UserContext);
     const { choosenAccount } = useContext(AccountContext)
+    const [monthAmount] = useState([0, 0])
+    const [yearAmount] = useState([0, 0])
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: [
@@ -27,6 +28,7 @@ export default function BarChart() {
             }
         ],
     });
+
     const fetchIncomes = async (idAccount, token) => {
         try {
             const res = await axios.get(`${baseUrl}/incomes?idAccount=${idAccount}`, {
@@ -34,12 +36,35 @@ export default function BarChart() {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth() + 1;
+            const incomes = res.data.incomes;
+
+            if (incomes.length > 0) {
+                const lastMonthItem = incomes[incomes.length - 1];
+                if (lastMonthItem.month === currentMonth) {
+                    monthAmount[0] = lastMonthItem.amount;
+                }
+
+                let lastYearArray = res.data.incomes
+                let count = 0
+                for (let i = lastYearArray.length - 1; i >= 0 && count < 2; i--) {
+                    yearAmount[0] += lastYearArray[i].amount;
+                    if (lastYearArray[i].month === currentMonth) {
+                        count++;
+                    }
+                }
+            }
+
             const monthes = res.data.incomes.map(element => {
                 return element.month
             })
+
             const amountArray = res.data.incomes.map(element => {
                 return element.amount
             })
+
             const chartData = { month: [monthes], amount: [amountArray] }
             return chartData;
         } catch (err) {
@@ -55,20 +80,41 @@ export default function BarChart() {
                     Authorization: `Bearer ${token}`,
                 },
             });
+
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth() + 1;
+            const expanses = res.data.expanses;
+
+            if (expanses.length > 0) {
+                const lastMonthItem = res.data.expanses[res.data.expanses.length - 1]
+                if (lastMonthItem.month === currentMonth) {
+                    monthAmount[1] = lastMonthItem.amount;
+                }
+                let lastYearArray = res.data.expanses
+                let count = 0
+                for (let i = lastYearArray.length - 1; i >= 0 && count < 2; i--) {
+                    yearAmount[1] += lastYearArray[i].amount;
+                    if (lastYearArray[i].month === currentMonth) {
+                        count++;
+                    }
+                }
+            }
+
             const monthes = res.data.expanses.map(element => {
                 return element.month
             })
+
             const amountArray = res.data.expanses.map(element => {
                 return element.amount
             })
+
             const chartData = { month: [monthes], amount: [amountArray] }
             return chartData;
         } catch (err) {
             console.log(err);
-            return 0; 
+            return 0;
         }
     };
-    // console.log(chartData);
     const fetchData = async () => {
         try {
             if (!choosenAccount || !choosenAccount._id) {
@@ -85,7 +131,6 @@ export default function BarChart() {
             const monthArray = expenseAmount.month[0].map(element => {
                 return getMonthName(element)
             })
-            console.log(monthArray);
             setChartData({
                 labels: monthArray,
                 datasets: [
@@ -116,7 +161,7 @@ export default function BarChart() {
 
     useEffect(() => {
         fetchData();
-        console.log(chartData);
+
     }, [token, choosenAccount]);
 
     return (
@@ -129,15 +174,19 @@ export default function BarChart() {
                     <CiInboxIn className={styles2.cilnbox} />
                     <div>
                         <h5 className={styles2.h5}>Income</h5>
-                        <h2 className={styles2.howMuchIn}>{chartData.datasets[0].data[0]}</h2>
+                        <h2 className={styles2.howMuchIn}>{monthOrYear ? monthAmount[0] : yearAmount[0]}</h2>
                     </div>
                 </div>
                 <div className={styles2.summary}>
                     <CiInboxOut className={`${styles2.cilnbox} ${styles2.cilnboxOut}`} />
                     <div>
                         <h5 className={styles2.h5}>Expanses</h5>
-                        <h2 className={styles2.howMuchEx}>{chartData.datasets[1].data[0]}</h2>
+                        <h2 className={styles2.howMuchEx}>{monthOrYear ? monthAmount[1] : yearAmount[1]}</h2>
                     </div>
+                </div>
+                <div className={styles.toggleTime}>
+                    <p onClick={() => setMonthOrYear(true)} className={`${styles.lastMonth} ${monthOrYear ? styles.lastMonthActive : ''}`}>Last Month</p>
+                    <p onClick={() => setMonthOrYear(false)} className={`${styles.lastYear} ${!monthOrYear ? styles.lastYearActive : ''}`}>Last Year</p>
                 </div>
             </div>
         </>

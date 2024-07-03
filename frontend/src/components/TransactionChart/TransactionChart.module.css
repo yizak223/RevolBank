@@ -1,0 +1,70 @@
+.toggleTime {
+    display: flex;
+    border-radius: 15px;
+    font-size: 13px;
+    height: fit-content;
+
+}
+
+.lastMonth,
+.lastYear {
+    cursor: pointer;
+    margin: 0;
+    height: fit-content;
+    padding: 6px;
+    border: solid 2px rgba(123, 117, 117, 0.85);
+    transition: 0.01s;
+}
+
+.lastYear {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-left: none;
+}
+
+.lastMonth {
+    border-right: none;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.lastMonth:hover,
+.lastYear:hover {
+    border: solid 2px var(--mainbg);
+    color: var(--mainbg);
+    font-weight: 700;
+}
+
+.lastMonth:hover{
+    border-right: none;
+}
+
+.lastYear:hover {
+    border-left: none;
+}
+
+.lastMonthActive:hover {
+    border-right: solid 2px var(--mainbg) ;
+}
+
+.lastYearActive:hover {
+    border-left: solid 2px var(--mainbg) ;
+}
+
+.lastMonthActive {
+    background-color: #00877311;
+    border: solid 2px var(--mainbg);
+    color: var(--mainbg);
+    font-weight: 700;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.lastYearActive {
+    background-color: #00877311;
+    border: solid 2px var(--mainbg);
+    color: var(--mainbg);
+    font-weight: 700;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

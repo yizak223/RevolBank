@@ -14,43 +14,46 @@ export default function DeviceHome() {
     const [openModal, setOpenModal] = useState(false)
     const [cards, setCards] = useState([])
     const [showCard, setShowCard] = useState(0)
+    const [monthOrYear, setMonthOrYear] = useState(true)
 
     return (
         <>
-         <div className={styles.body}>
-            {openModal && (
-                <ModalAlert
-                    setOpenModal={setOpenModal}
-                    openModal={openModal}
-                    setCards={setCards}
-                    setShowCard={setShowCard}
-                    cards={cards}
-                    showCard={showCard}
-                />
-            )}
-            <div className={styles.containerSides}>
-                <div className={styles.left}>
-                    <div className={`${styles.smallContainer} ${styles.creditCard}`}>
-                        <MyCard 
+            <div className={styles.body}>
+                {openModal && (
+                    <ModalAlert
                         setOpenModal={setOpenModal}
+                        openModal={openModal}
                         setCards={setCards}
                         setShowCard={setShowCard}
-                        showCard={showCard}
                         cards={cards}
-                        />
+                        showCard={showCard}
+                    />
+                )}
+                <div className={styles.containerSides}>
+                    <div className={styles.left}>
+                        <div className={`${styles.smallContainer} ${styles.creditCard}`}>
+                            <MyCard
+                                setOpenModal={setOpenModal}
+                                setCards={setCards}
+                                setShowCard={setShowCard}
+                                showCard={showCard}
+                                cards={cards}
+                            />
+                        </div>
+                        <div className={`${styles.smallContainer} ${styles.RecentTransaction}`}>
+                            <RecentTransaction />
+                        </div>
+                        <div className={`${styles.smallContainer} ${styles.mySaving}`}>
+                            <UserSaving />
+                        </div>
                     </div>
-                    <div className={`${styles.smallContainer} ${styles.RecentTransaction}`}>
-                        <RecentTransaction />
-                    </div>
-                    <div className={`${styles.smallContainer} ${styles.mySaving}`}>
-                        <UserSaving />
-                    </div>
-                </div>
-                <div className={styles.right}>
-                    <div className={`${styles.smallContainer} ${styles.BarChart}`}>
-                        <BarChart />
-                    </div>
-                    {/* <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
+                    <div className={styles.right}>
+                        <div className={`${styles.smallContainer} ${styles.BarChart}`}>
+                            <BarChart
+                                setMonthOrYear={setMonthOrYear}
+                                monthOrYear={monthOrYear} />
+                        </div>
+                        {/* <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
                         <div className={styles.summary}>
                             <CiInboxIn className={styles.cilnbox} />
                             <div>
@@ -66,16 +69,18 @@ export default function DeviceHome() {
                             </div>
                         </div>
                     </div> */}
-                    <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
-                        <TotalSpend />
-                    </div>
-                    <div className={`${styles.smallContainer} ${styles.coins}`}>
-                        <CoinsAndShare />
+                        <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
+                            <TotalSpend
+                                setMonthOrYear={setMonthOrYear}
+                                monthOrYear={monthOrYear} />
+                        </div>
+                        <div className={`${styles.smallContainer} ${styles.coins}`}>
+                            <CoinsAndShare />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
-       
+
     );
 }

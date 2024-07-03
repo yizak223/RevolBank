@@ -23,7 +23,6 @@ export default function AccountProvider({ children }) {
             Authorization: `Bearer ${token}`
           }
         })
-      console.log(res.data);
       setAccounts(res.data.accounts)
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err);
@@ -33,9 +32,6 @@ export default function AccountProvider({ children }) {
     if (user) {
       fetchData()
 
-      // console.log(accounts);
-      // console.log(choosenAccount);
-
     }
   }, [user])
   useEffect(() => {
@@ -43,9 +39,7 @@ export default function AccountProvider({ children }) {
   }, [accounts])
   useEffect(() => {
     setBalanceuser(choosenAccount?.balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
-    
-    // console.log(choosenAccount);
-    // console.log(choosenAccount?._id);
+
   }, [choosenAccount])
   const shared = { accounts, setAccounts, setChoosenAccount, choosenAccount, setBalanceuser, balanceuser }
   return (
