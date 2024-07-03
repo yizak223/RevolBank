@@ -78,20 +78,25 @@ export default function BarChart() {
 
             const incomeAmount = await fetchIncomes(idAccount, token);
             const expenseAmount = await fetchExpenses(idAccount, token);
-            const monthArray = incomeAmount.month[0].map(element => {
+
+            const Expanses = expenseAmount.amount
+            const Incomes = incomeAmount.amount
+
+            const monthArray = expenseAmount.month[0].map(element => {
                 return getMonthName(element)
             })
+            console.log(monthArray);
             setChartData({
                 labels: monthArray,
                 datasets: [
                     {
                         label: "income",
                         backgroundColor: `#008773`,
-                        data: incomeAmount.amount[0],
+                        data: Incomes[0]
                     }, {
                         label: "expanse",
                         backgroundColor: `#f4cc76`,
-                        data: expenseAmount.amount[0],
+                        data: Expanses[0],
                     }
                 ],
             });
@@ -102,7 +107,7 @@ export default function BarChart() {
                 datasets: [
                     {
                         ...chartData.datasets[0],
-                        data: [incomeAmount, 10],
+                        data: [incomeAmount, 0],
                     },
                 ],
             });
@@ -111,7 +116,7 @@ export default function BarChart() {
 
     useEffect(() => {
         fetchData();
-        
+        console.log(chartData);
     }, [token, choosenAccount]);
 
     return (

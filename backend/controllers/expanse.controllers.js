@@ -12,30 +12,35 @@ const getExpanses = async (req, res) => {
         return res.status(400).send(err);
     }
 }
-const createExpanses =async()=>{
+const createExpenses = async () => {
     try {
-        const accounts = await Account.find();
-        // const date = new Date(2024, 2, 1, 15, 2, 0);
-        schedule.scheduleJob('0 0 1 * *', async function() {
-            for (const account of accounts) {
-                try {
-                    const expanse = new Expanse({
-                        idAccount: account._id,
-                        amount: 0,
-                        month: new Date().getMonth() + 1
-                    });
-                    await expanse.save();
-                } catch (err) {
-                    console.error(`Error creating expanse for account ${account._id}:`, err);
+        const job = schedule.scheduleJob(new Date(Date.now() + 1 * 60 * 1000), async function() {
+            try {
+                const accounts = await Account.find();
+                for (const account of accounts) {
+                    try {
+                        const expense = new Expanse({
+                            idAccount: account._id,
+                            amount: 0,
+                            month: new Date().getMonth() + 1
+                        });
+                        await expense.save();
+                    } catch (err) {
+                        console.error(`Error creating expense for account ${account._id}:`, err);
+                    }
                 }
+                console.log('Expense entries created for all users after 5 minutes.');
+            } catch (err) {
+                console.error('Error retrieving user accounts:', err);
             }
-            console.log('expanse entries created for all users at the start of the month.');
         });
+
+        console.log('Job scheduled to run after 5 minutes.');
     } catch (err) {
-        console.error('Error retrieving user accounts:', err);
+        console.error('Error scheduling the job:', err);
     }
-}
-createExpanses()
+};
+createExpenses()
 const editExpanses = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
