@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS } from "chart.js/auto";
 import { UserContext } from "../../context/User";
 import { AccountContext } from "../../context/Account";
 import axios from "axios";
