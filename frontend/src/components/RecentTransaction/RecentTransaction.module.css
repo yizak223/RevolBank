@@ -15,7 +15,8 @@
     cursor: pointer;
     transition: 0.3s;
 }
-.seeAll:hover{
+
+.seeAll:hover {
     color: #db9f1c;
 }
 
@@ -48,22 +49,34 @@
 .whereBuy {
     font-weight: 600;
 }
-.howMuch{
+
+.howMuch {
     font-weight: 600;
 
 }
-.income{
+
+.income {
     color: rgb(4, 145, 4);
 }
-.expenditure{
+
+.expenditure {
     color: #ec0101;
 }
-.noTransaction{
-    background-color: #f8f8f8;;
+
+.noTransaction {
+    background-color: #f8f8f8;
+    ;
     width: 100%;
     border-radius: 10px;
     padding: 2rem;
     display: flex;
     justify-content: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.amountAndDate {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
 }

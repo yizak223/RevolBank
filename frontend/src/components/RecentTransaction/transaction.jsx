@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './RecentTransaction.module.css'
 import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
+import { formatDateTime2 } from '../../config/dateFormat';
 
 export default function Transaction({ transfer, token }) {
 
@@ -35,7 +36,6 @@ export default function Transaction({ transfer, token }) {
         <div className={styles.TransactionContainer}>
             <div className={styles.iconAndType}>
                 <div className={styles.iconTran}>
-                    {/* <i className="fa-solid fa-cart-shopping"></i> */}
                     <i class="fa-solid fa-money-bill-transfer"></i>
                 </div>
                 <div className={styles.type}>
@@ -43,8 +43,9 @@ export default function Transaction({ transfer, token }) {
                     <p className={styles.typeBuy}>{transfer.type === 'expenditure' ? nameFrom : nameTo}</p>
                 </div>
             </div>
-            <div>
+            <div className={styles.amountAndDate}>
                 <p className={`${styles.howMuch} ${transfer.type === 'expenditure' ? styles.expenditure : styles.income}`}>{transfer.type === 'expenditure' ? '-' : '+'} $ {transfer.amount} </p>
+                <p className={styles.typeBuy}>{formatDateTime2(transfer.createdAt)}</p>
             </div>
         </div>
     )
