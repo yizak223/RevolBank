@@ -17,7 +17,7 @@ export default function DeviceHome() {
 
     return (
         <>
-         <body className={styles.body}>
+         <div className={styles.body}>
             {openModal && (
                 <ModalAlert
                     setOpenModal={setOpenModal}
@@ -74,7 +74,7 @@ export default function DeviceHome() {
                     </div>
                 </div>
             </div>
-        </body>
+        </div>
         </>
        
     );
