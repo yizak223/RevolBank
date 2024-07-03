@@ -36,7 +36,7 @@ export default function Transaction({ transfer, token }) {
         <div className={styles.TransactionContainer}>
             <div className={styles.iconAndType}>
                 <div className={styles.iconTran}>
-                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <i className="fa-solid fa-money-bill-transfer"></i>
                 </div>
                 <div className={styles.type}>
                     <p className={`${styles.whereBuy} ${transfer.type === 'expenditure' ? styles.expenditure : styles.income}`}>{transfer.type}</p>

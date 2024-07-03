@@ -36,17 +36,17 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
                         <li><img className={styles.img} src={logo} alt="" /></li>
                     </div>
                     <div className={styles.itemsNav}>
-                        <Link className={`${styles.a} ${path === '/' ? styles.active : ''}`} to='/'><li className={`$ ${styles.item}`}><i class="fa-solid fa-house"></i>Overview</li></Link>
-                        <Link className={`${styles.a} ${path === '/balances' ? styles.active : ''}`} to='/balances'><li className={styles.item}><i class="fa-solid fa-wallet"></i>activities</li></Link>
-                        <Link className={`${styles.a} ${path === '/CreditCards' ? styles.active : ''}`} to='/CreditCards'><li className={styles.item}><i class="fa-regular fa-credit-card"></i>credit card</li></Link>
-                        <Link className={`${styles.a} ${path === '/loans' ? styles.active : ''}`} to='/loans'><li className={styles.item}><i class="fa-solid fa-landmark"></i>loan</li></Link>
-                        <Link className={`${styles.a} ${path === '/transfers' ? styles.active : ''}`} to='/transfers'><li className={styles.item}><i class="fa-solid fa-money-bill-transfer"></i>transfer</li></Link>
+                        <Link className={`${styles.a} ${path === '/' ? styles.active : ''}`} to='/'><li className={`$ ${styles.item}`}><i className="fa-solid fa-house"></i>Overview</li></Link>
+                        <Link className={`${styles.a} ${path === '/balances' ? styles.active : ''}`} to='/balances'><li className={styles.item}><i className="fa-solid fa-wallet"></i>activities</li></Link>
+                        <Link className={`${styles.a} ${path === '/CreditCards' ? styles.active : ''}`} to='/CreditCards'><li className={styles.item}><i className="fa-regular fa-credit-card"></i>credit card</li></Link>
+                        <Link className={`${styles.a} ${path === '/loans' ? styles.active : ''}`} to='/loans'><li className={styles.item}><i className="fa-solid fa-landmark"></i>loan</li></Link>
+                        <Link className={`${styles.a} ${path === '/transfers' ? styles.active : ''}`} to='/transfers'><li className={styles.item}><i className="fa-solid fa-money-bill-transfer"></i>transfer</li></Link>
                     </div>
                     <div className={styles.user}>
                         {
                             user ?
                                 <>
-                                    <li onClick={() => setmodalAcount(!modalAcount)} className={`${styles.active} ${styles.item}`}><i class="fa-regular fa-user"></i>{user.fullName.split(' ')[0]}</li>
+                                    <li onClick={() => setmodalAcount(!modalAcount)} className={`${styles.active} ${styles.item}`}><i className="fa-regular fa-user"></i>{user.fullName.split(' ')[0]}</li>
                                     {accounts.length != 0 ?
                                         <>
                                             <select className={styles.select} onChange={handleOption} name="account" >

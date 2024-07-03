@@ -98,7 +98,7 @@ export default function Authntication() {
                             <>
                                 <div className={styles.loading}>
                                     <h3 className='h3Loader'>Loading...</h3>
-                                    <div class="loader"></div>
+                                    <div className="loader"></div>
                                 </div>
                             </>
                     }
@@ -118,7 +118,7 @@ export default function Authntication() {
                                 <>
                                     <div className={styles.loading}>
                                         <h3 className='h3Loader'>Loading...</h3>
-                                        <div class="loader"></div>
+                                        <div className="loader"></div>
                                     </div>
                                 </>
                         }

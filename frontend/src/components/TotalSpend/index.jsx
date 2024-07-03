@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import styles from './totalSpend.module.css'
+import React, { useContext, useEffect, useState } from 'react';
+import styles from './totalSpend.module.css';
 import { GrTransaction } from "react-icons/gr";
 import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
@@ -7,12 +7,12 @@ import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
 
 export default function TotalSpend() {
-    const { token } = useContext(UserContext)
-    const { choosenAccount } = useContext(AccountContext)
+    const { token } = useContext(UserContext);
+    const { choosenAccount } = useContext(AccountContext);
 
-    const [income, setIncome] = useState(0)
-    const [outcome, setOutcome] = useState(0)
-    const [loans, setLoans] = useState(0)
+    const [income, setIncome] = useState(0);
+    const [outcome, setOutcome] = useState(0);
+    const [loans, setLoans] = useState(0);
 
     const getIncomeAndOutcomeData = async () => {
         try {
@@ -20,43 +20,52 @@ export default function TotalSpend() {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
-            res.data.accounts[0].transactions.forEach(transfer => {
+            });
+            const transactions = res.data.accounts[0].transactions;
+            let totalIncome = 0;
+            let totalOutcome = 0;
+            transactions.forEach(transfer => {
                 if (transfer.type === "expenditure") {
-                    setIncome((prevCount) => +prevCount + +transfer.amount)
+                    totalOutcome += parseFloat(transfer.amount);
                 } else {
-                    setOutcome((prevCount) => +prevCount - +transfer.amount)
+                    totalIncome += parseFloat(transfer.amount);
                 }
-            })
+            });
+            setIncome(totalIncome);
+            setOutcome(totalOutcome);
         } catch (err) {
-            console.error('There was a problem with the fetch operation:', err)
+            console.error('There was a problem with the fetch operation:', err);
         }
-    }
+    };
 
     const fetchData = async () => {
         try {
-            const idAccount = choosenAccount?._id
+            const idAccount = choosenAccount?._id;
             const res = await axios.get(`${baseUrl}/loans?idAccount=${idAccount}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })
+            });
+            let totalLoans = 0;
             res.data.loans.forEach(loan => {
-                setLoans((prev) => +prev + +loan.amount)
-            })
+                totalLoans += parseFloat(loan.amount);
+            });
+            setLoans(totalLoans);
         } catch (err) {
-            console.error('There was a problem with the fetch operation:', err)
+            console.error('There was a problem with the fetch operation:', err);
         }
-    }
+    };
 
     useEffect(() => {
-        setLoans(0)
-        setOutcome(0)
-        setIncome(0)
-        getIncomeAndOutcomeData()
-        fetchData()
+        setLoans(0);
+        setOutcome(0);
+        setIncome(0);
 
-    }, [choosenAccount])
+        if (choosenAccount) {
+            getIncomeAndOutcomeData();
+            fetchData();
+        }
+    }, [choosenAccount]);
 
     return (
         <>
@@ -80,20 +89,20 @@ export default function TotalSpend() {
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
-                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        <i className="fa-solid fa-money-bill-transfer"></i>
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Transfers</p>
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${outcome === 0 ? '' : styles.red}`}> {`${outcome.toString().substring(0, 1)} ${outcome === 0 ? '' : '$'}   ${outcome.toString().substring(1)}`}</p>
+                    <p className={`${styles.howMuch} ${outcome === 0 ? '' : styles.red}`}> {`${outcome === 0 ? '' : '- $'}   ${outcome}`} </p>
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
-                        <i class="fa-solid fa-landmark"></i>
+                        <i className="fa-solid fa-landmark"></i>
                         {/* <GrCafeteria className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
@@ -104,32 +113,6 @@ export default function TotalSpend() {
                     <p className={styles.howMuch}>{loans === 0 ? '' : '$'} {loans}</p>
                 </div>
             </div>
-            {/* <div className={styles.TransactionContainer}>
-                <div className={styles.iconAndType}>
-                    <div className={styles.iconTran}>
-                    <GiIsland  className={styles.reactIcon}/>
-                    </div>
-                    <div className={styles.type}>
-                        <p className={styles.whereBuy}>Vacation</p>
-                    </div>
-                </div>
-                <div>
-                    <p className={styles.howMuch}>- $ 355.0 </p>
-                </div>
-            </div>
-            <div className={styles.TransactionContainer}>
-                <div className={styles.iconAndType}>
-                    <div className={styles.iconTran}>
-                    <GiMusicSpell  className={styles.reactIcon}/>
-                    </div>
-                    <div className={styles.type}>
-                        <p className={styles.whereBuy}>Entertaiment</p>
-                    </div>
-                </div>
-                <div>
-                    <p className={styles.howMuch}>- $ 355.0 </p>
-                </div>
-            </div> */}
         </>
-    )
+    );
 }
