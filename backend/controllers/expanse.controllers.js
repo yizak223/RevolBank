@@ -14,9 +14,10 @@ const getExpanses = async (req, res) => {
 }
 const createExpenses = async () => {
     try {
-        const job = schedule.scheduleJob(new Date(Date.now() + 1 * 60 * 1000), async function() {
+        // Schedule the job to run at midnight on the 1st of every month
+        schedule.scheduleJob('0 0 1 * *', async function() {
             try {
-                const accounts = await Account.find();
+                const accounts = await Account.find(); 
                 for (const account of accounts) {
                     try {
                         const expense = new Expanse({
@@ -29,13 +30,11 @@ const createExpenses = async () => {
                         console.error(`Error creating expense for account ${account._id}:`, err);
                     }
                 }
-                console.log('Expense entries created for all users after 5 minutes.');
+                console.log('Expense entries created for all users at the start of the month.');
             } catch (err) {
-                console.error('Error retrieving user accounts:', err);
+                console.error('Error retrieving user accounts within the scheduled job:', err);
             }
         });
-
-        console.log('Job scheduled to run after 5 minutes.');
     } catch (err) {
         console.error('Error scheduling the job:', err);
     }
