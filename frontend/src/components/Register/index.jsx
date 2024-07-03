@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import styles from '../CreateAccount/createAccount.module.css'
-import './register.module.css'
 import { RegisterContext } from '../../context/RegisterMode'
 
 export default function Register({ handleSubmit, handleChange, emailExist }) {
