@@ -110,7 +110,8 @@
         flex-direction: column;
     }
 
-    .left {
+    .left,
+    .right {
         width: 100%;
         padding: 0;
         padding-top: 1.5rem;
@@ -125,5 +126,19 @@
     .smallContainer {
         padding: 0;
         padding-top: 1.5rem;
+    }
+
+    .summaryTransaction {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0rem;
+        justify-content: center;
+    }
+    .cilnbox{
+        padding: 0.3rem;
+        font-size: 50px;
+    }
+    .howMuchIn, .howMuchEx{
+        font-size: 25px;
     }
 }

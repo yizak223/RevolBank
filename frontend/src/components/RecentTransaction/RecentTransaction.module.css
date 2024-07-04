@@ -121,5 +121,11 @@
    .typeBuy{
     font-size: 12px;
    }
+   .tool{
+    margin-left: 70px;
+   }
+   .iconTran {
+    padding: 0.5rem;
+}
 }
 

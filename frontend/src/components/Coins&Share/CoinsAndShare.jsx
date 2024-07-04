@@ -42,7 +42,7 @@ export default function CoinsAndShare() {
     return (
         <>
             <div className={`${styles.CoinsAndShareContainer} ${styles.CoinsAndShare}`}>
-                <h2>Currencies</h2>
+                <h2 className={styles.h2}>Currencies</h2>
             </div>
             <div className={styles.CoinsAndShareContainer}>
                 <div className={styles.iconAndType}>

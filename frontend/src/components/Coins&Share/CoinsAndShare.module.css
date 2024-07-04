@@ -31,3 +31,13 @@
 .coin {
     font-weight: 600;
 }
+
+@media only screen and (max-width: 768px){
+    .h2{
+        font-size: 20px;
+    }
+    .coin , .howMuch{
+        font-size: 17px;
+    }
+}
+

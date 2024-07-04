@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import styles from './totalSpend.module.css';
+import responsiveStyle from '../RecentTransaction/RecentTransaction.module.css'
 import { GrTransaction } from "react-icons/gr";
 import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
@@ -86,7 +87,7 @@ const TotalSpend = ({ monthOrYear }) => {
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
-                <h2>Total Amount</h2>
+                <h2 className={responsiveStyle.h2}>Total Amount</h2>
             </div>
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>

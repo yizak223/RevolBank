@@ -103,3 +103,17 @@
     visibility: visible;
     max-width: 230px;
 }
+@media only screen and (max-width: 768px){
+   .container{
+    height: 20vh;
+   }
+   .toggleTime{
+    margin-top: 10px;
+   }
+   .lastMonth:hover,
+   .lastYear:hover{
+    transform: none;
+   }
+}
+
+
