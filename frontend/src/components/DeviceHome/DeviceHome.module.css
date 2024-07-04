@@ -39,7 +39,6 @@
 }
 .RecentTransaction, .mySaving{
     border: none;
-    /* box-sizing: border-box; */
     padding: 1.5rem;
     display: flex;
     flex-direction: column;

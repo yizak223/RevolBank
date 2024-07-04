@@ -1,18 +1,20 @@
-.mySavingTitle{
+.mySavingTitle {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin-bottom: 1rem;
 }
-.seeAll{
+
+.seeAll {
     align-self: flex-end;
     color: #f4cc76;
     font-size: 20px;
 }
-.mySavingContainer{
-    background-color: #f8f8f8;;
+
+.mySavingContainer {
+    background-color: #f8f8f8;
+    ;
     width: 100%;
-    /* height: 20vh; */
     border-radius: 10px;
     padding: 2rem;
     display: flex;
@@ -21,29 +23,45 @@
     height: 22vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.titleSaving{
-    display:  flex;
+
+.titleSaving {
+    display: flex;
     gap: 2rem;
     font-size: 30px;
 }
-.h2{
+
+.h2P,
+.h2N {
     font-size: 25px;
     align-self: center;
+    color: rgb(4, 145, 4);
 }
-.progress{
+
+.progressP,
+.progressN {
     width: 100%;
     height: 0.1rem;
     padding: 0.1rem;
     border-radius: 10px;
-    background-color: rgb(103, 97, 97);
+    background-color: rgb(4, 145, 4);
     margin-top: 1rem;
 }
-.containIcon{
+
+.h2N{
+    color: red;
+}
+
+.progressN {
+    background-color: red;
+}
+
+.containIcon {
     background-color: white;
     padding: 1rem;
     border-radius: 10px;
 }
-.prgressNumber{
+
+.progressNumber {
     display: flex;
     justify-content: space-between;
 }

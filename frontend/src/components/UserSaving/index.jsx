@@ -1,42 +1,57 @@
-import React from 'react'
-import styles from './UserSaving.module.css'
+import React, { useContext, useCallback, useState, useEffect } from 'react';
+import styles from './UserSaving.module.css';
+import { AccountContext } from '../../context/Account';
+import { FaBalanceScale } from "react-icons/fa";
+import formatNumberWithCommas from '../../utils/formatNumberWithCommas';
 
 export default function UserSaving() {
+    const { choosenAccount } = useContext(AccountContext);
+    const [balance, setBalance] = useState("0");
+    const [isPositiveBalance, setIsPositiveBalance] = useState(false);
+
+    const checkBalance = useCallback(() => {
+        if (!choosenAccount) return;
+
+        const balanceValue = choosenAccount.balance;
+        const formattedBalance = formatNumberWithCommas(balanceValue);
+
+        setBalance(formattedBalance);
+        setIsPositiveBalance(balanceValue > 0);
+    }, [choosenAccount]);
+
+    useEffect(() => {
+        checkBalance();
+    }, [checkBalance]);
+
     return (
         <>
             <div className={styles.mySavingTitle}>
-                <h2>My Saving</h2>
-                <p className={styles.seeAll}>see all</p>
+                <h2>Balance</h2>
             </div>
             <div className={styles.mySavingContainer}>
                 <div className={styles.titleSaving}>
                     <div className={styles.containIcon}>
-                    <i  className="fa-solid fa-desktop"></i>
+                        <FaBalanceScale />
                     </div>
-                    <h2 className={styles.h2}>My Dream Pc</h2>
+                    <h2 className={isPositiveBalance ? styles.h2P : styles.h2N}>
+                        $ {balance}
+                    </h2>
                 </div>
-                <div className={styles.progress}>
-                </div>
-                <div className={styles.prgressNumber}>
-                    <p>0</p>
-                    <p>$ 5,000</p>
+                <div className={isPositiveBalance ? styles.progressP : styles.progressN}></div>
+                <div className={styles.progressNumber}>
+                    {isPositiveBalance ? (
+                        <>
+                            <p>0</p>
+                            <p>{balance}</p>
+                        </>
+                    ) : (
+                        <>
+                            <p>{balance}</p>
+                            <p>0</p>
+                        </>
+                    )}
                 </div>
             </div>
-
-            {/* <div className={styles.mySavingContainer}>
-                <div className={styles.titleSaving}>
-                    <div className={styles.containIcon}>
-                    <i className="fa-solid fa-car"></i>
-                    </div>
-                    <h2 className={styles.h2}>Car Part</h2>
-                </div>
-                <div className={styles.progress}>
-                </div>
-                <div className={styles.prgressNumber}>
-                    <p>0</p>
-                    <p>$ 30,000</p>
-                </div>
-            </div> */}
         </>
-    )
+    );
 }
