@@ -45,7 +45,7 @@ export default function Transaction({ transfer, token }) {
                     <p className={`${styles.whereBuy} ${isExpenditure ? styles.expenditure : styles.income}`}>
                         {transfer.type}
                         <span className={styles.tool}>
-                            {isExpenditure ? 'Transfer you made' : 'You received a transfer'}
+                            {isExpenditure ? 'Transfer you made' : 'Transfer you received'}
                         </span>
                     </p>
                     <p className={styles.typeBuy}>{isExpenditure ? names.nameFrom : names.nameTo}</p>

@@ -94,10 +94,11 @@ const TotalSpend = ({ monthOrYear }) => {
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Receipts</p>
+                        <div className={styles.toolRecived}>Total transfers you received</div>
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {monthOrYear ? renderAmount(monthAmount[0], styles.green, '+') : <p>{renderAmount(yearAmount[0], styles.green, '+')}</p>}
+                    {monthOrYear ? renderAmount(monthAmount[0], styles.green, '+') : renderAmount(yearAmount[0], styles.green, '+')}
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -107,10 +108,12 @@ const TotalSpend = ({ monthOrYear }) => {
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Transfers</p>
+                        <div className={styles.toolMade}>Total transfers you made</div>
+
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {monthOrYear ? renderAmount(monthAmount[1], styles.red, '-') : <p>{renderAmount(yearAmount[1], styles.red, '-')}</p>}
+                    {monthOrYear ? renderAmount(monthAmount[1], styles.red, '-') : renderAmount(yearAmount[1], styles.red, '-')}
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -120,6 +123,7 @@ const TotalSpend = ({ monthOrYear }) => {
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Loans</p>
+                        <div className={styles.toolLoans}>Total Loans</div>
                     </div>
                 </div>
                 <div className={styles.type}>

@@ -87,10 +87,12 @@
     opacity: 0;
     visibility: hidden;
     position: absolute;
-    left: 70vh;
+    margin-left: 110px;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.674);
     color: #fff;
+    font-weight: 400;
+    font-size: 17px;
     padding: 10px;
     border-radius: 4px;
     white-space: nowrap;
