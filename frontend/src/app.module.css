@@ -1,6 +1,5 @@
 .containerPage1 {
     display: flex;
-    /* overflow-x: hidden; */
     contain: paint;
 }
 
@@ -9,7 +8,6 @@
     flex-direction: column;
     align-items: center;
     background-color: #f9f9f9;
-    /* overflow-x: hidden; */
     contain: paint;
     padding-bottom: 10px;
     background-color: #ffffff;
@@ -17,4 +15,10 @@
     background-attachment: fixed;
     background-size: cover;
     min-height: 100vh;
+}
+
+@media only screen and (max-width: 768px) {
+    .containerPage1 {
+        justify-content: center;
+    }
 }

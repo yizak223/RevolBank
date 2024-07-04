@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import NavBar2 from './components/NavBar2'
 import Authntication from './pages/Authntication'
