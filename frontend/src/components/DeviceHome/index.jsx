@@ -71,7 +71,6 @@ export default function DeviceHome() {
                     </div> */}
                         <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
                             <TotalSpend
-                                setMonthOrYear={setMonthOrYear}
                                 monthOrYear={monthOrYear} />
                         </div>
                         <div className={`${styles.smallContainer} ${styles.coins}`}>

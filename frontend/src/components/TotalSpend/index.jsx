@@ -6,11 +6,13 @@ import baseUrl from '../../config/BaseUrl';
 import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
 
-export default function TotalSpend() {
+export default function TotalSpend({ monthOrYear }) {
     const { token } = useContext(UserContext);
     const { choosenAccount } = useContext(AccountContext);
 
     const [income, setIncome] = useState(0);
+    const [monthAmount] = useState([0, 0, 0])
+    const [yearAmount] = useState([0, 0, 0])
     const [outcome, setOutcome] = useState(0);
     const [loans, setLoans] = useState(0);
 
@@ -22,17 +24,23 @@ export default function TotalSpend() {
                 }
             });
             const transactions = res.data.accounts[0].transactions;
+
+            const currentDate = new Date();
+            const currentmonth = currentDate.getMonth() + 1;
+
             let totalIncome = 0;
             let totalOutcome = 0;
+
             transactions.forEach(transfer => {
-                if (transfer.type === "expenditure") {
+                let transactionMonth = new Date(transfer.createdAt).getMonth() + 1
+                if (transfer.type === "expenditure" && transactionMonth === currentmonth) {
                     totalOutcome += parseFloat(transfer.amount);
-                } else {
+                } else if (transfer.type === "income" && transactionMonth === currentmonth) {
                     totalIncome += parseFloat(transfer.amount);
                 }
             });
-            setIncome(totalIncome);
-            setOutcome(totalOutcome);
+            monthAmount[0] = totalIncome;
+            monthAmount[1] = totalOutcome;
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err);
         }
@@ -46,11 +54,19 @@ export default function TotalSpend() {
                     Authorization: `Bearer ${token}`
                 }
             });
-            let totalLoans = 0;
-            res.data.loans.forEach(loan => {
-                totalLoans += parseFloat(loan.amount);
+            let monthlyLoans = 0;
+            const loans = res.data.loans
+
+            const currentDate = new Date();
+            const currentmonth = currentDate.getMonth() + 1;
+
+            loans.forEach(loan => {
+                let loansMonth = new Date(loan.createdAt).getMonth() + 1
+                if (loansMonth === currentmonth) {
+                    monthlyLoans += parseFloat(loan.amount);
+                }
             });
-            setLoans(totalLoans);
+            monthAmount[2] = monthlyLoans;
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err);
         }
@@ -83,7 +99,12 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${income === 0 ? '' : styles.green}`}>{income === 0 ? `${income}` : `+ $ ${income}`} </p>
+                    {
+                        monthOrYear ?
+                            <p className={`${styles.howMuch} ${monthAmount[0] === 0 ? '' : styles.green}`}>{monthAmount[0] === 0 ? `${monthAmount[0]}` : `+ $ ${monthAmount[0]}`} </p>
+                            :
+                            <p>{yearAmount[0]}</p>
+                    }
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -96,7 +117,12 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={`${styles.howMuch} ${outcome === 0 ? '' : styles.red}`}> {`${outcome === 0 ? '' : '- $'}   ${outcome}`} </p>
+                    {
+                        monthOrYear ?
+                            <p className={`${styles.howMuch} ${monthAmount[1] === 0 ? '' : styles.red}`}> {`${monthAmount[1] === 0 ? '' : '- $'}   ${monthAmount[1]}`} </p>
+                            :
+                            <p>{yearAmount[1]}</p>
+                    }
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -110,7 +136,12 @@ export default function TotalSpend() {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    <p className={styles.howMuch}>{loans === 0 ? '' : '$'} {loans}</p>
+                    {
+                        monthOrYear ?
+                            <p className={styles.howMuch}>{monthAmount[2] === 0 ? '' : '$'} {monthAmount[2]}</p>
+                            :
+                            <p>{yearAmount[2]}</p>
+                    }
                 </div>
             </div>
         </>

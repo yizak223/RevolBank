@@ -3,7 +3,6 @@
     border-radius: 15px;
     font-size: 13px;
     height: fit-content;
-
 }
 
 .lastMonth,
@@ -13,7 +12,7 @@
     height: fit-content;
     padding: 6px;
     border: solid 2px rgba(123, 117, 117, 0.85);
-    transition: 0.01s;
+    transition: 0.3s;
 }
 
 .lastYear {
@@ -32,7 +31,6 @@
 .lastYear:hover {
     border: solid 2px var(--mainbg);
     color: var(--mainbg);
-    font-weight: 700;
 }
 
 .lastMonth:hover{
