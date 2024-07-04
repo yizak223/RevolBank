@@ -29,7 +29,7 @@ const getAccountRecentTransaction = async (req, res) => {
         const account = await Account.findById(id)
         const Transaction = await account.transactions
 
-        Transaction.sort((a, b) => b.createdAt - a.createdAt);
+        Transaction.reverse()
         const last4Transaction = Transaction.splice(0, 4);
 
         let currentDate = new Date();

@@ -44,7 +44,7 @@ export default function Transaction({ transfer, token }) {
                 </div>
                 <div className={styles.type}>
                     <p className={`${styles.whereBuy} ${isExpenditure ? styles.expenditure : styles.income}`}>
-                        {transfer.type}
+                        {isExpenditure ? 'expense' : transfer.type}
                         <span className={styles.tool}>
                             {isExpenditure ? 'Transfer you made' : 'Transfer you received'}
                         </span>
