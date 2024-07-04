@@ -104,7 +104,17 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    height: 10vh;
+}
+.h3{
+    color: white;
+    font-size: 20px;
+}
 @media only screen and (max-width: 768px) {
     .containerSides {
         flex-direction: column;
@@ -140,5 +150,14 @@
     }
     .howMuchIn, .howMuchEx{
         font-size: 25px;
+    }
+    .footer{
+        margin-top: 10px;
+        height: 7vh;
+        background-color: #ffffff;
+    }
+    .h3{
+        font-size: 11px;
+        color: rgb(0, 0, 0);
     }
 }
