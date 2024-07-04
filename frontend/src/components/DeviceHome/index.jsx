@@ -53,22 +53,6 @@ export default function DeviceHome() {
                                 setMonthOrYear={setMonthOrYear}
                                 monthOrYear={monthOrYear} />
                         </div>
-                        {/* <div className={`${styles.smallContainer} ${styles.summaryTransaction}`}>
-                        <div className={styles.summary}>
-                            <CiInboxIn className={styles.cilnbox} />
-                            <div>
-                                <h5 className={styles.h5}>Income</h5>
-                                <h2 className={styles.howMuchIn}>1,900</h2>
-                            </div>
-                        </div>
-                        <div className={styles.summary}>
-                            <CiInboxOut className={`${styles.cilnbox} ${styles.cilnboxOut}`} />
-                            <div>
-                                <h5 className={styles.h5}>Expanses</h5>
-                                <h2 className={styles.howMuchEx}>2,000</h2>
-                            </div>
-                        </div>
-                    </div> */}
                         <div className={`${styles.smallContainer} ${styles.totalSpend}`}>
                             <TotalSpend
                                 monthOrYear={monthOrYear} />
