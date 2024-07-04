@@ -62,6 +62,11 @@ export default function DeviceHome() {
                         </div>
                     </div>
                 </div>
+                <div className={styles.footer}>
+                    <h3 className={styles.h3}>
+                        &copy; 2024 RevolBank. All rights reserved to Yitzhak Alaluf
+                    </h3>
+                </div>
             </div>
         </>
 
