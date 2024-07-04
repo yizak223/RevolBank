@@ -14,12 +14,9 @@
   .modalContainer {
     height: fit-content;
     border-radius: 12px;
-    /* background-color: rgba(255, 255, 255, 0); */
-    /* box-shadow: rgba(232, 232, 232, 0.879) 0px 0px 15px; */
     display: flex;
     flex-direction: column;
     padding: 25px;
-    /* overflow-y: auto; */
     transform: translateY(-100px);
   }
   
@@ -88,3 +85,12 @@
     margin-bottom: 0;
   }
   
+  @media only screen and (max-width: 768px){
+    .modalContainer{
+      transform: translateY(-550px);
+    }
+    #cancelBtn {
+      font-size: 15px;
+      width: 120px;
+    }
+}

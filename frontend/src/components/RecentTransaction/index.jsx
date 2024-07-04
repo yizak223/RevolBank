@@ -37,7 +37,7 @@ export default function RecentTransaction() {
     return (
         <>
             <div className={`${styles.TransactionContainer} ${styles.recentTransaction}`}>
-                <h2>Recent Transaction</h2>
+                <h2 className={styles.h2}>Recent Transaction</h2>
                 <p onClick={goActivities} className={styles.seeAll}>see all</p>
             </div>
             {
