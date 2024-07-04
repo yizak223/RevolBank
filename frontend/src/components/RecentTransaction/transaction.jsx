@@ -3,6 +3,7 @@ import styles from './RecentTransaction.module.css';
 import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
 import { formatDateTime2 } from '../../config/dateFormat';
+import formatNumberWithCommas from '../../utils/formatNumberWithCommas';
 
 export default function Transaction({ transfer, token }) {
     const [names, setNames] = useState({ nameTo: '', nameFrom: '' });
@@ -53,7 +54,7 @@ export default function Transaction({ transfer, token }) {
             </div>
             <div className={styles.amountAndDate}>
                 <p className={`${styles.howMuch} ${isExpenditure ? styles.expenditure : styles.income}`}>
-                    {isExpenditure ? '-' : '+'} $ {transfer.amount}
+                    {isExpenditure ? '-' : '+'} $ {formatNumberWithCommas(transfer.amount)}
                 </p>
                 <p className={styles.typeBuy}>{formatDateTime2(transfer.createdAt)}</p>
             </div>

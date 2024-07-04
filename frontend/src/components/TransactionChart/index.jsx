@@ -9,6 +9,7 @@ import styles from './TransactionChart.module.css';
 import styles2 from '../DeviceHome/DeviceHome.module.css';
 import { getMonthName } from "../../config/dateFormat";
 import { CiInboxIn, CiInboxOut } from "react-icons/ci";
+import formatNumberWithCommas from "../../utils/formatNumberWithCommas";
 
 export default function BarChart({ setMonthOrYear, monthOrYear }) {
     const { token } = useContext(UserContext);
@@ -110,7 +111,7 @@ export default function BarChart({ setMonthOrYear, monthOrYear }) {
                     <CiInboxIn className={styles2.cilnbox} />
                     <div>
                         <h5 className={styles2.h5} >Income</h5>
-                        <h2 className={styles2.howMuchIn}>{monthOrYear ? monthAmount[0] : yearAmount[0]}</h2>
+                        <h2 className={styles2.howMuchIn}>{monthOrYear ? formatNumberWithCommas(monthAmount[0]) : formatNumberWithCommas(yearAmount[0])}</h2>
                         <div className={styles.toolIncome}>Your loans and transfers</div>
                     </div>
                 </div>
@@ -118,7 +119,7 @@ export default function BarChart({ setMonthOrYear, monthOrYear }) {
                     <CiInboxOut className={`${styles2.cilnbox} ${styles2.cilnboxOut}`} />
                     <div>
                         <h5 className={styles2.h5}>Expenses</h5>
-                        <h2 className={styles2.howMuchEx}>{monthOrYear ? monthAmount[1] : yearAmount[1]}</h2>
+                        <h2 className={styles2.howMuchEx}>{monthOrYear ? formatNumberWithCommas(monthAmount[1]) : formatNumberWithCommas(yearAmount[1])}</h2>
                         <div className={styles.toolExpanses}>Your outgoing transfers</div>
                     </div>
                 </div>

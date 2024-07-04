@@ -5,6 +5,7 @@ import axios from 'axios';
 import baseUrl from '../../config/BaseUrl';
 import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
+import formatNumberWithCommas from '../../utils/formatNumberWithCommas';
 
 const fetchAccountData = async (accountId, token) => {
     const res = await axios.get(`${baseUrl}/accounts?_id=${accountId}`, {
@@ -78,7 +79,7 @@ const TotalSpend = ({ monthOrYear }) => {
 
     const renderAmount = (amount, className, prefix = '') => (
         <p className={`${styles.howMuch} ${amount === 0 ? '' : className}`}>
-            {amount === 0 ? `${amount}` : `${prefix} $ ${amount}`}
+            {amount === 0 ? `${formatNumberWithCommas(amount)}` : `${prefix} $ ${formatNumberWithCommas(amount)}`}
         </p>
     );
 
@@ -127,7 +128,7 @@ const TotalSpend = ({ monthOrYear }) => {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {monthOrYear ? <p className={styles.howMuch}>{monthAmount[2] === 0 ? '' : '$'} {monthAmount[2]}</p> : <p className={styles.howMuch}>{yearAmount[2] === 0 ? '' : '$ '} {yearAmount[2]}</p>}
+                    {monthOrYear ? <p className={styles.howMuch}>{formatNumberWithCommas(monthAmount[2]) === 0 ? '' : '$'} {formatNumberWithCommas(monthAmount[2])}</p> : <p className={styles.howMuch}>{formatNumberWithCommas(yearAmount[2]) === 0 ? '' : '$ '} {formatNumberWithCommas(yearAmount[2])}</p>}
                 </div>
             </div>
         </>
