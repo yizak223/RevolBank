@@ -48,6 +48,7 @@
 
 .whereBuy {
     font-weight: 600;
+    cursor: pointer;
 }
 
 .howMuch {
@@ -80,3 +81,28 @@
     justify-content: space-evenly;
     align-items: flex-end;
 }
+
+.tool {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 70vh;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.674);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-width 0.5s ease-out;
+}
+
+.whereBuy:hover .tool {
+    opacity: 1;
+    visibility: visible;
+    max-width: 230px;
+}
+
