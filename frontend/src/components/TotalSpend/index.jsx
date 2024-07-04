@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import styles from './totalSpend.module.css';
 import { GrTransaction } from "react-icons/gr";
 import axios from 'axios';
@@ -6,82 +6,81 @@ import baseUrl from '../../config/BaseUrl';
 import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
 
-export default function TotalSpend({ monthOrYear }) {
+const fetchAccountData = async (accountId, token) => {
+    const res = await axios.get(`${baseUrl}/accounts?_id=${accountId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return res.data.accounts[0].transactions;
+};
+
+const fetchLoanData = async (accountId, token) => {
+    const res = await axios.get(`${baseUrl}/loans?idAccount=${accountId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return res.data.loans;
+};
+
+const calculateAmounts = (transactions, type, datePartFn, currentDatePart) => {
+    return transactions.reduce((acc, transfer) => {
+        if (transfer.type === type && datePartFn(new Date(transfer.createdAt)) === currentDatePart) {
+            acc += parseFloat(transfer.amount);
+        }
+        return acc;
+    }, 0);
+};
+
+const calculateLoanAmounts = (loans, datePartFn, currentDatePart) => {
+    return loans.reduce((acc, loan) => {
+        if (datePartFn(new Date(loan.createdAt)) === currentDatePart) {
+            acc += parseFloat(loan.amount);
+        }
+        return acc;
+    }, 0);
+};
+
+const TotalSpend = ({ monthOrYear }) => {
     const { token } = useContext(UserContext);
     const { choosenAccount } = useContext(AccountContext);
 
-    const [income, setIncome] = useState(0);
-    const [monthAmount] = useState([0, 0, 0])
-    const [yearAmount] = useState([0, 0, 0])
-    const [outcome, setOutcome] = useState(0);
-    const [loans, setLoans] = useState(0);
+    const [monthAmount, setMonthAmount] = useState([0, 0, 0]);
+    const [yearAmount, setYearAmount] = useState([0, 0, 0]);
 
-    const getIncomeAndOutcomeData = async () => {
+    const fetchData = useCallback(async () => {
+        if (!choosenAccount) return;
+
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1;
+        const currentYear = currentDate.getFullYear();
+
         try {
-            const res = await axios.get(`${baseUrl}/accounts?_id=${choosenAccount?._id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            const transactions = res.data.accounts[0].transactions;
+            const transactions = await fetchAccountData(choosenAccount._id, token);
 
-            const currentDate = new Date();
-            const currentmonth = currentDate.getMonth() + 1;
+            const monthlyIncome = calculateAmounts(transactions, 'income', date => date.getMonth() + 1, currentMonth);
+            const monthlyOutcome = calculateAmounts(transactions, 'expenditure', date => date.getMonth() + 1, currentMonth);
+            const yearlyIncome = calculateAmounts(transactions, 'income', date => date.getFullYear(), currentYear);
+            const yearlyOutcome = calculateAmounts(transactions, 'expenditure', date => date.getFullYear(), currentYear);
 
-            let totalIncome = 0;
-            let totalOutcome = 0;
+            const loans = await fetchLoanData(choosenAccount._id, token);
 
-            transactions.forEach(transfer => {
-                let transactionMonth = new Date(transfer.createdAt).getMonth() + 1
-                if (transfer.type === "expenditure" && transactionMonth === currentmonth) {
-                    totalOutcome += parseFloat(transfer.amount);
-                } else if (transfer.type === "income" && transactionMonth === currentmonth) {
-                    totalIncome += parseFloat(transfer.amount);
-                }
-            });
-            monthAmount[0] = totalIncome;
-            monthAmount[1] = totalOutcome;
+            const monthlyLoans = calculateLoanAmounts(loans, date => date.getMonth() + 1, currentMonth);
+            const yearlyLoans = calculateLoanAmounts(loans, date => date.getFullYear(), currentYear);
+
+            setMonthAmount([monthlyIncome, monthlyOutcome, monthlyLoans]);
+            setYearAmount([yearlyIncome, yearlyOutcome, yearlyLoans]);
         } catch (err) {
             console.error('There was a problem with the fetch operation:', err);
         }
-    };
-
-    const fetchData = async () => {
-        try {
-            const idAccount = choosenAccount?._id;
-            const res = await axios.get(`${baseUrl}/loans?idAccount=${idAccount}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            let monthlyLoans = 0;
-            const loans = res.data.loans
-
-            const currentDate = new Date();
-            const currentmonth = currentDate.getMonth() + 1;
-
-            loans.forEach(loan => {
-                let loansMonth = new Date(loan.createdAt).getMonth() + 1
-                if (loansMonth === currentmonth) {
-                    monthlyLoans += parseFloat(loan.amount);
-                }
-            });
-            monthAmount[2] = monthlyLoans;
-        } catch (err) {
-            console.error('There was a problem with the fetch operation:', err);
-        }
-    };
+    }, [choosenAccount, token]);
 
     useEffect(() => {
-        setLoans(0);
-        setOutcome(0);
-        setIncome(0);
+        fetchData();
+    }, [fetchData]);
 
-        if (choosenAccount) {
-            getIncomeAndOutcomeData();
-            fetchData();
-        }
-    }, [choosenAccount]);
+    const renderAmount = (amount, className, prefix = '') => (
+        <p className={`${styles.howMuch} ${amount === 0 ? '' : className}`}>
+            {amount === 0 ? `${amount}` : `${prefix} $ ${amount}`}
+        </p>
+    );
 
     return (
         <>
@@ -92,19 +91,13 @@ export default function TotalSpend({ monthOrYear }) {
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
                         <GrTransaction className={styles.reactIcon} />
-                        {/* <CiShoppingBasket className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
                         <p className={styles.whereBuy}>Receipts</p>
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {
-                        monthOrYear ?
-                            <p className={`${styles.howMuch} ${monthAmount[0] === 0 ? '' : styles.green}`}>{monthAmount[0] === 0 ? `${monthAmount[0]}` : `+ $ ${monthAmount[0]}`} </p>
-                            :
-                            <p>{yearAmount[0]}</p>
-                    }
+                    {monthOrYear ? renderAmount(monthAmount[0], styles.green, '+') : <p>{renderAmount(yearAmount[0], styles.green, '+')}</p>}
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
@@ -117,33 +110,24 @@ export default function TotalSpend({ monthOrYear }) {
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {
-                        monthOrYear ?
-                            <p className={`${styles.howMuch} ${monthAmount[1] === 0 ? '' : styles.red}`}> {`${monthAmount[1] === 0 ? '' : '- $'}   ${monthAmount[1]}`} </p>
-                            :
-                            <p>{yearAmount[1]}</p>
-                    }
+                    {monthOrYear ? renderAmount(monthAmount[1], styles.red, '-') : <p>{renderAmount(yearAmount[1], styles.red, '-')}</p>}
                 </div>
             </div>
             <div className={styles.TransactionContainer}>
                 <div className={styles.iconAndType}>
                     <div className={styles.iconTran}>
                         <i className="fa-solid fa-landmark"></i>
-                        {/* <GrCafeteria className={styles.reactIcon} /> */}
                     </div>
                     <div className={styles.type}>
-                        <p className={styles.whereBuy}>loans</p>
+                        <p className={styles.whereBuy}>Loans</p>
                     </div>
                 </div>
                 <div className={styles.type}>
-                    {
-                        monthOrYear ?
-                            <p className={styles.howMuch}>{monthAmount[2] === 0 ? '' : '$'} {monthAmount[2]}</p>
-                            :
-                            <p>{yearAmount[2]}</p>
-                    }
+                    {monthOrYear ? <p className={styles.howMuch}>{monthAmount[2] === 0 ? '' : '$'} {monthAmount[2]}</p> : <p className={styles.howMuch}>{yearAmount[2] === 0 ? '' : '$ '} {yearAmount[2]}</p>}
                 </div>
             </div>
         </>
     );
 }
+
+export default TotalSpend;
