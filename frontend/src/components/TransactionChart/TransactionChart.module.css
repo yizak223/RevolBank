@@ -79,3 +79,53 @@
 .lastYear:hover {
     border-left: none;
 }
+.containerincome{
+    cursor: pointer;
+}
+.toolIncome{
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    right: 65vh;
+    top: 43vh;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.674);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-width 0.5s ease-out;
+}
+.containerincome:hover .toolIncome{
+    opacity: 1;
+    visibility: visible;
+    max-width: 230px;
+}
+
+.toolExpanses{
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    right: 45vh;
+    top: 43vh;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.674);
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 1;
+    max-width: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-width 0.5s ease-out;
+}
+.containerExpenses:hover .toolExpanses{
+    opacity: 1;
+    visibility: visible;
+    max-width: 230px;
+}

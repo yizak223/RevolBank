@@ -106,18 +106,20 @@ export default function BarChart({ setMonthOrYear, monthOrYear }) {
                 <Bar data={chartData} />
             </div>
             <div className={`${styles2.smallContainer} ${styles2.summaryTransaction}`}>
-                <div className={styles2.summary}>
+                <div className={`${styles2.summary} ${styles.containerincome}`}>
                     <CiInboxIn className={styles2.cilnbox} />
                     <div>
-                        <h5 className={styles2.h5}>Income</h5>
+                        <h5 className={styles2.h5} >Income</h5>
                         <h2 className={styles2.howMuchIn}>{monthOrYear ? monthAmount[0] : yearAmount[0]}</h2>
+                        <div className={styles.toolIncome}>Your loans and transfers</div>
                     </div>
                 </div>
-                <div className={styles2.summary}>
+                <div className={`${styles2.summary} ${styles.containerExpenses}`}>
                     <CiInboxOut className={`${styles2.cilnbox} ${styles2.cilnboxOut}`} />
                     <div>
                         <h5 className={styles2.h5}>Expenses</h5>
                         <h2 className={styles2.howMuchEx}>{monthOrYear ? monthAmount[1] : yearAmount[1]}</h2>
+                        <div className={styles.toolExpanses}>Your outgoing transfers</div>
                     </div>
                 </div>
                 <div className={styles.toggleTime}>
