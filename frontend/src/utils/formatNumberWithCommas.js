@@ -8,4 +8,13 @@ function formatNumberWithCommas(num) {
     return decimalPart ? `${formattedInteger}.${decimalPart}` : formattedInteger;
 }
 
+function convertStringToNumber(str) {
+    let cleanedString = str.replace(/[,\.]/g, '');
+
+    let number = parseInt(cleanedString, 10);
+
+    return number;
+}
 export default formatNumberWithCommas;
+
+export { convertStringToNumber };

@@ -2,22 +2,20 @@ import React, { useContext, useCallback, useState, useEffect } from 'react';
 import styles from './UserSaving.module.css';
 import { AccountContext } from '../../context/Account';
 import { FaBalanceScale } from "react-icons/fa";
-import formatNumberWithCommas from '../../utils/formatNumberWithCommas';
+import { convertStringToNumber } from '../../utils/formatNumberWithCommas';
 
 export default function UserSaving() {
-    const { choosenAccount } = useContext(AccountContext);
-    const [balance, setBalance] = useState("0");
+    const { balanceuser } = useContext(AccountContext);
     const [isPositiveBalance, setIsPositiveBalance] = useState(false);
 
     const checkBalance = useCallback(() => {
-        if (!choosenAccount) return;
+        if (!balanceuser) return;
 
-        const balanceValue = choosenAccount.balance;
-        const formattedBalance = formatNumberWithCommas(balanceValue);
+        let balanceValue = balanceuser
+        balanceValue = convertStringToNumber(balanceValue);
 
-        setBalance(formattedBalance);
         setIsPositiveBalance(balanceValue > 0);
-    }, [choosenAccount]);
+    }, [balanceuser]);
 
     useEffect(() => {
         checkBalance();
@@ -34,7 +32,7 @@ export default function UserSaving() {
                         <FaBalanceScale />
                     </div>
                     <h2 className={isPositiveBalance ? styles.h2P : styles.h2N}>
-                        $ {balance}
+                        $ {balanceuser}
                     </h2>
                 </div>
                 <div className={isPositiveBalance ? styles.progressP : styles.progressN}></div>
@@ -42,11 +40,11 @@ export default function UserSaving() {
                     {isPositiveBalance ? (
                         <>
                             <p>0</p>
-                            <p>{balance}</p>
+                            <p>{balanceuser}</p>
                         </>
                     ) : (
                         <>
-                            <p>{balance}</p>
+                            <p>{balanceuser}</p>
                             <p>0</p>
                         </>
                     )}
