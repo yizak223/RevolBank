@@ -26,6 +26,7 @@ const createCreditCard = async (req, res) => {
         }
         const newCreditCard = new CreditCard(body)
         newCreditCard.cardNumber = genArray[0]
+        newCreditCard.numberAccount = accountGetCard.numberAccount;
         await newCreditCard.save()
         accountGetCard.creditCards.push(newCreditCard)
         await accountGetCard.save()

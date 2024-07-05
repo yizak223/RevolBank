@@ -6,12 +6,13 @@ import BaseUrl from '../../config/BaseUrl'
 import styles from './MyCard.module.css'
 import SingleCard from '../SingleCard'
 import { FaLock, FaPlus, FaTrash } from 'react-icons/fa6'
+import accountNumberConvert from '../../utils/accountNumberConvert'
 
 export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, cards }) {
     const { token, user } = useContext(UserContext)
     const { accounts, choosenAccount } = useContext(AccountContext)
-    
-    
+
+
     const fetchData = async () => {
         try {
             const idAccount = choosenAccount?._id
@@ -21,12 +22,12 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                         Authorization: `Bearer ${token}`
                     }
                 })
-                const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
-                setCards(updatedCards);
-            } catch (err) {
-                console.error('There was a problem with the fetch operation:', err);
-            }
+            const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
+            setCards(updatedCards);
+        } catch (err) {
+            console.error('There was a problem with the fetch operation:', err);
         }
+    }
 
     const deleteCard = async (id) => {
         try {
@@ -101,7 +102,7 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                                         accounts.length != 0 ?
                                             <>
                                                 <p>{choosenAccount?.fullName}</p>
-                                                <p>{choosenAccount?._id}</p>
+                                                <p>{accountNumberConvert(choosenAccount?.numberAccount)}</p>
                                             </>
                                             : <>
                                                 <p>{user.fullName}</p>

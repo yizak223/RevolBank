@@ -4,6 +4,12 @@ const accountSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    numberAccount: {
+        type: Number, required: true,
+        default: () => {
+            return Math.floor(Math.random() * 1000000);
+        }
+    },
     fullName: {
         type: mongoose.Schema.Types.String,
         ref: 'User'

@@ -4,6 +4,9 @@ const creditCardScheme = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Account'
     },
+    numberAccount: {
+        type: Number, required: true
+    },
     cardNumber: {
         type: Number, required: true
     },

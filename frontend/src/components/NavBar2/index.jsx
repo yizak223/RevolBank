@@ -6,7 +6,7 @@ import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../images/Black & White Minimalist Business Logo.png'
-import { FaBars } from 'react-icons/fa6'
+// import { FaBars } from 'react-icons/fa6'
 
 export default function NavBar2({ setmodalAcount, modalAcount }) {
     const { user, logOut } = useContext(UserContext)
@@ -32,11 +32,11 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
     return (
         <header>
             <nav className={styles.nav}>
-                <div  className={styles.responsive}>
+                {/* <div  className={styles.responsive}>
                     <div className={styles.hamburger}>
                         <FaBars />
                     </div>
-                </div>
+                </div> */}
                 <ul className={styles.ul}>
                     <div>
                         <li><img className={styles.img} src={logo} alt="" /></li>

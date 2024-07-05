@@ -223,4 +223,10 @@
     .submitBtn{
         font-size: 15px;
     }
+    .cancel2{
+        font-size: 15px;
+        height: 5vh;
+        width: 120px;
+
+    }
 }
