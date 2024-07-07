@@ -14,26 +14,49 @@ import { PathContext } from './context/Path'
 import DeviceHomePage from './pages/DeviceHome'
 import styles from './app.module.css'
 import About from './components/About'
+import ResponsiveNav from './components/NavBarResponsive/ResponsiveNav'
 
 function App() {
   const { user } = useContext(UserContext)
   const { setPath } = useContext(PathContext)
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [modalAcount, setmodalAcount] = useState(false)
-  
+
   useEffect(() => {
     setPath(location.pathname);
   }, [location.pathname])
 
+  useEffect(() => {
+    const handleWindowSizeChange = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowSizeChange);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
   return (
     <>
-      <div className={!user ? styles.containerPage2 : styles.containerPage1}>
+      <div className={user ? screenWidth > 768 ? styles.containerPage1 : styles.containerPage2 : styles.containerPage2}>
         <BrowserRouter >
           {
             !user ?
               <NavBar />
-              : <NavBar2
-                setmodalAcount={setmodalAcount}
-                modalAcount={modalAcount} />
+              :
+              <>
+                {screenWidth < 768 ?
+                  <ResponsiveNav
+                    setmodalAcount={setmodalAcount}
+                    modalAcount={modalAcount} />
+                  :
+                  <NavBar2
+                    setmodalAcount={setmodalAcount}
+                    modalAcount={modalAcount} />
+                    }
+              </>
           }
           <Routes >
             {!user ?
@@ -43,7 +66,7 @@ function App() {
               </>
               : <>
                 <Route path="/" element={< DeviceHomePage setmodalAcount={setmodalAcount}
-                modalAcount={modalAcount}  />} />
+                  modalAcount={modalAcount} />} />
                 <Route path='/creditCards' element={<CreditCard />} />
                 <Route path='/balances' element={<Balances />} />
                 <Route path='/menu' element={<Menu />} />
@@ -53,7 +76,7 @@ function App() {
             }
           </Routes>
         </BrowserRouter>
-      </div>
+      </div >
     </>
   )
 }
