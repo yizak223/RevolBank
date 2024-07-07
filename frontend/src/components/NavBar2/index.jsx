@@ -48,10 +48,10 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
         } else {
             ul.style.display = 'flex'
             ul.style.transition = 'display 0.3s ease-out'
-            header.style.width = '17vw'
+            header.style.width = '19vw'
             header.style.opacity = '1'
             header.style.transition = 'width 0.2s ease-out , opacity 0.4s ease-out'
-            nav.style.width = '17vw'
+            nav.style.width = '19vw'
             nav.style.transition = 'width 0.1s ease-out'
             openNavResponsive.style.display = 'none'
             closeNavResponsive.style.display = 'block'

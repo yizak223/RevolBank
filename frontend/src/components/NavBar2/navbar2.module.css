@@ -110,9 +110,10 @@
     display: none;
 }
 
-.closeNav{
+.closeNav {
     display: none;
 }
+
 @media only screen and (min-width: 769px) and (max-width: 1259px) {
     .responsive {
         display: block;
@@ -126,13 +127,15 @@
     }
 
     .ul {
-        opacity: 0;
+        display: none;
     }
-    .header{
+
+    .header {
         width: 5vw;
     }
-    .active{
-        width: 13vw;
+
+    .active {
+        width: 15vw;
     }
 
 }

@@ -34,7 +34,7 @@ export default function ResponsiveNav({ setmodalAcount, modalAcount }) {
         const ul = document.getElementById('ulNav')
         const itemsNav = document.getElementById('itesmNav')
         if (isNavBarOpen) {
-            header.style.height = '70vh'
+            header.style.height = '65vh'
             header.style.transition = 'height 0.2s ease-out'
             ul.style.opacity = '1'
             ul.style.height = '70vh'

@@ -114,6 +114,12 @@
    .lastYear:hover{
     transform: none;
    }
+   .toolIncome , .toolExpanses{
+    margin-top: -75px;
+   }
+   .toolExpanses{
+    margin-left: -100px;
+   }
 }
 
 
