@@ -37,22 +37,22 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
         const closeNavResponsive = document.getElementById('closeNavResponsive')
 
         if (isNavBarOpen) {
-            ul.style.opacity = '0'
-            ul.style.transition = 'opacity 0.2s ease-out'
+            ul.style.display = 'none'
+            ul.style.transition = 'display 0.2s ease-out'
             header.style.width = '5vw'
-            header.style.transition = 'width 0.2s ease-out'
+            header.style.transition = 'width 0.4s ease-out'
             nav.style.width = '5vw'
             nav.style.transition = 'width 0.4s ease-out'
             openNavResponsive.style.display = 'block'
             closeNavResponsive.style.display = 'none'
         } else {
-            ul.style.opacity = '1'
-            ul.style.transition = 'opacity 0.3s ease-out'
+            ul.style.display = 'flex'
+            ul.style.transition = 'display 0.3s ease-out'
             header.style.width = '17vw'
             header.style.opacity = '1'
             header.style.transition = 'width 0.2s ease-out , opacity 0.4s ease-out'
             nav.style.width = '17vw'
-            nav.style.transition = 'width 0.2s ease-out'
+            nav.style.transition = 'width 0.1s ease-out'
             openNavResponsive.style.display = 'none'
             closeNavResponsive.style.display = 'block'
         }
