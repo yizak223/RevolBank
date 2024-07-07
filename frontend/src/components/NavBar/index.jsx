@@ -23,46 +23,35 @@ export default function navBar() {
   }
 
   const openNavBar = () => {
+    setIsNavBarOpen(prevState => !prevState)
+    const aHome = document.getElementById('revolBankLink');
+    const navbar = document.getElementById('navbar')
+    const container = document.getElementById('container')
     if (!isNavBarOpen) {
-      setIsNavBarOpen(true)
-      const aHome = document.getElementById('revolBankLink');
-      const navbar = document.getElementById('navbar')
-      const container = document.getElementById('container')
-      if (navbar) {
-        navbar.style.height = '260px';
-        navbar.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; 
-      }
-      if (aHome) {
-        aHome.style.maxHeight = '100%';
-        aHome.style.opacity = '1'; 
-        aHome.style.transition = 'max-width 0.5s ease-out, opacity 0.5s ease-out'; 
-      }
-      if (container) {
-        container.style.height = '100%';
-        container.style.opacity = '1'
-        container.style.transition = 'height 0.5s ease-out, opacity 0.5s ease-out'; 
-      }
-    } else {
-      setIsNavBarOpen(false)
-      const aHome = document.getElementById('revolBankLink');
-      const navbar = document.getElementById('navbar')
-      const container = document.getElementById('container')
-      if (container) {
-        container.style.height = '0%';
-        container.style.opacity = '0'
-        container.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; 
-      }
-      if (navbar) {
-        navbar.style.height = '90px';
-        navbar.style.transition = 'height 0.3s ease-out, opacity 0.1s ease-out'; 
-      }
-      if (aHome) {
-        aHome.style.maxHeight = '0%';
-        aHome.style.opacity = '0'; 
-        aHome.style.transition = 'max-width 0.3s ease-out'; 
-      }
-    }
 
+      navbar.style.height = '260px';
+      navbar.style.transition = 'height 0.2s ease-out';
+
+      aHome.style.maxHeight = '100%';
+      aHome.style.display = 'block';
+      aHome.style.transition = 'max-width 0.5s ease-out';
+
+      container.style.height = '100%';
+      container.style.display = 'flex'
+      container.style.transition = 'height 0.2s ease-out';
+
+    } else {
+      navbar.style.height = '90px';
+      navbar.style.transition = 'height 0.3s ease-out';
+
+      container.style.height = '0%';
+      container.style.display = 'none'
+      container.style.transition = 'height 0.3s ease-out';
+
+      aHome.style.maxHeight = '0%';
+      aHome.style.display = 'none';
+      aHome.style.transition = 'max-width 0.3s ease-out';
+    }
   }
 
   useEffect(() => {
@@ -76,7 +65,7 @@ export default function navBar() {
           <div onClick={openNavBar} className={styles.responsive}>
             <img className={styles.img} src={logo} alt="" />
             <div className={styles.hamburger}>
-            <FaBars/>
+              <FaBars />
             </div>
           </div>
           <Link

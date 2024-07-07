@@ -83,7 +83,7 @@
         flex-direction: column;
         align-items: center;
         height: 0;
-        opacity: 0;
+        display: none;
     }
     .logo{
         flex-direction: column;
@@ -96,7 +96,7 @@
     }
     .aHome,.aHomeActive{
         max-height: 0;
-        opacity: 0;
+        display: none;
     }
     .hamburger{
         display: block;
