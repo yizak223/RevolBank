@@ -13,7 +13,7 @@ export default function ResponsiveNav({ setmodalAcount, modalAcount }) {
     const { user, logOut } = useContext(UserContext)
     const { accounts, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
-    const [isNavBarOpen, setIsNavBarOpen] = useState(false)
+    const [isNavBarOpen, setIsNavBarOpen] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -32,7 +32,6 @@ export default function ResponsiveNav({ setmodalAcount, modalAcount }) {
         setIsNavBarOpen(prevState => !prevState)
         const header = document.getElementById('headerResponsive')
         const ul = document.getElementById('ulNav')
-        const itemsNav = document.getElementById('itesmNav')
         if (isNavBarOpen) {
             header.style.height = '65vh'
             header.style.transition = 'height 0.2s ease-out'
