@@ -182,14 +182,15 @@
     }
 }
 
-@media only screen and (max-width: 1259px){
+@media only screen and (max-width:  769px){
     .footer {
         height: 7vh;
-        background-color: #ffffff;
+        background-color: inherit;
+        bottom: 0;
     }
 
     .h3 {
-        font-size: 18px;
+        font-size: 11px;
         color: rgb(0, 0, 0);
     }
 }
