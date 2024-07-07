@@ -1,76 +1,89 @@
-.lftCrdtCrd{
+.lftCrdtCrd {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
     width: 65%;
     height: 110%;
 }
-.titleCard{
+
+.titleCard {
     align-self: flex-start;
-    display: flex ;
+    display: flex;
     justify-content: space-evenly;
     width: 60%;
 }
-.titleCard2{
+
+.titleCard2 {
     align-self: flex-start;
-    display: flex ;
+    display: flex;
     width: 60%;
 }
-.arrows{
+
+.arrows {
     display: flex;
     width: 30%;
     justify-content: space-evenly;
 }
-.container{
+
+.container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 0.3rem;
     padding: 20px;
-    background: linear-gradient(#008773,#008773,#f4cc76);
+    background: linear-gradient(#008773, #008773, #f4cc76);
     color: #ffffff;
     border-radius: 8px;
     box-shadow: 6px 5px 10px 0px rgba(0, 0, 0, 0.568);
     transition: 0.5s;
 }
-.container:hover{
+
+.container:hover {
     opacity: 50%;
-    background: linear-gradient(#f4cc76,#008773,#008773);
+    background: linear-gradient(#f4cc76, #008773, #008773);
 }
-.titles{
+
+.titles {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.empty{
+
+.empty {
     color: #008773;
 }
-.numCard{
+
+.numCard {
     display: flex;
     justify-content: center;
     font-size: 25px;
 }
-.date{
+
+.date {
     display: flex;
     justify-content: center;
     margin-left: 6vh;
 }
-.rightCard{
+
+.rightCard {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-.addCard{
+
+.addCard {
     align-self: flex-end;
     color: #f4cc76;
     font-size: 20px;
     cursor: pointer;
     transition: 0.3s;
 }
-.addCard:hover{
+
+.addCard:hover {
     color: #db9f1c;
 }
-.transferLoan{
+
+.transferLoan {
     height: 33%;
     background-color: white;
     display: flex;
@@ -84,14 +97,20 @@
     align-items: center;
 }
 
-@media only screen and (max-width: 768px){
-    .rightCard{
+@media only screen and (max-width: 768px) {
+    .rightCard {
         flex-direction: row-reverse;
     }
-    .lftCrdtCrd{
+
+    .lftCrdtCrd {
         width: 100%;
     }
-    .transferLoan{
+
+    .transferLoan {
         background-color: #f8f8f8;
+    }
+
+    .numCard {
+        font-size: 21px;
     }
 }

@@ -7,7 +7,7 @@
     padding-top: 3rem;
     border-bottom: solid #fff 0.001rem;
     height: 100vh;
-    width: 13vw;
+    max-width: 13vw;
     font-weight: 800;
     font-size: large;
     box-shadow: 5px 5px 11px -3px rgba(185, 155, 155, 0.93);
@@ -46,7 +46,8 @@
     text-decoration: none;
     transition: 0.09s;
 }
-.a:hover{
+
+.a:hover {
     border-radius: 10px;
     font-weight: 400;
 }
@@ -101,17 +102,51 @@
     border: solid #ffffff;
 }
 
+.responsive {
+    display: none;
+}
 
+.closeNavResponsive {
+    display: none;
+}
 
+.closeNav{
+    display: none;
+}
+@media only screen and (min-width: 769px) and (max-width: 1259px) {
+    .responsive {
+        display: block;
+        font-size: 26px;
+        padding: 1rem;
+    }
+
+    .nav {
+        padding-top: 0;
+        max-width: 20vw;
+    }
+
+    .ul {
+        opacity: 0;
+    }
+    .header{
+        width: 5vw;
+    }
+    .active{
+        width: 13vw;
+    }
+
+}
 
 @media only screen and (max-width: 768px) {
-    .nav{
+    .nav {
         display: none;
     }
-    .img{
+
+    .img {
         width: 0;
     }
-    .logOutBtn{
+
+    .logOutBtn {
         width: 0%;
         height: 0;
         padding: 0;

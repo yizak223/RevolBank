@@ -4,7 +4,7 @@ import CreateAccount from '../../components/CreateAccount'
 
 export default function DeviceHomePage({ setmodalAcount, modalAcount }) {
   return (
-    <div >
+    <div>
       {
         modalAcount ?
           <>

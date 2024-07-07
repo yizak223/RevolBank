@@ -104,20 +104,26 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-.footer{
+
+.footer {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: black;
     height: 10vh;
 }
-.h3{
+
+.h3 {
     color: white;
     font-size: 20px;
 }
+
 @media only screen and (max-width: 768px) {
     .containerSides {
-        flex-direction: column;
+        flex-direction: column !important;
+        width: 100vw;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
     }
 
     .left,
@@ -144,11 +150,14 @@
         gap: 0rem;
         justify-content: center;
     }
-    .cilnbox{
+
+    .cilnbox {
         padding: 0.3rem;
         font-size: 50px;
     }
-    .howMuchIn, .howMuchEx{
+
+    .howMuchIn,
+    .howMuchEx {
         font-size: 25px;
     }
     .footer{
@@ -158,6 +167,29 @@
     }
     .h3{
         font-size: 11px;
+        color: rgb(0, 0, 0);
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1259px) {
+    .containerSides {
+        width: 100vw;
+    }
+    .left ,.right{
+        padding-left: 0;
+        padding-right: 0;
+        width: 47%;
+    }
+}
+
+@media only screen and (max-width: 1259px){
+    .footer {
+        height: 7vh;
+        background-color: #ffffff;
+    }
+
+    .h3 {
+        font-size: 18px;
         color: rgb(0, 0, 0);
     }
 }
