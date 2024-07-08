@@ -31,7 +31,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.Container2 {
+.containerOtherPage,
+.ContainerHome {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,9 +206,16 @@
         width: 80vw;
         margin: 0;
     }
-    .Form h2{
+    .ContainerHome{
+        bottom: 55vh;
+    }
+    .containerOtherPage{
+        bottom: 5vh;
+    }
+    .Form h2 {
         font-size: 21px;
     }
+
     .input {
         width: 70vw;
     }
@@ -220,10 +228,11 @@
         width: 90%;
     }
 
-    .submitBtn{
+    .submitBtn {
         font-size: 15px;
     }
-    .cancel2{
+
+    .cancel2 {
         font-size: 15px;
         height: 5vh;
         width: 120px;

@@ -9,6 +9,7 @@ import { FaBars } from 'react-icons/fa6'
 import logo from '../../images/KB.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModalAcount } from '../../redux/store'
+import ScrollToTopButton from '../../utils/scrollTop'
 
 
 export default function ResponsiveNav() {
@@ -36,6 +37,7 @@ export default function ResponsiveNav() {
     const closeNavOpenCreateAccount = () => {
         dispatch(setModalAcount(!modalAcount))
         openNavBar()
+        ScrollToTopButton()
     }
 
     const openNavBar = () => {

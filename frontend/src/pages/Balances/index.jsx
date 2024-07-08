@@ -11,12 +11,14 @@ import CreateAccount from '../../components/CreateAccount'
 export default function Balances() {
   const modalAcount = useSelector((state) => state.modal.modalAcount);
 
-  
   const { choosenAccount } = useContext(AccountContext)
   const { token } = useContext(UserContext)
   const [balances, setBalances] = useState([])
   const [firstFour, setFirstFour] = useState(0)
   const [lastFour, setLastFour] = useState(7)
+
+  const createAccountStyle = false
+
 
   const fetchLoansData = async () => {
     try {
@@ -60,7 +62,7 @@ export default function Balances() {
   return (
     <>
       {modalAcount ? (
-        <CreateAccount />
+        <CreateAccount createAccountStyle={createAccountStyle}/>
       ) : null}
       <div className={styles.container}>
         <div className={styles.activities}>

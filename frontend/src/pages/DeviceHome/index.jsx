@@ -6,10 +6,12 @@ import CreateAccount from '../../components/CreateAccount';
 export default function DeviceHomePage() {
   const modalAcount = useSelector((state) => state.modal.modalAcount);
 
+  const createAccountStyle = true
+
   return (
     <div>
       {modalAcount ? (
-        <CreateAccount />
+        <CreateAccount createAccountStyle={createAccountStyle} />
       ) : null}
       <DeviceHome />
     </div>

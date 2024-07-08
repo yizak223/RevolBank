@@ -25,6 +25,9 @@ export default function Transfers() {
   const [transfers, setTransfers] = useState([])
   const [modeType, setModeType] = useState(1)
 
+  const createAccountStyle = false
+
+
   const fetchData = async () => {
     try {
       const res = await Axios.get(`${baseUrl}/accounts?_id=${choosenAccount?._id}`, {
@@ -65,7 +68,7 @@ export default function Transfers() {
   return (
     <>
       {modalAcount ? (
-        <CreateAccount />
+        <CreateAccount createAccountStyle={createAccountStyle}/>
       ) : null}
       <div className={styles.containerPage}>
         <div className={styles.secContainer}>

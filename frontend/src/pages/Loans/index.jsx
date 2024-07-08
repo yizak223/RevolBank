@@ -14,7 +14,6 @@ import CreateAccount from '../../components/CreateAccount'
 export default function Loans() {
   const modalAcount = useSelector((state) => state.modal.modalAcount);
 
-
   const navigate = useNavigate()
   const { token } = useContext(UserContext)
   const { choosenAccount } = useContext(AccountContext)
@@ -25,6 +24,9 @@ export default function Loans() {
   const [index, setIndex] = useState(0)
   const [loan, setLoan] = useState([])
   const [createLoan, setCreateLoan] = useState(false)
+
+  const createAccountStyle = false
+
 
   const fetchData = async () => {
     try {
@@ -52,7 +54,7 @@ export default function Loans() {
   return (
     <>
       {modalAcount ? (
-        <CreateAccount />
+        <CreateAccount createAccountStyle={createAccountStyle}/>
       ) : null}
       <div className={styles.containerPage}>
         <div className={styles.secContainer}>

@@ -7,7 +7,7 @@ import { AccountContext } from '../../context/Account';
 import baseUrl from '../../config/BaseUrl';
 import Axios from 'axios';
 
-export default function CreateAccount() {
+export default function CreateAccount({createAccountStyle}) {
     const dispatch = useDispatch();
     const modalAcount = useSelector((state) => state.modal.modalAcount);
 
@@ -56,9 +56,10 @@ export default function CreateAccount() {
             console.error('Error creating account:', error);
         }
     };
+
     return (
         <div className="modalBackground">
-            <div className={styles.Container2}>
+            <div className={createAccountStyle? styles.ContainerHome : styles.containerOtherPage}>
                 <form onSubmit={handleSubmit} className={styles.Form}>
                     <h2 className={styles.h2}>Create your account</h2>
                     <input required placeholder='Full name' className={styles.input} type="text" value={fullNameState} onChange={handleFullNameChange} />

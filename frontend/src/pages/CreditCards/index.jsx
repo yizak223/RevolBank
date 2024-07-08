@@ -27,6 +27,8 @@ export default function CreditCard() {
     idAccount: accountState
   })
 
+  const createAccountStyle = false
+
   const fetchData = async () => {
     try {
       const idAccount = choosenAccount?._id
@@ -86,7 +88,7 @@ export default function CreditCard() {
   return (
     <>
       {modalAcount ? (
-        <CreateAccount />
+        <CreateAccount  createAccountStyle={createAccountStyle}/>
       ) : null}
       <div className={styles2.container}>
         <div className={styles3.secContainer}>
