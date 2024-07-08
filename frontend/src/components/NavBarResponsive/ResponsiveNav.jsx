@@ -14,7 +14,7 @@ import { setModalAcount } from '../../redux/store'
 export default function ResponsiveNav() {
     const dispatch = useDispatch();
     const modalAcount = useSelector((state) => state.modal.modalAcount);
-    
+
     const { user, logOut } = useContext(UserContext)
     const { accounts, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
@@ -31,6 +31,11 @@ export default function ResponsiveNav() {
         logOut()
         navigate('/')
         setPath('/')
+    }
+
+    const closeNavOpenCreateAccount = () => {
+        dispatch(setModalAcount(!modalAcount))
+        openNavBar()
     }
 
     const openNavBar = () => {
@@ -79,14 +84,14 @@ export default function ResponsiveNav() {
                         <Link className={`${styles2.a} ${path === '/loans' ? styles.active : ''}`} to='/loans'>
                             <li className={styles2.item}><i className="fa-solid fa-landmark"></i> Loan</li>
                         </Link>
-                        <Link  className={`${styles2.a} ${path === '/transfers' ? styles.active : ''}`} to='/transfers'>
+                        <Link className={`${styles2.a} ${path === '/transfers' ? styles.active : ''}`} to='/transfers'>
                             <li className={styles2.item}><i className="fa-solid fa-money-bill-transfer"></i> Transfer</li>
                         </Link>
                     </div>
                     <div className={styles.user}>
                         {user && (
                             <>
-                                <li onClick={() => dispatch(setModalAcount(!modalAcount))} className={`${styles.active} ${styles2.item}`}>
+                                <li onClick={closeNavOpenCreateAccount} className={`${styles.active} ${styles2.item}`}>
                                     <i className="fa-regular fa-user"></i> {user.fullName.split(' ')[0]}
                                 </li>
                                 {accounts.length > 0 ? (
@@ -97,7 +102,7 @@ export default function ResponsiveNav() {
                                         ))}
                                     </select>
                                 ) : (
-                                    <p onClick={() => dispatch(setModalAcount(!modalAcount))} className={styles.createAc}>Create Account</p>
+                                    <p onClick={closeNavOpenCreateAccount} className={styles.createAc}>Create Account</p>
                                 )}
                                 <button onClick={handleLogOut} className={styles.logOutBtn}>Log out</button>
                             </>

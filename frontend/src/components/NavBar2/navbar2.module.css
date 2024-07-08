@@ -87,8 +87,8 @@
 
 .logOutBtn, .createAc {
     background-color: #ffffff;
-    color: #008773;
-    border: solid #008773;
+    color: #6e6e6e;
+    border: solid #5f6261;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 4px;
@@ -97,12 +97,15 @@
     transition: 0.3s;
 }
 .createAc {
+    color: #008773;
+    border: solid #008773;
     padding: 0.5rem;
     font-size: 16px;
     font-weight: 400;
 }
 
-.logOutBtn:hover {
+.logOutBtn:hover, .createAc:hover {
+    border: solid #008773;
     background-color: #008773;
     color: #ffffff;
     border: solid #ffffff;
