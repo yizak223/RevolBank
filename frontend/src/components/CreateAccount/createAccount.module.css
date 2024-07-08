@@ -45,6 +45,9 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
+}
+
+.ContainerHome {
     bottom: 15vh;
 }
 
@@ -206,12 +209,15 @@
         width: 80vw;
         margin: 0;
     }
-    .ContainerHome{
+
+    .ContainerHome {
         bottom: 55vh;
     }
-    .containerOtherPage{
+
+    .containerOtherPage {
         bottom: 5vh;
     }
+
     .Form h2 {
         font-size: 21px;
     }
