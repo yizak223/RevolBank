@@ -66,8 +66,6 @@ export default function Balances() {
       ) : null}
       <div className={styles.container}>
         <div className={styles.activities}>
-          {/* Render your sorted balancses here */}
-          {/* Example: */}
           {
             balances.length != 0 ? <select className={styles.select} name="" id="">
               <option disabled selected>activities</option>

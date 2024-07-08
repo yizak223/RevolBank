@@ -103,7 +103,7 @@ export default function NavBar2() {
                                     <select className={styles.select} onChange={handleOption} name="account">
                                         <option value="" disabled>Change account</option>
                                         {accounts.map((account, i) => (
-                                            <option key={i} value={JSON.stringify(account)}>{account.idIsraeli}</option>
+                                            <option key={i} value={JSON.stringify(account)}>{account.numberAccount}</option>
                                         ))}
                                     </select>
                                 ) : (
