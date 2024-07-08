@@ -6,7 +6,7 @@ import { convertStringToNumber } from '../../utils/formatNumberWithCommas';
 
 export default function UserSaving() {
     const { balanceuser } = useContext(AccountContext);
-    const [isPositiveBalance, setIsPositiveBalance] = useState(false);
+    const [isPositiveBalance, setIsPositiveBalance] = useState(true);
 
     const checkBalance = useCallback(() => {
         if (!balanceuser) return;
@@ -32,7 +32,7 @@ export default function UserSaving() {
                         <FaBalanceScale />
                     </div>
                     <h2 className={isPositiveBalance ? styles.h2P : styles.h2N}>
-                        $ {balanceuser}
+                        $ {balanceuser ? balanceuser : 0}
                     </h2>
                 </div>
                 <div className={isPositiveBalance ? styles.progressP : styles.progressN}></div>

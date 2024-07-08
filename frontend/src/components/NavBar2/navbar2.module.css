@@ -61,6 +61,7 @@
     cursor: pointer;
 }
 
+
 .user {
     display: flex;
     flex-direction: column;
@@ -84,7 +85,7 @@
     margin-bottom: 10px;
 }
 
-.logOutBtn {
+.logOutBtn, .createAc {
     background-color: #ffffff;
     color: #008773;
     border: solid #008773;
@@ -94,6 +95,11 @@
     cursor: pointer;
     width: 110%;
     transition: 0.3s;
+}
+.createAc {
+    padding: 0.5rem;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .logOutBtn:hover {

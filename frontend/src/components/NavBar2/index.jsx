@@ -107,7 +107,7 @@ export default function NavBar2() {
                                         ))}
                                     </select>
                                 ) : (
-                                    <p>Create account</p>
+                                    <p onClick={() => dispatch(setModalAcount(!modalAcount))} className={styles.createAc}>Create Account</p>
                                 )}
                                 <button onClick={handleLogOut} className={styles.logOutBtn}>Log out</button>
                             </>
