@@ -7,8 +7,13 @@ import { PathContext } from '../../context/Path'
 import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import logo from '../../images/Black & White Minimalist Business Logo.png'
+import { setModalAcount } from '../../redux/store'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function NavBar2({ setmodalAcount, modalAcount }) {
+export default function NavBar2() {
+    const dispatch = useDispatch();
+    const modalAcount = useSelector((state) => state.modal.modalAcount);
+
     const { user, logOut } = useContext(UserContext)
     const { accounts, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
@@ -91,7 +96,7 @@ export default function NavBar2({ setmodalAcount, modalAcount }) {
                     <div className={styles.user}>
                         {user && (
                             <>
-                                <li onClick={() => setmodalAcount(!modalAcount)} className={`${styles.active} ${styles.item}`}>
+                                <li onClick={() => dispatch(setModalAcount(!modalAcount))} className={`${styles.active} ${styles.item}`}>
                                     <i className="fa-regular fa-user"></i> {user.fullName.split(' ')[0]}
                                 </li>
                                 {accounts.length > 0 ? (

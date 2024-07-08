@@ -8,11 +8,16 @@ import { UserContext } from '../../context/User'
 import { AccountContext } from '../../context/Account'
 import ModalLoan from '../../components/ModalLoan'
 import styles from './loan.module.css'
+import { useSelector } from 'react-redux'
+import CreateAccount from '../../components/CreateAccount'
 
 export default function Loans() {
+  const modalAcount = useSelector((state) => state.modal.modalAcount);
+
+
   const navigate = useNavigate()
-  const { token, user } = useContext(UserContext)
-  const { choosenAccount, accounts } = useContext(AccountContext)
+  const { token } = useContext(UserContext)
+  const { choosenAccount } = useContext(AccountContext)
   const [firstFour, setFirstFour] = useState(0)
   const [lastFour, setLastFour] = useState(4)
   const [Loans, setLoans] = useState([])
@@ -24,14 +29,11 @@ export default function Loans() {
   const fetchData = async () => {
     try {
       const idAccount = choosenAccount?._id
-      // console.log(choosenAccount);
-      // console.log(idAccount);
       const res = await Axios.get(`${baseUrl}/loans?idAccount=${idAccount}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(res.data);
       setLoans(res.data.loans);
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err)
@@ -48,59 +50,64 @@ export default function Loans() {
   }, [token, choosenAccount])
 
   return (
-    <div className={styles.containerPage}>
-      <div className={styles.secContainer}>
-        <div>
-          <div className={styles.containerBtns}>
-            <button className={styles.backBtn} onClick={() => { navigate('/menu') }}>Back to menu</button>
-            <button className={createLoan ? styles.red : styles.green} onClick={() => { setCreateLoan(!createLoan) }}>{!createLoan ? 'Create Loan' : 'Cancel'}</button>
+    <>
+      {modalAcount ? (
+        <CreateAccount />
+      ) : null}
+      <div className={styles.containerPage}>
+        <div className={styles.secContainer}>
+          <div>
+            <div className={styles.containerBtns}>
+              <button className={styles.backBtn} onClick={() => { navigate('/menu') }}>Back to menu</button>
+              <button className={createLoan ? styles.red : styles.green} onClick={() => { setCreateLoan(!createLoan) }}>{!createLoan ? 'Create Loan' : 'Cancel'}</button>
+            </div>
+
+
+            {modalOpen && (
+              <ModalLoan
+                index={index}
+                loan={loan}
+                setOpenModal={setModalOpen}
+              />
+            )}
+            {Loans?.map((loan, i) => {
+              return (
+                <div key={i}>
+                  {
+                    firstFour <= i && i < lastFour ?
+                      <SingleLoan fetchModal={fetchModal} setModalOpen={setModalOpen} loan={loan} i={i} />
+                      : null
+                  }
+                  {
+                    firstFour == 0 ? null
+                      : <button className={styles.prevBtn} onClick={() => {
+                        setFirstFour(firstFour - 4)
+                        setLastFour(lastFour - 4)
+                      }}>previous</button>
+                  }
+                  {
+                    lastFour >= Loans.length ?
+                      null
+                      : <button className={styles.nextBtn} onClick={() => {
+                        setFirstFour(firstFour + 4)
+                        setLastFour(lastFour + 4)
+                      }}>next</button>
+                  }
+                </div>
+              )
+            })
+            }
+          </div>
+          <div className={styles.left}>
+            {
+              createLoan ?
+                <CreateLoan setCreateLoan={setCreateLoan} createLoan={createLoan} setLoans={setLoans} Loans={Loans} />
+                : <img className={styles.logoimg} src="src/images/KB.png" alt="" />
+            }
           </div>
 
-
-          {modalOpen && (
-            <ModalLoan
-              index={index}
-              loan={loan}
-              setOpenModal={setModalOpen}
-            />
-          )}
-          {Loans?.map((loan, i) => {
-            return (
-              <div key={i}>
-                {
-                  firstFour <= i && i < lastFour ?
-                    <SingleLoan fetchModal={fetchModal} setModalOpen={setModalOpen} loan={loan} i={i} />
-                    : null
-                }
-                {
-            firstFour == 0 ? null
-              : <button className={styles.prevBtn} onClick={() => {
-                setFirstFour(firstFour - 4)
-                setLastFour(lastFour - 4)
-              }}>previous</button>
-          }
-          {
-            lastFour >= Loans.length ?
-              null
-              : <button className={styles.nextBtn} onClick={() => {
-                setFirstFour(firstFour + 4)
-                setLastFour(lastFour + 4)
-              }}>next</button>
-          }
-              </div>
-            )
-          })
-          }
         </div>
-        <div className={styles.left}>
-          {
-            createLoan ?
-              <CreateLoan setCreateLoan={setCreateLoan} createLoan={createLoan} setLoans={setLoans} Loans={Loans} />
-              : <img className={styles.logoimg} src="src/images/KB.png" alt="" />
-          }
-        </div>
-
       </div>
-    </div>
+    </>
   )
 }

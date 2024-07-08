@@ -16,7 +16,6 @@
     transition: 0.3s ease-in-out;
     position: relative;
     z-index: 1;
-    background-color: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -35,7 +34,6 @@
 .lastYear:hover {
     border-color: var(--mainbg);
     color: var(--mainbg);
-    transform: scale(1.05);
 }
 
 .lastMonthActive,
@@ -71,13 +69,6 @@
     animation: highlight 0.3s forwards;
 }
 
-.lastMonth:hover {
-    border-right: none;
-}
-
-.lastYear:hover {
-    border-left: none;
-}
 .containerincome{
     cursor: pointer;
 }

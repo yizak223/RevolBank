@@ -7,9 +7,14 @@ import { AccountContext } from '../../context/Account'
 import { PathContext } from '../../context/Path'
 import { FaBars } from 'react-icons/fa6'
 import logo from '../../images/KB.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalAcount } from '../../redux/store'
 
 
-export default function ResponsiveNav({ setmodalAcount, modalAcount }) {
+export default function ResponsiveNav() {
+    const dispatch = useDispatch();
+    const modalAcount = useSelector((state) => state.modal.modalAcount);
+    
     const { user, logOut } = useContext(UserContext)
     const { accounts, setChoosenAccount } = useContext(AccountContext)
     const { path, setPath } = useContext(PathContext)
@@ -81,7 +86,7 @@ export default function ResponsiveNav({ setmodalAcount, modalAcount }) {
                     <div className={styles.user}>
                         {user && (
                             <>
-                                <li onClick={() => setmodalAcount(!modalAcount)} className={`${styles.active} ${styles2.item}`}>
+                                <li onClick={() => dispatch(setModalAcount(!modalAcount))} className={`${styles.active} ${styles2.item}`}>
                                     <i className="fa-regular fa-user"></i> {user.fullName.split(' ')[0]}
                                 </li>
                                 {accounts.length > 0 ? (

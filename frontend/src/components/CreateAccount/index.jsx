@@ -1,20 +1,18 @@
 import React, { useState, useContext } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setModalAcount } from '../../redux/store'
 import styles from './createAccount.module.css'
 import { UserContext } from '../../context/User';
 import { AccountContext } from '../../context/Account';
 import baseUrl from '../../config/BaseUrl';
 import Axios from 'axios';
 
-export default function CreateAccount({
-    // handleSubmit,
-    // fullNameState,
-    // setfullNameState,
-    // account, setAccount
-    modalAcount,
-    setmodalAcount
-}) {
+export default function CreateAccount() {
+    const dispatch = useDispatch();
+    const modalAcount = useSelector((state) => state.modal.modalAcount);
+
     const { user, token } = useContext(UserContext)
-    const { accounts, setAccounts, choosenAccount, balanceuser } = useContext(AccountContext)
+    const { accounts, setAccounts } = useContext(AccountContext)
     const [fullNameState, setfullNameState] = useState(user?.fullName || '');
     const [account, setAccount] = useState({
         fullName: fullNameState,
@@ -53,7 +51,7 @@ export default function CreateAccount({
                 }
             });
             setAccounts([...accounts, res.data.newAccount]);
-            setmodalAcount(!modalAcount)
+            dispatch(setModalAcount(!modalAcount))
         } catch (error) {
             console.error('Error creating account:', error);
         }
@@ -72,11 +70,10 @@ export default function CreateAccount({
                         <option className={styles.option} value={false}>Regular</option>
                         <option className={styles.option} value={true}>Premium</option>
                     </select>
-                    {/* <label className={styles.label} htmlFor="terms">Enroll in Expo Developer Services</label> */}
                     <button type="submit" className={styles.submitBtn}>Create</button>
                     <small className={styles.small2}>By creating an account you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</small>
                 </form>
-                    <button onClick={() => { setmodalAcount(false); }} className={styles.cancel2}> Cancel </button>
+                <button onClick={() => dispatch(setModalAcount(!modalAcount))} className={styles.cancel2}> Cancel </button>
             </div>
         </div>
     )

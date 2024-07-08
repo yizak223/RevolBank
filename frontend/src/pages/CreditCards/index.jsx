@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
+import { useSelector } from 'react-redux';
+import CreateAccount from '../../components/CreateAccount';
 import SingleCard from '../../components/SingleCard'
 import Axios from 'axios'
 import { UserContext } from '../../context/User'
@@ -12,7 +14,9 @@ import styles3 from './creditCrad.module.css'
 
 
 export default function CreditCard() {
-  const { user, token } = useContext(UserContext)
+  const modalAcount = useSelector((state) => state.modal.modalAcount);
+
+  const { token } = useContext(UserContext)
   const { choosenAccount, accounts } = useContext(AccountContext)
   const [cards, setCards] = useState([])
   const [accountState, setAccountState] = useState(choosenAccount)
@@ -26,8 +30,6 @@ export default function CreditCard() {
   const fetchData = async () => {
     try {
       const idAccount = choosenAccount?._id
-      console.log(choosenAccount);
-      console.log(idAccount);
       const res = await Axios.get(`${BaseUrl}/crditCard?idAccount=${idAccount}`,
         {
           headers: {
@@ -37,8 +39,6 @@ export default function CreditCard() {
       console.log(res.data);
       const updatedCards = res.data.creditCards.filter(card => card.isActive !== false);
       setCards(updatedCards);
-      console.log(updatedCards);
-      console.log(cards);
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err);
     }
@@ -52,8 +52,6 @@ export default function CreditCard() {
       })
       const updatedCards = cards.filter(card => card._id != id);
       setCards(updatedCards);
-      console.log(cards);
-      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -65,12 +63,10 @@ export default function CreditCard() {
   const handleChange = (e) => {
     setAccountState(e.target.value);
     setCreditCard({ ...creditCard, idAccount: e.target.value })
-    console.log(creditCard);
   }
 
   const submitHandler = async (e) => {
     e.preventDefault()
-    console.log(creditCard);
     try {
       const res = await Axios.post(`${BaseUrl}/crditCard`, creditCard, {
         headers: {
@@ -79,7 +75,6 @@ export default function CreditCard() {
       });
       setCards([...cards, res.data])
       setCreateCardMode(!createCardMode)
-      console.log(res.data);
     } catch (error) {
       console.error('Error creating account:', error);
     }
@@ -90,6 +85,9 @@ export default function CreditCard() {
 
   return (
     <>
+      {modalAcount ? (
+        <CreateAccount />
+      ) : null}
       <div className={styles2.container}>
         <div className={styles3.secContainer}>
           <div className={styles.left}>
