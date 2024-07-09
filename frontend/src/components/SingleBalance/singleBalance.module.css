@@ -81,6 +81,7 @@
     .transferPlus,
     .transferMinus,
     .loan {
+        font-size: 15px;
         background-color: rgba(157, 154, 154, 0.358);
     }
 }

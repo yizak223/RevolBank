@@ -211,7 +211,7 @@
     }
 
     .ContainerHome {
-        bottom: 55vh;
+        bottom: 65vh;
     }
 
     .containerOtherPage {
@@ -222,12 +222,8 @@
         font-size: 21px;
     }
 
-    .input {
+    .input ,.select{
         width: 70vw;
-    }
-
-    .select {
-        width: 75vw;
     }
 
     .ContainerRegister {
@@ -242,6 +238,5 @@
         font-size: 15px;
         height: 5vh;
         width: 120px;
-
     }
 }
