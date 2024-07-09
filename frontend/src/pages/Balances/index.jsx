@@ -48,9 +48,9 @@ export default function Balances() {
       })
       let payLoad = res.data.accounts[0].transactions
 
-      payLoad.map(transaction =>{
+      payLoad.map(transaction => {
         if (transaction.type === 'expenditure') {
-          transaction.amount = -transaction.amount 
+          transaction.amount = -transaction.amount
         }
       })
 
@@ -101,7 +101,9 @@ export default function Balances() {
             setTimeFrame={setTimeFrame}
           />
           {balances.length === 0 ? (
-            <h2 className={styles.noActivities}>NO ACTIVITIES</h2>
+            <div className={styles.noActivities}>
+              <h2 className={styles.noActivities}>NO ACTIVITIES</h2>
+            </div>
           ) : (
             <>
               <Titles />
@@ -116,17 +118,28 @@ export default function Balances() {
                 {
                   next == 0 ? null
                     :
-                    <PrevBtn />
+                    <PrevBtn
+                      next={next}
+                      prev={prev}
+                      setNext={setNext}
+                      setPrev={setPrev}
+                    />
                 }
                 {
                   prev >= balances.length ?
                     null
                     :
-                    <NextBtn />
+                    <NextBtn
+                      next={next}
+                      prev={prev}
+                      setNext={setNext}
+                      setPrev={setPrev}
+                    />
                 }
               </div>
             </>
           )}
+
         </div>
       </div>
     </>
