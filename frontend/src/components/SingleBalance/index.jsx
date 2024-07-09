@@ -61,7 +61,7 @@ export default function SingleBalance({ balance, i }) {
                   <p className={styles.activity}>transfer</p>
                 </div>
                 <div className={styles.containerForMobileR}>
-                  <p className={styles.amount}>{choosenAccount?._id == balance.to ? '+' : '-'}{balance.amount}</p>
+                  <p className={styles.amount}>{choosenAccount?._id == balance.to ? '+' : ''}{balance.amount}</p>
                   <p className={styles.name}>
                     {
                       choosenAccount?._id == balance.to ?

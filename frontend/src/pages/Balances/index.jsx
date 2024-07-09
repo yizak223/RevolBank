@@ -20,9 +20,10 @@ export default function Balances() {
   const [balances, setBalances] = useState([])
   const [next, setNext] = useState(0)
   const [prev, setPrev] = useState(7)
+  const [sortType, setSortType] = useState('date');
+  const [timeFrame, setTimeFrame] = useState('month');
 
   const createAccountStyle = false
-
 
   const fetchLoansData = async () => {
     try {
@@ -45,7 +46,15 @@ export default function Balances() {
           Authorization: `Bearer ${token}`
         }
       })
-      setBalances(prevBalances => [...prevBalances, ...res.data.accounts[0].transactions]);
+      let payLoad = res.data.accounts[0].transactions
+
+      payLoad.map(transaction =>{
+        if (transaction.type === 'expenditure') {
+          transaction.amount = -transaction.amount 
+        }
+      })
+
+      setBalances(prevBalances => [...prevBalances, ...payLoad]);
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err)
     }
@@ -58,45 +67,66 @@ export default function Balances() {
 
   }, [token, choosenAccount])
 
-  const sortBalancesByDate = (balances) => {
-    return balances.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const sortBalances = (balances) => {
+    return balances.sort((a, b) => {
+      if (sortType === 'date') {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      } else if (sortType === 'amount') {
+        return b.amount - a.amount;
+      }
+      return 0;
+    });
   };
+
+  const filterBalances = (balances) => {
+    const now = new Date();
+    const timeLimit = timeFrame === 'month' ?
+      new Date(now.setMonth(now.getMonth() - 1)) :
+      new Date(now.setFullYear(now.getFullYear() - 1));
+
+    return balances.filter(balance => new Date(balance.createdAt) > timeLimit);
+  };
+
 
   return (
     <>
-      {modalAcount ? (
-        <CreateAccount createAccountStyle={createAccountStyle} />
-      ) : null}
+      {modalAcount && <CreateAccount createAccountStyle={createAccountStyle} />}
 
       <div className={styles.container}>
         <div className={styles.activities}>
-          {
-            balances.length != 0 ?
-              <SortBy />
-              : <h2 className={styles.h2}>NO ACTIVITIES </h2>
-          }
-
-          <Titles />
-          <div className={styles.containerBalances}>
-            {
-              sortBalancesByDate(balances).map((balance, i) => (
-                next <= i && i < prev ?
-                  <SingleBalance key={i} balance={balance} />
-                  : null
-              ))
-            }
-            {
-              next == 0 ? null
-                :
-                <PrevBtn className={styles.prevBtn} />
-            }
-            {
-              prev >= balances.length ?
-                null
-                :
-                <NextBtn className={styles.nextBtn} />
-            }
-          </div>
+          <SortBy
+            sortType={sortType}
+            setSortType={setSortType}
+            timeFrame={timeFrame}
+            setTimeFrame={setTimeFrame}
+          />
+          {balances.length === 0 ? (
+            <h2 className={styles.noActivities}>NO ACTIVITIES</h2>
+          ) : (
+            <>
+              <Titles />
+              <div className={styles.containerBalances}>
+                {
+                  sortBalances(filterBalances(balances)).map((balance, i) => (
+                    next <= i && i < prev ?
+                      <SingleBalance key={i} balance={balance} />
+                      : null
+                  ))
+                }
+                {
+                  next == 0 ? null
+                    :
+                    <PrevBtn />
+                }
+                {
+                  prev >= balances.length ?
+                    null
+                    :
+                    <NextBtn />
+                }
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

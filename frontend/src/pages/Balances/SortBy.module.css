@@ -1,0 +1,45 @@
+/* SortBy.module.css */
+.sortBy {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .sortGroup {
+    display: flex;
+    align-items: center;
+  }
+  
+  .sortTitle {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .sortButton {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .sortButton:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .sortButton.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .sortBy {
+      flex-direction: column;
+    }
+    
+    .sortGroup {
+      margin-bottom: 10px;
+    }
+  }

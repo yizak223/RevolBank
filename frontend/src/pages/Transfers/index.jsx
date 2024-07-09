@@ -67,9 +67,8 @@ export default function Transfers() {
 
   return (
     <>
-      {modalAcount ? (
-        <CreateAccount createAccountStyle={createAccountStyle}/>
-      ) : null}
+      {modalAcount && <CreateAccount createAccountStyle={createAccountStyle} />}
+
       <div className={styles.containerPage}>
         <div className={styles.secContainer}>
           <div className={styles.left}>

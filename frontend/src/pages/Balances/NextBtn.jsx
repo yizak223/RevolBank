@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './balnces.module.css'
 
 export default function NextBtn({ next, prev, setNext, setPrev }) {
 
@@ -8,6 +9,6 @@ export default function NextBtn({ next, prev, setNext, setPrev }) {
     }
 
     return (
-        <button onClick={nextBalance}>Next</button>
+        <button className={styles.nextBtn} onClick={nextBalance}>Next</button>
     )
 }

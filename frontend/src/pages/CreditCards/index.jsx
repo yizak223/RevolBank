@@ -87,9 +87,8 @@ export default function CreditCard() {
 
   return (
     <>
-      {modalAcount ? (
-        <CreateAccount  createAccountStyle={createAccountStyle}/>
-      ) : null}
+      {modalAcount && <CreateAccount createAccountStyle={createAccountStyle} />}
+      
       <div className={styles2.container}>
         <div className={styles3.secContainer}>
           <div className={styles.left}>

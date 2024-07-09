@@ -119,9 +119,7 @@
     }
 
     .titles {
-        width: 90vw;
-        padding: 0 0.7rem 0 0.7rem;
-        height: 8vh;
+       display: none;
     }
 
     .title {

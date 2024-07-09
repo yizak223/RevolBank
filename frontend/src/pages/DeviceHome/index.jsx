@@ -10,9 +10,7 @@ export default function DeviceHomePage() {
 
   return (
     <div>
-      {modalAcount ? (
-        <CreateAccount createAccountStyle={createAccountStyle} />
-      ) : null}
+      {modalAcount && <CreateAccount createAccountStyle={createAccountStyle} />}
       <DeviceHome />
     </div>
   );

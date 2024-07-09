@@ -53,9 +53,8 @@ export default function Loans() {
 
   return (
     <>
-      {modalAcount ? (
-        <CreateAccount createAccountStyle={createAccountStyle}/>
-      ) : null}
+      {modalAcount && <CreateAccount createAccountStyle={createAccountStyle} />}
+
       <div className={styles.containerPage}>
         <div className={styles.secContainer}>
           <div>
