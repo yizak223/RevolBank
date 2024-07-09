@@ -2,6 +2,7 @@
 <p>Revol Bank is a web application for a bank, allows you to manage your transfers, your loans and see your account balance. </p>
 
 ![צילום מסך 2024-05-25 211439](https://github.com/yizak223/RevolBank/assets/139069183/f98fc86e-c082-4509-a8f6-d85e71f43014)
+![צילום מסך 2024-07-09 130230](https://github.com/yizak223/RevolBank/assets/139069183/a872e868-27b0-46ad-a852-e8895501b769)
 <h1>Features</h1>
 <ul>
   <li><b>Authentication:</b> you can register and log in safely and manage your accounts.</li>
