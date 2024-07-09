@@ -1,31 +1,86 @@
-.singleBalnce {
-    /* display: flex;
-    width: 100%; */
-}
-
 .loan {
     display: flex;
     justify-content: space-between;
-    background-color: #94d4d7da;
-    padding: 0.5rem;
-    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(157, 154, 154, 0.222);
+    border-radius: 4px;
+    padding: 0.3rem;
+    color: rgb(9, 171, 47);
+    box-shadow: 6px 13px 20px 0px rgba(153, 163, 181, 0.7);
+
 }
 
-.transfer {
+.transferPlus,
+.transferMinus {
     display: flex;
     justify-content: space-between;
-    background-color: #94d4d7da;
-    padding: 0.5rem;
-    border-radius: 10px;
+    font-size: 20px;
+    color: rgb(9, 171, 47);
+    border-radius: 4px;
+    padding: 0.3rem;
+    background-color: rgba(157, 154, 154, 0.222);
+    box-shadow: 6px 13px 20px 0px rgba(153, 163, 181, 0.7);
 }
 
-.idBalance {
-    text-align: right;
+.transferMinus {
+    color: red;
+
+}
+
+.containerForMobile,
+.containerForMobileR {
+    display: flex;
+    justify-content: space-between;
+    width: 31vw;
+}
+
+.propertyLoan {
+    width: 10vw;
 }
 
 .minus {
     color: red;
 }
+
 .plus {
     color: green;
+}
+
+.date,
+.activity,
+.amount,
+.name {
+    padding: 0.3rem;
+    border-radius: 4px;
+    width: 12vw;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .containerForMobile,
+    .containerForMobileR {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .containerForMobileR {
+        align-items: end;
+    }
+
+    .date,
+    .activity,
+    .amount,
+    .name {
+        width: fit-content;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .transferPlus,
+    .transferMinus,
+    .loan {
+        background-color: rgba(157, 154, 154, 0.358);
+    }
 }

@@ -1,24 +1,57 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
+    width: 95vw;
 }
-.containerBalances{
+
+.containerBalances {
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    height: 70vh;
+    justify-content: space-between;
 }
+
 .activities {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 70vw;
-    margin: var(--defaultMargin);
-    padding: 20px;
-    background: rgba(144, 201, 201, 0.639);
-    border-radius: 8px;
-    box-shadow: 6px 13px 20px 0px rgba(80, 125, 206, 0.7);
-    /* height: 75vh; */
+    align-self: center;
 }
+
+.titles {
+    display: flex;
+    width: 70vw;
+    justify-content: space-between;
+    color: var(--mainbg);
+    margin-bottom: 10px;
+}
+
+.title {
+    width: 12vw;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--mainbg);
+    transition: width 0.3s ease-in-out;
+}
+
+.title:hover::after {
+    width: 70%;
+}
+
+.activeTitle::after {
+    width: 70%;
+}
+
 
 .select {
     cursor: pointer;
@@ -31,7 +64,33 @@
     width: fit-content;
     margin-bottom: 2vh;
 }
-.nextBtn{
+
+.sortBy {
+    display: flex;
+    width: 30vw;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+
+.sortBy h3 {
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    width: fit-content;
+}
+
+.checkboxContainer input {
+    margin-right: 8px;
+    width: fit-content;
+}
+
+.nextBtn {
     background-color: green;
     color: #fff;
     padding: 10px;
@@ -41,7 +100,8 @@
     right: 0;
     width: fit-content;
 }
-.prevBtn{
+
+.prevBtn {
     background-color: red;
     color: #fff;
     padding: 10px;
@@ -51,8 +111,40 @@
     right: 0;
     width: fit-content;
 }
-@media only screen and (max-width: 768px){
-    .h2{
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 100vw;
+    }
+
+    .h2 {
         text-align: center;
     }
-  }
+
+    .sortBy {
+        width: 90vw;
+    }
+
+    .activities {
+        width: 90vw;
+    }
+
+    .titles {
+        width: 90vw;
+        padding: 0 0.7rem 0 0.7rem;
+
+    }
+
+    .title {
+        width: fit-content;
+        font-size: 15px;
+    }
+
+    .title:hover::after {
+        width: 100%;
+    }
+
+    .activeTitle::after {
+        width: 100%;
+    }
+}

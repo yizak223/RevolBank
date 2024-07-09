@@ -7,6 +7,10 @@ import Axios from 'axios'
 import styles from './balnces.module.css'
 import { useSelector } from 'react-redux'
 import CreateAccount from '../../components/CreateAccount'
+import NextBtn from './NextBtn'
+import PrevBtn from './PrevBtn'
+import Titles from './Titles'
+import SortBy from './SortBy'
 
 export default function Balances() {
   const modalAcount = useSelector((state) => state.modal.modalAcount);
@@ -14,8 +18,8 @@ export default function Balances() {
   const { choosenAccount } = useContext(AccountContext)
   const { token } = useContext(UserContext)
   const [balances, setBalances] = useState([])
-  const [firstFour, setFirstFour] = useState(0)
-  const [lastFour, setLastFour] = useState(7)
+  const [next, setNext] = useState(0)
+  const [prev, setPrev] = useState(7)
 
   const createAccountStyle = false
 
@@ -28,13 +32,12 @@ export default function Balances() {
           Authorization: `Bearer ${token}`
         }
       })
-      console.log(res.data.recentLoans);
       setBalances(prevBalances => [...prevBalances, ...res.data.recentLoans]);
-
     } catch (err) {
       console.error('There was a problem with the fetch operation:', err)
     }
   }
+
   const fetchTransfersData = async () => {
     try {
       const res = await Axios.get(`${baseUrl}/accounts?_id=${choosenAccount?._id}`, {
@@ -62,39 +65,36 @@ export default function Balances() {
   return (
     <>
       {modalAcount ? (
-        <CreateAccount createAccountStyle={createAccountStyle}/>
+        <CreateAccount createAccountStyle={createAccountStyle} />
       ) : null}
+
       <div className={styles.container}>
         <div className={styles.activities}>
           {
-            balances.length != 0 ? <select className={styles.select} name="" id="">
-              <option disabled selected>activities</option>
-              <option value="">last ten</option>
-              <option value="">last month</option>
-              <option value="">last year</option>
-            </select>
+            balances.length != 0 ?
+              <SortBy />
               : <h2 className={styles.h2}>NO ACTIVITIES </h2>
           }
+
+          <Titles />
           <div className={styles.containerBalances}>
-            {sortBalancesByDate(balances).map((balance, i) => (
-              firstFour <= i && i < lastFour ?
-                <SingleBalance key={i} balance={balance} />
-                : null
-            ))}
             {
-              firstFour == 0 ? null
-                : <button className={styles.prevBtn} onClick={() => {
-                  setFirstFour(firstFour - 7)
-                  setLastFour(lastFour - 7)
-                }}>previous</button>
+              sortBalancesByDate(balances).map((balance, i) => (
+                next <= i && i < prev ?
+                  <SingleBalance key={i} balance={balance} />
+                  : null
+              ))
             }
             {
-              lastFour >= balances.length ?
+              next == 0 ? null
+                :
+                <PrevBtn className={styles.prevBtn} />
+            }
+            {
+              prev >= balances.length ?
                 null
-                : <button className={styles.nextBtn} onClick={() => {
-                  setFirstFour(firstFour + 7)
-                  setLastFour(lastFour + 7)
-                }}>next</button>
+                :
+                <NextBtn className={styles.nextBtn} />
             }
           </div>
         </div>

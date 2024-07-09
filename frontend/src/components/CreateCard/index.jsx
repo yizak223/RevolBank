@@ -27,11 +27,9 @@ export default function CreateCard({
               )
             })}
           </select>
-          {/* <label className={styles.label} htmlFor="terms">Enroll in Expo Developer Services</label> */}
           <button type="submit" className={styles.submitBtn}>Order card</button>
           <small className={styles.small}>By creating an card you agree to our <a href="#" className={styles.loginLink}>Terms of Service and Privacy Policy</a>.</small>
           <p onClick={()=>setOpenModal(false)} id="cancelBtn">cancel</p>
-          {/* <button onClick={() => { setOpenModal(false) }} id="cancelBtn"> cancel </button> */}
         </form>
       </div>
     </div>
