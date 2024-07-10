@@ -102,7 +102,7 @@ export default function Balances() {
           />
           {balances.length === 0 ? (
             <div className={styles.noActivities}>
-              <h2 className={styles.noActivities}>NO ACTIVITIES</h2>
+              <h2>NO ACTIVITIES</h2>
             </div>
           ) : (
             <>

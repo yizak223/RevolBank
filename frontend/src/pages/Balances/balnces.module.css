@@ -10,15 +10,17 @@
     height: 70vh;
     gap: 3vh;
 }
-.noActivities{
+
+.noActivities {
     background-color: #f8f8f8;
     width: 100%;
     border-radius: 10px;
     padding: 2rem;
     display: flex;
     justify-content: center;
-    box-shadow: 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
 .activities {
     display: flex;
     flex-direction: column;
@@ -127,7 +129,7 @@
     }
 
     .titles {
-       display: none;
+        display: none;
     }
 
     .title {
