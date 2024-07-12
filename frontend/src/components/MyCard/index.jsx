@@ -11,7 +11,8 @@ import accountNumberConvert from '../../utils/accountNumberConvert'
 export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, cards }) {
     const { token, user } = useContext(UserContext)
     const { accounts, choosenAccount } = useContext(AccountContext)
-
+    const [scrollIndex, setScrollIndex] = useState(0); // New state for scroll position
+    const [cardWidth, setCardWidth] = useState(0); // New state for card width
 
     const fetchData = async () => {
         try {
@@ -41,6 +42,7 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
             setShowCard(showCard - 1)
             if (cards.length) {
                 setShowCard(0)
+                setScrollIndex((prevIndex) => Math.max(prevIndex - 1, 0));
             }
         } catch (err) {
             console.log(err);
@@ -60,6 +62,40 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
         fetchData()
     }, [token, choosenAccount, showCard])
 
+    useEffect(() => {
+        // Calculate card width based on viewport width
+        const updateCardWidth = () => {
+            const viewportWidth = window.innerWidth;
+            let newCardWidth;
+
+         if (viewportWidth <= 895) {
+                newCardWidth = viewportWidth * 0.86;
+            } else if (viewportWidth <= 1024) {
+                newCardWidth = viewportWidth * 0.35; // 45% of viewport width for tablet
+            } else if(viewportWidth <=1700) {
+                newCardWidth = viewportWidth * 0.29; // 26% of viewport width for desktop
+            }else{
+                newCardWidth = viewportWidth * 0.285; // 20% of viewport width for large screens
+            }
+
+            setCardWidth(newCardWidth);
+        };
+
+        updateCardWidth();
+        window.addEventListener('resize', updateCardWidth);
+
+        return () => window.removeEventListener('resize', updateCardWidth);
+    }, []);
+
+    const handleLeftArrowClick = () => {
+        prevCard()
+        setScrollIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+    };
+
+    const handleRightArrowClick = () => {
+        nextCard()
+        setScrollIndex((prevIndex) => Math.min(prevIndex + 1, cards.length - 1));
+    };
 
     return (
         <>
@@ -69,8 +105,8 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                     cards.length > 1 ?
                         <h3 className={styles.titleCard}>My Card
                             <div className={styles.arrows}>
-                                <i onClick={prevCard} className="fa-solid fa-chevron-left"></i>
-                                <i onClick={nextCard} className="fa-solid fa-chevron-right"></i>
+                                <i onClick={handleLeftArrowClick} className="fa-solid fa-chevron-left"></i>
+                                <i onClick={handleRightArrowClick} className="fa-solid fa-chevron-right"></i>
                             </div>
                         </h3>
                         :
@@ -113,14 +149,16 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                             </div>
                         </div>
                         :
-                        cards.map((card, i) => (
-                            showCard === i ?
-                                <SingleCard
-                                    key={card._id}
-                                    card={card}
-                                />
-                                : null
-                        ))
+                        <div className={styles.containerAllCards}>
+                            {
+                                cards.map((card, i) => (
+                                    // showCard === i ?
+                                    <div className={styles.containerCard} key={card._id} style={{ transform: `translateX(-${scrollIndex * cardWidth}px)` }}>
+                                        <SingleCard card={card}/>
+                                    </div>
+                                ))
+                            }
+                        </div>
 
                 }
             </div>

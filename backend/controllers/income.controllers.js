@@ -14,7 +14,6 @@ const getIncomes = async (req, res) => {
 }
 const createIncomes = async () => {
     try {
-        // Schedule the job to run at midnight on the 1st of every month
         schedule.scheduleJob('0 0 1 * *', async function() {
             try {
                 const accounts = await Account.find(); 
@@ -30,13 +29,11 @@ const createIncomes = async () => {
                         console.error(`Error creating income for account ${account._id}:`, err);
                     }
                 }
-                console.log('Income entries created for all users at the start of the month.');
             } catch (err) {
                 console.error('Error retrieving user accounts within the scheduled job:', err);
             }
         });
 
-        console.log('Job scheduled to run at midnight on the 1st of every month.');
     } catch (err) {
         console.error('Error scheduling the job:', err);
     }

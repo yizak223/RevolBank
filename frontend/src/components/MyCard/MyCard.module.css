@@ -42,7 +42,16 @@
     opacity: 50%;
     background: linear-gradient(#f4cc76, #008773, #008773);
 }
-
+.containerAllCards{
+    display: flex;
+    width: 28vw;
+    overflow: hidden;
+    gap: 2rem;
+}
+.containerCard{
+    transition: 0.2s;
+    z-index: 1;
+}
 .titles {
     display: flex;
     flex-direction: row;
@@ -97,20 +106,62 @@
     align-items: center;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 1666px) {
+
+    .containerAllCards{
+        width: 25vw;
+        gap: 5.3rem;
+    }
+    .containerCard{
+        width: 65vw;
+    }
+}
+@media only screen and (min-width: 430px) and (max-width: 768px){
+    .containerAllCards{
+        width: 80vw;
+        gap: 8.3rem;
+    }
+    .containerCard{
+        width: 59vw;
+    }
     .rightCard {
         flex-direction: row-reverse;
     }
-
-    .lftCrdtCrd {
-        width: 100%;
+}
+@media only screen and (min-width: 390px) and (max-width: 429px){
+    .rightCard {
+        flex-direction: row-reverse;
     }
-
-    .transferLoan {
-        background-color: #f8f8f8;
+    .containerAllCards{
+        width: 80vw;
+        gap: 7.6rem;
     }
+    .containerCard{
+        width: 59vw;
+    }
+}
+@media only screen and (min-width: 360px) and (max-width: 389px) {
+    .rightCard {
+        flex-direction: row-reverse;
+    }
+    .containerAllCards{
+        width: 80vw;
+        gap: 8.2rem;
+    }
+    .containerCard{
+        width: 59vw;
+    }
+}
 
-    .numCard {
-        font-size: 21px;
+@media only screen and (max-width: 360px){
+    .rightCard {
+        flex-direction: row-reverse;
+    }
+    .containerAllCards{
+        width: 80vw;
+        gap: 7rem;
+    }
+    .containerCard{
+        width: 59vw;
     }
 }
