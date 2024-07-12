@@ -57,6 +57,7 @@
     width: 30%;
     justify-content: space-evenly;
 }
+
 @media only screen and (min-width: 1700px) and (max-width:2000px) {
     .container {
         width: 27vw;
@@ -66,6 +67,7 @@
         font-size: 20px;
     }
 }
+
 @media only screen and (min-width: 1248px) and (max-width:1700px) {
     .container {
         width: 23vw;
@@ -114,5 +116,11 @@
 
     .container {
         width: 70vw;
+    }
+}
+
+@media only screen and (min-width: 430px) and (max-width: 768px) {
+    .container {
+        width: 76vw;
     }
 }

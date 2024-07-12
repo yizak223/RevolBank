@@ -112,7 +112,7 @@
         width: 25vw;
         gap: 5.3rem;
     }
-    .containerCard{
+    .containerCard {
         width: 65vw;
     }
 }
@@ -121,11 +121,14 @@
         width: 80vw;
         gap: 8.3rem;
     }
-    .containerCard{
+    .containerCard {
         width: 59vw;
     }
     .rightCard {
         flex-direction: row-reverse;
+    }
+    .container{
+        width: 75vw;
     }
 }
 @media only screen and (min-width: 390px) and (max-width: 429px){
@@ -139,6 +142,9 @@
     .containerCard{
         width: 59vw;
     }
+    .container{
+        width: 75vw;
+    }
 }
 @media only screen and (min-width: 360px) and (max-width: 389px) {
     .rightCard {
@@ -150,6 +156,9 @@
     }
     .containerCard{
         width: 59vw;
+    }
+    .container{
+        width: 75vw;
     }
 }
 
@@ -163,5 +172,11 @@
     }
     .containerCard{
         width: 59vw;
+    }
+    .container{
+        width: 75vw;
+    }
+    .numCard{
+        font-size: 23px;
     }
 }

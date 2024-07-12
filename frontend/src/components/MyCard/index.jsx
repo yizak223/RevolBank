@@ -67,14 +67,21 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
         const updateCardWidth = () => {
             const viewportWidth = window.innerWidth;
             let newCardWidth;
-
-         if (viewportWidth <= 895) {
+            if (viewportWidth <= 360) {
+                newCardWidth = viewportWidth * 0.88;
+            } else if (viewportWidth <= 389) {
                 newCardWidth = viewportWidth * 0.86;
+            } else if (viewportWidth <= 412) {
+                newCardWidth = viewportWidth * 0.86;
+            } else if (viewportWidth <= 429) {
+                newCardWidth = viewportWidth * 0.89;
+            } else if (viewportWidth <= 768) {
+                newCardWidth = viewportWidth * 0.9;
             } else if (viewportWidth <= 1024) {
                 newCardWidth = viewportWidth * 0.35; // 45% of viewport width for tablet
-            } else if(viewportWidth <=1700) {
+            } else if (viewportWidth <= 1700) {
                 newCardWidth = viewportWidth * 0.29; // 26% of viewport width for desktop
-            }else{
+            } else {
                 newCardWidth = viewportWidth * 0.285; // 20% of viewport width for large screens
             }
 
@@ -152,9 +159,8 @@ export default function MyCard({ setOpenModal, setCards, setShowCard, showCard, 
                         <div className={styles.containerAllCards}>
                             {
                                 cards.map((card, i) => (
-                                    // showCard === i ?
                                     <div className={styles.containerCard} key={card._id} style={{ transform: `translateX(-${scrollIndex * cardWidth}px)` }}>
-                                        <SingleCard card={card}/>
+                                        <SingleCard card={card} />
                                     </div>
                                 ))
                             }
