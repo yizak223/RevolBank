@@ -99,9 +99,9 @@ export default function CreditCard() {
         } else if (viewportWidth <= 1024) {
             newCardWidth = viewportWidth * 0.35; // 45% of viewport width for tablet
         } else if (viewportWidth <= 1700) {
-            newCardWidth = viewportWidth * 0.29; // 26% of viewport width for desktop
+            newCardWidth = viewportWidth * 0.27; // 26% of viewport width for desktop
         } else {
-            newCardWidth = viewportWidth * 0.285; // 20% of viewport width for large screens
+            newCardWidth = viewportWidth * 0.278; // 20% of viewport width for large screens
         }
 
         setCardWidth(newCardWidth);
